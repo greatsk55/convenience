@@ -33,57 +33,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class RegisterActivity extends ActionBarActivity {
 
     protected EditText username;
     private EditText password;
+    private EditText email;
     protected String enteredUsername;
     private final String serverUrl = "http://52.79.196.135/mobile/index.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
         username = (EditText)findViewById(R.id.username_field);
         password = (EditText)findViewById(R.id.password_field);
-        Button loginButton = (Button)findViewById(R.id.login);
-        Button registerButton = (Button)findViewById(R.id.register_button);
+        email = (EditText)findViewById(R.id.email_field);
+        Button signUpButton = (Button)findViewById(R.id.sign_up);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 enteredUsername = username.getText().toString();
                 String enteredPassword = password.getText().toString();
+                String enteredEmail = email.getText().toString();
 
-                if(enteredUsername.equals("") || enteredPassword.equals("")){
-                    Toast.makeText(MainActivity.this, "Username or password must be filled", Toast.LENGTH_LONG).show();
+                if(enteredUsername.equals("") || enteredPassword.equals("") || enteredEmail.equals("")){
+                    Toast.makeText(RegisterActivity.this, "Username or password or email must be filled", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(enteredUsername.length() <= 1 || enteredPassword.length() <= 1){
-                    Toast.makeText(MainActivity.this, "Username or password length must be greater than one", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Username or password length must be greater than one", Toast.LENGTH_LONG).show();
                     return;
                 }
                 // request authentication with remote server4
                 AsyncDataClass asyncRequestObject = new AsyncDataClass();
-                asyncRequestObject.execute(serverUrl, enteredUsername, enteredPassword);
-            }
-        });
-
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                asyncRequestObject.execute(serverUrl, enteredUsername, enteredPassword, enteredEmail);
             }
         });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_register, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -115,10 +110,12 @@ public class MainActivity extends ActionBarActivity {
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
                 nameValuePairs.add(new BasicNameValuePair("username", params[1]));
                 nameValuePairs.add(new BasicNameValuePair("password", params[2]));
+                nameValuePairs.add(new BasicNameValuePair("email", params[3]));
                 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 HttpResponse response = httpClient.execute(httpPost);
                 jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
+                System.out.println("Returned Json object " + jsonResult.toString());
 
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
@@ -136,18 +133,18 @@ public class MainActivity extends ActionBarActivity {
             super.onPostExecute(result);
             System.out.println("Resulted Value: " + result);
             if(result.equals("") || result == null){
-                Toast.makeText(MainActivity.this, "Server connection failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "Server connection failed", Toast.LENGTH_LONG).show();
                 return;
             }
             int jsonResult = returnParsedJsonObject(result);
             if(jsonResult == 0){
-                Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "Invalid username or password or email", Toast.LENGTH_LONG).show();
                 return;
             }
             if(jsonResult == 1){
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 intent.putExtra("USERNAME", enteredUsername);
-                intent.putExtra("MESSAGE", "You have been successfully login");
+                intent.putExtra("MESSAGE", "You have been successfully Registered");
                 startActivity(intent);
             }
         }
