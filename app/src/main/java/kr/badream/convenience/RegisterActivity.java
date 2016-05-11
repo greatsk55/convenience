@@ -32,43 +32,43 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class RegisterActivity extends ActionBarActivity {
 
     protected EditText username;
     private EditText password;
     private EditText email;
-    protected String enteredUsername;
-    private final String serverUrl = "http://52.79.196.135/mobile/index.php";
+    protected String enteredUseremail;
+    private final String serverUrl = "http://52.79.197.58/conv/index.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        username = (EditText)findViewById(R.id.username_field);
-        password = (EditText)findViewById(R.id.password_field);
         email = (EditText)findViewById(R.id.email_field);
+        password = (EditText)findViewById(R.id.password_field);
+        username = (EditText)findViewById(R.id.username_field);
+
         Button signUpButton = (Button)findViewById(R.id.sign_up);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enteredUsername = username.getText().toString();
+                enteredUseremail = email.getText().toString();
                 String enteredPassword = password.getText().toString();
-                String enteredEmail = email.getText().toString();
+                String enteredUsername = username.getText().toString();
 
-                if(enteredUsername.equals("") || enteredPassword.equals("") || enteredEmail.equals("")){
+                if(enteredUseremail.equals("") || enteredPassword.equals("") || enteredUsername.equals("")){
                     Toast.makeText(RegisterActivity.this, "Username or password or email must be filled", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if(enteredUsername.length() <= 1 || enteredPassword.length() <= 1){
+                if(enteredUseremail.length() <= 1 || enteredPassword.length() <= 1){
                     Toast.makeText(RegisterActivity.this, "Username or password length must be greater than one", Toast.LENGTH_LONG).show();
                     return;
                 }
                 // request authentication with remote server4
                 AsyncDataClass asyncRequestObject = new AsyncDataClass();
-                asyncRequestObject.execute(serverUrl, enteredUsername, enteredPassword, enteredEmail);
+                asyncRequestObject.execute(serverUrl, enteredUseremail, enteredPassword, enteredUsername);
             }
         });
     }
@@ -108,9 +108,9 @@ public class RegisterActivity extends ActionBarActivity {
             String jsonResult = "";
             try {
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-                nameValuePairs.add(new BasicNameValuePair("username", params[1]));
+                nameValuePairs.add(new BasicNameValuePair("email", params[1]));
                 nameValuePairs.add(new BasicNameValuePair("password", params[2]));
-                nameValuePairs.add(new BasicNameValuePair("email", params[3]));
+                nameValuePairs.add(new BasicNameValuePair("username", params[3]));
                 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 HttpResponse response = httpClient.execute(httpPost);
@@ -143,7 +143,7 @@ public class RegisterActivity extends ActionBarActivity {
             }
             if(jsonResult == 1){
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                intent.putExtra("USERNAME", enteredUsername);
+                intent.putExtra("USEREMAIL", enteredUseremail);
                 intent.putExtra("MESSAGE", "You have been successfully Registered");
                 startActivity(intent);
             }

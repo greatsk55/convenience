@@ -11,8 +11,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/username"
-        android:id="@+id/username"
+        android:text="@string/email"
+        android:id="@+id/usereamil"
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:layout_marginTop="20dp"
@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
-        android:id="@+id/username_field"
-        android:layout_below="@+id/username"
-        android:layout_alignLeft="@+id/username"
+        android:id="@+id/email_field"
+        android:layout_below="@+id/usereamil"
+        android:layout_alignLeft="@+id/usereamil"
         android:background="#ffffff"
-        android:layout_alignStart="@+id/username" />
+        android:layout_alignStart="@+id/usereamil" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,9 +37,9 @@
         android:id="@+id/password"
         android:textColor="#ffffff"
         android:textSize="16sp"
-        android:layout_below="@+id/username_field"
-        android:layout_alignLeft="@+id/username_field"
-        android:layout_alignStart="@+id/username_field"
+        android:layout_below="@+id/email_field"
+        android:layout_alignLeft="@+id/email_field"
+        android:layout_alignStart="@+id/email_field"
         android:layout_marginTop="30dp" />
     <EditText
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/email"
+        android:text="@string/username"
         android:id="@+id/textView3"
         android:textColor="#ffffff"
         android:textSize="16sp"
@@ -67,9 +67,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/email_field"
+        android:id="@+id/username_field"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
         android:background="#ffffff"
@@ -81,7 +80,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
         android:id="@+id/sign_up"
-        android:layout_below="@+id/email_field"
+        android:layout_below="@+id/username_field"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" />
 </RelativeLayout>

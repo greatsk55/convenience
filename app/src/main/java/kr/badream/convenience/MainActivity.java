@@ -35,17 +35,17 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
-    protected EditText username;
+    protected EditText useremail;
     private EditText password;
-    protected String enteredUsername;
-    private final String serverUrl = "http://52.79.196.135/mobile/index.php";
+    protected String enteredUserEmail;
+    private final String serverUrl = "http://52.79.197.58/conv/index.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        username = (EditText)findViewById(R.id.username_field);
+        useremail = (EditText)findViewById(R.id.useremail_field);
         password = (EditText)findViewById(R.id.password_field);
         Button loginButton = (Button)findViewById(R.id.login);
         Button registerButton = (Button)findViewById(R.id.register_button);
@@ -53,20 +53,20 @@ public class MainActivity extends ActionBarActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enteredUsername = username.getText().toString();
+                enteredUserEmail = useremail.getText().toString();
                 String enteredPassword = password.getText().toString();
 
-                if(enteredUsername.equals("") || enteredPassword.equals("")){
-                    Toast.makeText(MainActivity.this, "Username or password must be filled", Toast.LENGTH_LONG).show();
+                if(enteredUserEmail.equals("") || enteredPassword.equals("")){
+                    Toast.makeText(MainActivity.this, "UserEamil or password must be filled", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if(enteredUsername.length() <= 1 || enteredPassword.length() <= 1){
-                    Toast.makeText(MainActivity.this, "Username or password length must be greater than one", Toast.LENGTH_LONG).show();
+                if(enteredUserEmail.length() <= 1 || enteredPassword.length() <= 1){
+                    Toast.makeText(MainActivity.this, "UserEmail or password length must be greater than one", Toast.LENGTH_LONG).show();
                     return;
                 }
                 // request authentication with remote server4
                 AsyncDataClass asyncRequestObject = new AsyncDataClass();
-                asyncRequestObject.execute(serverUrl, enteredUsername, enteredPassword);
+                asyncRequestObject.execute(serverUrl, enteredUserEmail, enteredPassword);
             }
         });
 
@@ -113,7 +113,7 @@ public class MainActivity extends ActionBarActivity {
             String jsonResult = "";
             try {
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-                nameValuePairs.add(new BasicNameValuePair("username", params[1]));
+                nameValuePairs.add(new BasicNameValuePair("email", params[1]));
                 nameValuePairs.add(new BasicNameValuePair("password", params[2]));
                 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -146,7 +146,7 @@ public class MainActivity extends ActionBarActivity {
             }
             if(jsonResult == 1){
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                intent.putExtra("USERNAME", enteredUsername);
+                intent.putExtra("USEREMAIL", enteredUserEmail);
                 intent.putExtra("MESSAGE", "You have been successfully login");
                 startActivity(intent);
             }
