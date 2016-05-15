@@ -142,7 +142,7 @@ public class RegisterActivity extends ActionBarActivity {
                 return;
             }
             if(jsonResult == 1){
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, tests.class);
                 intent.putExtra("USEREMAIL", enteredUseremail);
                 intent.putExtra("MESSAGE", "You have been successfully Registered");
                 startActivity(intent);

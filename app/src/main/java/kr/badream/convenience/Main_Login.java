@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class Main_Login extends ActionBarActivity {
 
     protected EditText useremail;
     private EditText password;
@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         useremail = (EditText)findViewById(R.id.useremail_field);
         password = (EditText)findViewById(R.id.password_field);
@@ -57,11 +57,11 @@ public class MainActivity extends ActionBarActivity {
                 String enteredPassword = password.getText().toString();
 
                 if(enteredUserEmail.equals("") || enteredPassword.equals("")){
-                    Toast.makeText(MainActivity.this, "UserEamil or password must be filled", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Main_Login.this, "UserEamil or password must be filled", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(enteredUserEmail.length() <= 1 || enteredPassword.length() <= 1){
-                    Toast.makeText(MainActivity.this, "UserEmail or password length must be greater than one", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Main_Login.this, "UserEmail or password length must be greater than one", Toast.LENGTH_LONG).show();
                     return;
                 }
                 // request authentication with remote server4
@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(Main_Login.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -136,16 +136,16 @@ public class MainActivity extends ActionBarActivity {
             super.onPostExecute(result);
             System.out.println("Resulted Value: " + result);
             if(result.equals("") || result == null){
-                Toast.makeText(MainActivity.this, "Server connection failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(Main_Login.this, "Server connection failed", Toast.LENGTH_LONG).show();
                 return;
             }
             int jsonResult = returnParsedJsonObject(result);
             if(jsonResult == 0){
-                Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                Toast.makeText(Main_Login.this, "Invalid username or password", Toast.LENGTH_LONG).show();
                 return;
             }
             if(jsonResult == 1){
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(Main_Login.this, tests.class);
                 intent.putExtra("USEREMAIL", enteredUserEmail);
                 intent.putExtra("MESSAGE", "You have been successfully login");
                 startActivity(intent);
