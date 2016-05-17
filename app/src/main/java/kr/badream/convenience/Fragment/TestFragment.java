@@ -13,6 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import kr.badream.convenience.Adapter.Activity_convenience;
+import kr.badream.convenience.Adapter.Item_mix_adapter;
+import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.R;
 
 
@@ -24,11 +29,11 @@ public final class TestFragment extends Fragment {
     final int MyInformation = 2;
 
     private View view;
-    private View view_register;
-    private View info;
 
-    public RecyclerView recyclerView;
-    public RecyclerView recyclerView_register;
+    private RecyclerView recyclerView;
+
+    private Activity_convenience Activity_convenience;
+    private Item_mix_adapter Item_mix_adapter;
 
     public static TestFragment newInstance(String content) {
         TestFragment fragment = new TestFragment();
@@ -45,41 +50,40 @@ public final class TestFragment extends Fragment {
 
     private String mContent = "???";
 
-    private void setAdapterView(LayoutInflater inflater, ViewGroup container, int cases){
+    private void setAdapterView(LayoutInflater inflater, ViewGroup container, int cases) {
         view = inflater.inflate(R.layout.activity_list, container, false);
-        //info = inflater.inflate(R.layout.activity_myself,container,false);
-
         recyclerView = (RecyclerView) view.findViewById(R.id.list);
 
-        //Helper_roomData first = new Helper_roomData();
-        //Helper_roomData second = new Helper_roomData();
-       // Helper_roomData third = new Helper_roomData();
-       // first.roomname ="방 화면 예시 1";
-     //   second.roomname = "방 화면 예시 2";
-   //     second.roomimage = R.drawable.room2;
- //       third.roomimage = R.drawable.room3;
-//        third.roomname = "방 화면 예시 3";
+        Helper_itemData first = new Helper_itemData();
+        Helper_itemData second = new Helper_itemData();
+        Helper_itemData third = new Helper_itemData();
 
-//        ArrayList<Helper_roomData> se = new ArrayList<Helper_roomData>();
-//        se.add(first);
-//        se.add(second);
-//        se.add(third);
+        first.setItem(0,0,"구구콘",1500, R.drawable.cu);
+        //second.roomname = "방 화면 예시 2";
+        //second.roomimage = R.drawable.room2;
+        //third.roomimage = R.drawable.room3;
+        //third.roomname = "방 화면 예시 3";
+
+        ArrayList<Helper_itemData> se = new ArrayList<Helper_itemData>();
+        se.add(first);
+        //se.add(second);
+        //se.add(third);
 
 
         //Helper_userData user = new Helper_userData();
 
-        switch (cases){
+        switch (cases) {
             case List:
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-                //Adapter = new Adapter(getActivity(),
-                //        se,
-                //        (LinearLayoutManager) recyclerView.getLayoutManager());
-                //recyclerView.setAdapter(reservationAdapter);
+                Item_mix_adapter = new Item_mix_adapter(getActivity(),
+                        se,
+                        (LinearLayoutManager) recyclerView.getLayoutManager());
+                recyclerView.setAdapter(Item_mix_adapter);
                 break;
         }
-        return ;
+        return;
     }
 
 
@@ -95,28 +99,13 @@ public final class TestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        if(mContent.equalsIgnoreCase("a")){ //Ignore Lower Upper case
-            //setAdapterView(inflater, container, ROOMLIST);
-          //  LinearLayout layout = new LinearLayout(getActivity());
-          //  layout.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-         //   layout.setGravity(Gravity.CENTER);
-
-            //Activity l =  (Activity) new Activity_roomList();
-            //LinearLayout layout = (LinearLayout) l.findViewById(R.id.roomlist);
-
-            //return inflater.inflate(R.layout.activity_list, container, false);
-            setAdapterView(inflater, container, Convinience);
-            return view;
-        }
-        else if(mContent.equalsIgnoreCase("b")){
+        if (mContent.equalsIgnoreCase("b")) { //Ignore Lower Upper case
             setAdapterView(inflater, container, List);
             return view;
-        }
-        else if(mContent.equalsIgnoreCase("c")){
-           // TabView_myself tabView_myself = new TabView_myself(getContext());
-           // return tabView_myself;
-
-        }else {
+        } else if (mContent.equalsIgnoreCase("a")) {
+            Activity_convenience = new Activity_convenience(getContext());
+            return Activity_convenience;
+        } else {
 
             TextView text = new TextView(getActivity());
             text.setGravity(Gravity.CENTER);
@@ -132,11 +121,10 @@ public final class TestFragment extends Fragment {
             return layout;
         }
 
-        return null;
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState (Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putString(KEY_CONTENT, mContent);
 

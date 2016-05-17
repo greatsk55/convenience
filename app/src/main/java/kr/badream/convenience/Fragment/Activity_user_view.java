@@ -39,7 +39,7 @@ public class Activity_user_view extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
-        mPager.setOffscreenPageLimit(3);
+        mPager.setOffscreenPageLimit(2);
 
         mIndicator = (IconPageIndicator) findViewById(R.id.u_indicator);
 
