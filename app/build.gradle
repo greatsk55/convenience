@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "kr.badream.convenience"
@@ -17,6 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -25,5 +27,6 @@ dependencies {
     compile 'com.android.support:support-v13:21.+'
     compile 'com.android.support:support-v4:24.0.0-alpha1'
     compile 'com.android.support:recyclerview-v7:22.+'
+    compile 'com.google.android.gms:play-services:8.4.0'
     testCompile 'junit:junit:4.12'
 }
