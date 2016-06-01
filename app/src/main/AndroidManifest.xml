@@ -25,7 +25,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main_Login"></activity>
+        <activity android:name=".Main_Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".tests"
             android:label="@string/title_activity_login" />
@@ -41,11 +47,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAZVHdR1YgnPJKhL5DP7Kfl_UpMcYJFXWE" />
 
-        <activity android:name=".Activity_map">            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".Activity_map">
+        </activity>
     </application>
 
 </manifest>

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import kr.badream.convenience.Adapter.Activity_convenience;
+import kr.badream.convenience.Adapter.Activity_myself;
 import kr.badream.convenience.Adapter.Item_mix_adapter;
 import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.R;
@@ -100,8 +101,9 @@ public final class TestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         if (mContent.equalsIgnoreCase("b")) { //Ignore Lower Upper case
-            setAdapterView(inflater, container, List);
-            return view;
+            //setAdapterView(inflater, container, List);
+            Activity_myself activity_myself = new Activity_myself(getContext());
+            return activity_myself;
         } else if (mContent.equalsIgnoreCase("a")) {
             Activity_convenience = new Activity_convenience(getContext());
             return Activity_convenience;

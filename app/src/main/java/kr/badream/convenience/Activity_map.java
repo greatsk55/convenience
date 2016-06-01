@@ -18,7 +18,7 @@ public class Activity_map extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_map);
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
         Marker seoul = map.addMarker(new MarkerOptions().position(SEOUL)
