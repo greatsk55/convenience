@@ -31,6 +31,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
+
+import kr.badream.convenience.Fragment.Activity_user_view;
 
 
 public class Main_Login extends ActionBarActivity {
@@ -119,6 +122,8 @@ public class Main_Login extends ActionBarActivity {
 
                 HttpResponse response = httpClient.execute(httpPost);
                 jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
+                System.out.println("Returned Json object2 " + jsonResult.toString());
+
 
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
@@ -135,17 +140,29 @@ public class Main_Login extends ActionBarActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             System.out.println("Resulted Value: " + result);
+
             if(result.equals("") || result == null){
                 Toast.makeText(Main_Login.this, "Server connection failed", Toast.LENGTH_LONG).show();
                 return;
             }
+
+            String data[] = new String[10];
+            //문자 확인;
+            StringTokenizer tokens = new StringTokenizer(result,"[]");
+            for(int i = 0; tokens.hasMoreElements(); i++) {
+                data[i] = tokens.nextToken();
+            }
+            System.out.println("tokens : " + data[1]);
+
             int jsonResult = returnParsedJsonObject(result);
-            if(jsonResult == 0){
+            System.out.println("Resulted jsonResult: " + jsonResult);
+
+            if(data[1].equals("0")){
                 Toast.makeText(Main_Login.this, "Invalid username or password", Toast.LENGTH_LONG).show();
                 return;
             }
-            if(jsonResult == 1){
-                Intent intent = new Intent(Main_Login.this, tests.class);
+            if(data[1].equals("1")){
+                Intent intent = new Intent(Main_Login.this, Activity_user_view.class);
                 intent.putExtra("USEREMAIL", enteredUserEmail);
                 intent.putExtra("MESSAGE", "You have been successfully login");
                 startActivity(intent);
@@ -172,7 +189,9 @@ public class Main_Login extends ActionBarActivity {
         int returnedResult = 0;
         try {
             resultObject = new JSONObject(result);
+
             returnedResult = resultObject.getInt("success");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

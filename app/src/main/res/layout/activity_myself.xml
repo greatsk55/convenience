@@ -60,17 +60,6 @@
 
                 <!-- content start -->
 
-                <ImageView
-                    android:id="@+id/myface"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="top|center_horizontal"
-                    android:src="@drawable/myself_50x50"
-                    android:visibility="gone"
-                    >
-
-                </ImageView>
-
 
                 <LinearLayout
                     android:layout_marginLeft="20dp"
@@ -116,7 +105,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
-                        android:background="@color/bangpoolColor"/>
+                        android:background="@color/main_color"/>
 
                 </LinearLayout>
 
@@ -349,7 +338,7 @@
                             android:layout_width="3dp"
                             android:layout_height="match_parent"
                             android:height="15dp"
-                            android:background="@color/bangpoolColor"
+                            android:background="@color/main_color"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="3dp"
@@ -366,27 +355,6 @@
                         </TextView>
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="top"
-                    android:layout_marginTop="50dp"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/chage_btn"
-                        android:layout_height="50dp"
-                        android:layout_width="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="사용자 모드 변환"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:background="@drawable/btn_color_selector">
-
-                    </Button>
-
                 </LinearLayout>
             </LinearLayout>
 
