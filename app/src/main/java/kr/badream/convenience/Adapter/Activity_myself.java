@@ -64,10 +64,8 @@ public class Activity_myself extends LinearLayout {
         final View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_myself,null);
         view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
-        myFace = (ImageView) view.findViewById(R.id.myface);
 
         logout_btn = (Button) view.findViewById(R.id.logout);
-        chage_btn = (Button) view.findViewById(R.id.chage_btn);
         edit_btn = (Button) view.findViewById(R.id.editbutton);
 
         myname = (TextView) view.findViewById(R.id.myname);

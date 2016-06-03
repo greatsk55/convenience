@@ -149,10 +149,10 @@ public class Main_Login extends ActionBarActivity {
             String data[] = new String[10];
             //문자 확인;
             StringTokenizer tokens = new StringTokenizer(result,"[]");
-            for(int i = 0; tokens.hasMoreElements(); i++) {
-                data[i] = tokens.nextToken();
-            }
-            System.out.println("tokens : " + data[1]);
+//            for(int i = 0; tokens.hasMoreElements(); i++) {
+//                data[i] = tokens.nextToken();
+//            }
+//            System.out.println("tokens : " + data[1]);
 
             int jsonResult = returnParsedJsonObject(result);
             System.out.println("Resulted jsonResult: " + jsonResult);
