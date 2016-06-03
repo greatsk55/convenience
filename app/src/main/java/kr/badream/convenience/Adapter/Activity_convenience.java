@@ -1,16 +1,25 @@
 package kr.badream.convenience.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import kr.badream.convenience.Fragment.Activity_user_view;
 import kr.badream.convenience.R;
 
 /**
  * Created by Administrator on 2016-05-17.
  */
 public class Activity_convenience extends LinearLayout {
+
+    ImageView cu ;
+    ImageView gs25 ;
+    ImageView mini_stop ;
+    ImageView seven ;
+    ImageView with_me ;
 
     public Activity_convenience(Context context) {
         super(context);
@@ -21,6 +30,20 @@ public class Activity_convenience extends LinearLayout {
 
         final View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_main,null);
         view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+
+        cu = (ImageView) view.findViewById(R.id.cu_image);
+        gs25 = (ImageView) view.findViewById(R.id.ge25_image);
+        mini_stop = (ImageView) view.findViewById(R.id.ministop_image);
+        seven = (ImageView) view.findViewById(R.id.seven_image);
+        with_me = (ImageView) view.findViewById(R.id.withme_image);
+
+        cu.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Intent ctgview_intent = new Intent( getContext(), Activity_ctgview.class);
+                getContext().startActivity(ctgview_intent);
+            }
+        });
+
 
         this.addView(view);
     }

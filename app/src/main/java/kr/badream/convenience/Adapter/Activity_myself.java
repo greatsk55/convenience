@@ -70,12 +70,6 @@ public class Activity_myself extends LinearLayout {
 
         myname = (TextView) view.findViewById(R.id.myname);
 
-        text_phone = (TextView) view.findViewById(R.id.text_phone);
-        text_email = (TextView) view.findViewById(R.id.text_email);
-        text_facebook = (TextView) view.findViewById(R.id.text_facebook);
-        text_kakaotalk = (TextView) view.findViewById(R.id.text_kakao);
-
-
 
         //Log.e("check :", "0=" + Helper_server.userData.getName());
 
@@ -96,10 +90,6 @@ public class Activity_myself extends LinearLayout {
 //        else                                                text_kakaotalk.setText(Helper_server.userData.getKakaotalk());
 
         String str = "" + getContext().getClass();
-
-        if (str.contains("Activity_user_view")) chage_btn.setText("  호스트 모드로 변환  ");
-        else chage_btn.setText("  사용자 모드로 변환  ");
-
 
         logout_btn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {

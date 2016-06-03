@@ -38,7 +38,7 @@ public class RegisterActivity extends ActionBarActivity {
     private EditText password;
     private EditText email;
     protected String enteredUseremail;
-    private final String serverUrl = "http://52.79.197.58/conv/index.php";
+    private final String serverUrl = "http://52.79.197.58/ccc/index.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,7 +15,8 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:padding="@dimen/activity_layout_header_padding"
-        android:visibility="gone" >
+        >
+
     </LinearLayout>
 
     <!-- android:padding="@color/activity_layout_header_background" -->
@@ -54,11 +55,12 @@
             android:orientation="vertical"
             android:padding="@dimen/activity_layout_center_padding" >
 
+            <!-- content start -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="편의점 선택!"/>
+                android:text="카테고리 선택!"/>
 
             <View
                 android:layout_marginTop="3dp"
@@ -67,8 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="@color/main_color"/>
-            
-            <!-- content start -->
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,19 +86,17 @@
 
 
                     <ImageView
-                        android:id="@+id/cu_image"
-                        android:layout_margin="30dp"
-                        android:layout_width="@dimen/activity_cImageViewsize"
-                        android:layout_height="@dimen/activity_cImageViewsize"
-                        android:src="@drawable/cu"/>
+                        android:layout_margin="25dp"
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        android:src="@drawable/ctg_11"/>
 
 
                     <ImageView
-                        android:id="@+id/ge25_image"
-                        android:layout_margin="30dp"
-                        android:layout_width="@dimen/activity_cImageViewsize"
-                        android:layout_height="@dimen/activity_cImageViewsize"
-                        android:src="@drawable/gs25"/>
+                        android:layout_margin="25dp"
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        android:src="@drawable/ctg_22"/>
 
 
                 </LinearLayout>
@@ -110,19 +109,17 @@
 
 
                     <ImageView
-                        android:id="@+id/ministop_image"
-                        android:layout_margin="30dp"
-                        android:layout_width="@dimen/activity_cImageViewsize"
-                        android:layout_height="@dimen/activity_cImageViewsize"
-                        android:src="@drawable/ministop"/>
+                        android:layout_margin="25dp"
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        android:src="@drawable/ctg_33"/>
 
 
                     <ImageView
-                        android:id="@+id/seven_image"
-                        android:layout_margin="30dp"
-                        android:layout_width="@dimen/activity_cImageViewsize"
-                        android:layout_height="@dimen/activity_cImageViewsize"
-                        android:src="@drawable/seven"/>
+                        android:layout_margin="25dp"
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        android:src="@drawable/ctg_44"/>
 
 
                 </LinearLayout>
@@ -135,17 +132,17 @@
 
 
                     <ImageView
-                        android:id="@+id/withme_image"
-                        android:layout_margin="30dp"
-                        android:layout_width="@dimen/activity_cImageViewsize"
-                        android:layout_height="@dimen/activity_cImageViewsize"
-                        android:src="@drawable/with_me"/>
+                        android:layout_margin="25dp"
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        android:src="@drawable/ctg_55"/>
 
 
                     <ImageView
-                        android:layout_margin="30dp"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"/>
+                        android:layout_margin="25dp"
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        android:src="@drawable/ctg_66"/>
 
 
                 </LinearLayout>
@@ -180,7 +177,6 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/ll_footer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_layout_footer_height"

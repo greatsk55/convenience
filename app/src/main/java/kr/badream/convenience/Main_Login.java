@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,12 +37,12 @@ import java.util.StringTokenizer;
 import kr.badream.convenience.Fragment.Activity_user_view;
 
 
-public class Main_Login extends ActionBarActivity {
+public class Main_Login extends AppCompatActivity {
 
     protected EditText useremail;
     private EditText password;
     protected String enteredUserEmail;
-    private final String serverUrl = "http://52.79.197.58/conv/index.php";
+    private final String serverUrl = "http://52.79.197.58/ccc/index.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,10 +150,10 @@ public class Main_Login extends ActionBarActivity {
             String data[] = new String[10];
             //문자 확인;
             StringTokenizer tokens = new StringTokenizer(result,"[]");
-//            for(int i = 0; tokens.hasMoreElements(); i++) {
-//                data[i] = tokens.nextToken();
-//            }
-//            System.out.println("tokens : " + data[1]);
+            for(int i = 0; tokens.hasMoreElements(); i++) {
+                data[i] = tokens.nextToken();
+            }
+            System.out.println("tokens : " + data[1]);
 
             int jsonResult = returnParsedJsonObject(result);
             System.out.println("Resulted jsonResult: " + jsonResult);
