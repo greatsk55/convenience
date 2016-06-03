@@ -52,8 +52,6 @@ public final class TestFragment extends Fragment {
     private String mContent = "???";
 
     private void setAdapterView(LayoutInflater inflater, ViewGroup container, int cases) {
-        view = inflater.inflate(R.layout.activity_list, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.list);
 
         Helper_itemData first = new Helper_itemData();
         Helper_itemData second = new Helper_itemData();

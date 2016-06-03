@@ -46,7 +46,8 @@
             android:value="AIzaSyAZVHdR1YgnPJKhL5DP7Kfl_UpMcYJFXWE" />
 
         <activity android:name=".Activity_map"></activity>
-        <activity android:name=".Adapter.Activity_ctgview"></activity>
+        <activity android:name=".View.Activity_ctgview"></activity>
+        <activity android:name=".View.View_item_list"></activity>
     </application>
 
 </manifest>

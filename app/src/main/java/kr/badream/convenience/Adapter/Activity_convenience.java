@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import kr.badream.convenience.Fragment.Activity_user_view;
 import kr.badream.convenience.R;
+import kr.badream.convenience.View.Activity_ctgview;
 
 /**
  * Created by Administrator on 2016-05-17.
