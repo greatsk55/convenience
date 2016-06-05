@@ -3,9 +3,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity_map" >
-    <fragment
-        android:id="@+id/map"
+
+    <LinearLayout
+        android:id="@+id/map_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.google.android.gms.maps.MapFragment" />
+        android:layout_height="wrap_content">
+        <fragment
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            class="com.google.android.gms.maps.MapFragment"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/seach_layout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/map_layout"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="  검색 : "/>
+        <EditText
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/conv_layout1"
+        android:layout_below="@+id/seach_layout"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/cu_image"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/cu"/>
+
+
+        <ImageView
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/ge25_image"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/gs25"/>
+        <ImageView
+            android:id="@+id/ministop_image"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/ministop"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/conv_layout1"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/seven_image"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/seven"/>
+
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/withme_image"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/with_me"/>
+
+    </LinearLayout>
+
 </RelativeLayout>

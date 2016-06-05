@@ -2,6 +2,7 @@ package kr.badream.convenience.Adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,7 @@ public class Adapter_list_view  extends BaseAdapter {
     // 지정한 위치(position)에 있는 데이터 리턴 : 필수 구현
     @Override
     public Object getItem(int position) {
+        Log.e("good","good" + position);
         return listViewItemList.get(position) ;
     }
 
@@ -81,4 +83,6 @@ public class Adapter_list_view  extends BaseAdapter {
 
         listViewItemList.add(item);
     }
+
+
 }

@@ -39,15 +39,16 @@
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity android:name=".Main.Main_Activity" />
-        <activity android:name=".Fragment.Activity_user_view"></activity>
+        <activity android:name=".Fragment.Activity_user_view" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAZVHdR1YgnPJKhL5DP7Kfl_UpMcYJFXWE" />
 
-        <activity android:name=".Activity_map"></activity>
-        <activity android:name=".View.Activity_ctgview"></activity>
-        <activity android:name=".View.View_item_list"></activity>
+        <activity android:name=".Activity_map" />
+        <activity android:name=".View.Activity_ctgview" />
+        <activity android:name=".View.View_item_list" />
+        <activity android:name=".View.View_item_info"></activity>
     </application>
 
 </manifest>

@@ -1,13 +1,18 @@
 package kr.badream.convenience.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import kr.badream.convenience.Adapter.Adapter_list_view;
+import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.R;
 
 /**
@@ -33,6 +38,8 @@ public class View_item_list extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.list);
         listview.setAdapter(adapter);
 
+
+
         // 첫 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cu),
                 "Box", "Account Box Black 36dp");
@@ -42,5 +49,29 @@ public class View_item_list extends AppCompatActivity {
         // 세 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.with_me),
                 "Ind", "Assignment Ind Black 36dp");
+
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                // get item
+                Item_list_view item = (Item_list_view) parent.getItemAtPosition(position) ;
+
+                String titleStr = item.getItem_name() ;
+                String descStr = item.getItem_price() ;
+
+                Log.e("abc","abc" + titleStr + descStr);
+
+
+                // TODO : use item data.
+
+                Intent ctgview_intent = new Intent( getApplicationContext(), Activity_ctgview.class);
+                startActivity(ctgview_intent);
+
+            }
+        }) ;
     }
+
+
+
 }
