@@ -6,6 +6,63 @@
     android:background="@color/activity_layout_background"
     android:orientation="vertical" >
 
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/cu"
+        />
+
+    <View
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/main_color"/>
+
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:text="상품 :"
+            android:gravity="center"
+            />
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:background="#808080"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:text="정렬순:"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:background="#808080"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/main_color"/>
 
     <ListView
         android:id="@+id/list"
