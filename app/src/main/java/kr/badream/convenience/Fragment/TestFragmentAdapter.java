@@ -10,8 +10,8 @@ import kr.badream.convenience.R;
 public class TestFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
     protected static final String[] CONTENT = new String[] { "a", "b" };
     protected static final int[] ICONS = new int[] {
-            R.drawable.cu,
-            R.drawable.seven
+            R.drawable.ic_action_tab_1,
+            R.drawable.ic_action_tab_myself
             //R.drawable.perm_group_myinformation
     };
 
