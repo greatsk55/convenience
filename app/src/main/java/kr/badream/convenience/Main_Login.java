@@ -3,6 +3,7 @@ package kr.badream.convenience;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -73,6 +74,9 @@ public class Main_Login extends AppCompatActivity {
         fbButton = (LoginButton) findViewById(R.id.login_button);
 
         fbButton.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         useremail = (EditText)findViewById(R.id.useremail_field);
         password = (EditText)findViewById(R.id.password_field);
