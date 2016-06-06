@@ -1,18 +1,24 @@
 package kr.badream.convenience.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.Rating;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import kr.badream.convenience.R;
+import kr.badream.convenience.View.View_item_info;
+import kr.badream.convenience.View.View_item_list;
 
 /**
  * Created by Administrator on 2016-06-04.
@@ -44,10 +50,20 @@ public class Adapter_list_view  extends BaseAdapter {
             convertView = inflater.inflate(R.layout.adapter_item_list, parent, false);
         }
 
+
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
         ImageView item_image = (ImageView) convertView.findViewById(R.id.item_image) ;
         TextView item_name = (TextView) convertView.findViewById(R.id.item_name) ;
         TextView item_price = (TextView) convertView.findViewById(R.id.item_price) ;
+        RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.rating);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent ctgview_intent = new Intent( context , View_item_info.class);
+                context.startActivity(ctgview_intent);
+                Log.e("position","position: " + pos);
+            }
+        });
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         Item_list_view item_list_view = listViewItemList.get(position);
@@ -69,7 +85,6 @@ public class Adapter_list_view  extends BaseAdapter {
     // 지정한 위치(position)에 있는 데이터 리턴 : 필수 구현
     @Override
     public Object getItem(int position) {
-        Log.e("good","good" + position);
         return listViewItemList.get(position) ;
     }
 

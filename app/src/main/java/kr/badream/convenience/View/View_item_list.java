@@ -21,7 +21,7 @@ import kr.badream.convenience.R;
 public class View_item_list extends AppCompatActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
@@ -42,13 +42,13 @@ public class View_item_list extends AppCompatActivity {
 
         // 첫 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cu),
-                "Box", "Account Box Black 36dp");
+                "Good", "Account Box Black 36dp");
         // 두 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.seven),
                 "Circle", "Account Circle Black 36dp");
         // 세 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.with_me),
-                "Ind", "Assignment Ind Black 36dp");
+                "XXX", "Assignment Ind Black 36dp");
 
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,7 +67,6 @@ public class View_item_list extends AppCompatActivity {
 
                 Intent ctgview_intent = new Intent( getApplicationContext(), Activity_ctgview.class);
                 startActivity(ctgview_intent);
-
             }
         }) ;
     }

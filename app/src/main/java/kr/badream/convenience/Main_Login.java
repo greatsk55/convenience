@@ -3,6 +3,7 @@ package kr.badream.convenience;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -48,6 +49,9 @@ public class Main_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         useremail = (EditText)findViewById(R.id.useremail_field);
         password = (EditText)findViewById(R.id.password_field);
