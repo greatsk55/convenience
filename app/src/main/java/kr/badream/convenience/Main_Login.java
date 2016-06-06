@@ -6,12 +6,24 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -32,6 +44,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -45,10 +58,22 @@ public class Main_Login extends AppCompatActivity {
     protected String enteredUserEmail;
     private final String serverUrl = "http://52.79.197.58/ccc/index.php";
 
+    //페이스북 로그인, 콜백
+    private LoginButton fbButton;
+    private CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+
         setContentView(R.layout.activity_login);
+
+        fbButton = (LoginButton) findViewById(R.id.login_button);
+
+        fbButton.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -83,6 +108,25 @@ public class Main_Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Main_Login.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(final LoginResult loginResult) {
+                //TODO 전화번호 인증모듈 띄우기
+                final String id = loginResult.getAccessToken().getUserId();
+                Log.i("aaa", "what"+id);
+            }
+
+            @Override
+            public void onCancel() {
+                Log.i("bhc :", "Login attempt canceled.");
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+                Log.i("bhc :", "Login attempt failed.");
             }
         });
     }
@@ -201,5 +245,13 @@ public class Main_Login extends AppCompatActivity {
             e.printStackTrace();
         }
         return returnedResult;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //페이스북 로그인
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
