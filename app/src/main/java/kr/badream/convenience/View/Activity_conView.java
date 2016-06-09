@@ -1,12 +1,14 @@
 package kr.badream.convenience.View;
 
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import kr.badream.convenience.R;
@@ -19,10 +21,13 @@ public class Activity_conView extends AppCompatActivity {
     ImageView seven ;
     ImageView with_me ;
 
+    View drawerView;
+    DrawerLayout dlDrawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_conview);
 
         cu = (ImageView) findViewById(R.id.cu_image);
         gs25 = (ImageView) findViewById(R.id.ge25_image);
@@ -60,9 +65,29 @@ public class Activity_conView extends AppCompatActivity {
         actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.activity_main_background));
 
         //set actionbar layout layoutparams
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams((ActionBar.LayoutParams.MATCH_PARENT));
-        actionBar.setCustomView(mCustomView, params);
+//        ActionBar.LayoutParams params = new ActionBar.LayoutParams((ActionBar.LayoutParams.MATCH_PARENT));
+//        actionBar.setCustomView(mCustomView, params);
+
+
+        // setNavigation--------------------------------------------------
+
+        // navigation 으로 동작할 화면
+        drawerView = (View) findViewById(R.id.drawer);
+
+        // Drawer layout
+        dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //actionbar에서 내비 제어할 버튼
+        ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);
+        btn_menu.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlDrawer.openDrawer(drawerView);
+            }
+        });
+
     }
+
+
 
 
 }

@@ -4,6 +4,7 @@
     android:layout_height="60dp">
 
     <ImageButton
+        android:id="@+id/btn_menu"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_centerVertical="true"

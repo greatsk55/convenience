@@ -5,7 +5,6 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="main_color">#1233ad</color>
-    <!--activity_main  -->
 
     <color name="activity_main_background">#ffffff</color>
     <color name="activity_main_app_name">#000000</color>

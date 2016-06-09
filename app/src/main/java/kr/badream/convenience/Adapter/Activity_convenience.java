@@ -28,7 +28,7 @@ public class Activity_convenience extends LinearLayout {
 
     private void init(){
 
-        final View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_main,null);
+        final View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_conview,null);
         view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
         cu = (ImageView) view.findViewById(R.id.cu_image);

@@ -1,23 +1,16 @@
 package kr.badream.convenience.Main;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import kr.badream.convenience.R;
 
@@ -29,7 +22,7 @@ public class Main_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_conview);
 
         getAppKeyHash();
     }
