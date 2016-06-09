@@ -23,7 +23,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':smartloginlibrary-v0.5beta')
     testCompile 'junit:junit:4.12'
 
     //Facebook SDK
@@ -43,4 +42,7 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
+
+    //Account Kit
+    compile 'com.facebook.android:account-kit-sdk:4.+'
 }

@@ -20,12 +20,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import kr.badream.convenience.R;
-import studios.codelight.smartloginlibrary.SmartCustomLoginListener;
-import studios.codelight.smartloginlibrary.SmartLoginBuilder;
-import studios.codelight.smartloginlibrary.SmartLoginConfig;
-import studios.codelight.smartloginlibrary.users.SmartFacebookUser;
-import studios.codelight.smartloginlibrary.users.SmartGoogleUser;
-import studios.codelight.smartloginlibrary.users.SmartUser;
 
 public class Main_Activity extends Activity {
 
