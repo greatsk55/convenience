@@ -11,37 +11,33 @@ import android.widget.ImageView;
 
 import kr.badream.convenience.R;
 
-public class Activity_ctgView extends AppCompatActivity {
+public class Activity_conView extends AppCompatActivity {
 
-    ImageView ctg_1;
-    ImageView ctg_2;
-    ImageView ctg_3;
-    ImageView ctg_4;
-    ImageView ctg_5;
-    ImageView ctg_6;
+    ImageView cu ;
+    ImageView gs25 ;
+    ImageView mini_stop ;
+    ImageView seven ;
+    ImageView with_me ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ctgview);
+        setContentView(R.layout.activity_main);
 
+        cu = (ImageView) findViewById(R.id.cu_image);
+        gs25 = (ImageView) findViewById(R.id.ge25_image);
+        mini_stop = (ImageView) findViewById(R.id.ministop_image);
+        seven = (ImageView) findViewById(R.id.seven_image);
+        with_me = (ImageView) findViewById(R.id.withme_image);
 
-        ctg_1 = (ImageView) findViewById(R.id.ctg_1);
-        ctg_2 = (ImageView) findViewById(R.id.ctg_2);
-        ctg_3 = (ImageView) findViewById(R.id.ctg_3);
-        ctg_4 = (ImageView) findViewById(R.id.ctg_4);
-        ctg_5 = (ImageView) findViewById(R.id.ctg_5);
-        ctg_6 = (ImageView) findViewById(R.id.ctg_6);
-
-        ctg_1.setOnClickListener(new View.OnClickListener() {
+        cu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
-                startActivity(view_item_list);
+                Intent ctgview_intent = new Intent( Activity_conView.this , Activity_ctgView.class);
+                startActivity(ctgview_intent);
             }
         });
 
         setCustomActionbar();
-
     }
 
     private void setCustomActionbar(){
@@ -61,10 +57,12 @@ public class Activity_ctgView extends AppCompatActivity {
         parent.setContentInsetsAbsolute(0, 0);
 
         // set actionbar backgroung image
-        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.main_color));
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.activity_main_background));
 
         //set actionbar layout layoutparams
         ActionBar.LayoutParams params = new ActionBar.LayoutParams((ActionBar.LayoutParams.MATCH_PARENT));
         actionBar.setCustomView(mCustomView, params);
     }
+
+
 }

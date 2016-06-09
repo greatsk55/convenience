@@ -2,7 +2,6 @@ package kr.badream.convenience.View;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -65,7 +64,7 @@ public class View_item_list extends AppCompatActivity {
 
                 // TODO : use item data.
 
-                Intent ctgview_intent = new Intent( getApplicationContext(), Activity_ctgview.class);
+                Intent ctgview_intent = new Intent( getApplicationContext(), Activity_ctgView.class);
                 startActivity(ctgview_intent);
             }
         }) ;
