@@ -46,7 +46,7 @@ public class LoginActivity extends Activity {
         //accountKit 초기화
         AccountKit.initialize(getApplicationContext());
 
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
 
         fbButton = (LoginButton) findViewById(R.id.login_button);
         fbButton.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
