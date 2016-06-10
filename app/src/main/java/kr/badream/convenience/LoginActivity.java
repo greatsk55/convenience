@@ -1,10 +1,12 @@
 package kr.badream.convenience;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -20,13 +22,16 @@ import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * Created by user on 16. 6. 9.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity implements View.OnClickListener {
 
 
     public static int APP_REQUEST_CODE = 99;
@@ -36,23 +41,32 @@ public class LoginActivity extends Activity {
     private CallbackManager callbackManager;
 
     private BootstrapButton akButton;
+    private Button button;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        //facebook 초기화
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
+    private PermissionListener permissionlistener = new PermissionListener() {
+        @Override
+        public void onPermissionGranted() {
+            //Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+        }
 
-        //accountKit 초기화
-        AccountKit.initialize(getApplicationContext());
+        @Override
+        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+            //Toast.makeText(MainActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
-        setContentView(R.layout.activity_login);
-
-        akButton = (BootstrapButton) findViewById(R.id.ak_login);
+    private void init(){
+        //akButton = (BootstrapButton) findViewById(R.id.ak_login);
+        button = (Button) findViewById(R.id.ak_login);
         fbButton = (LoginButton) findViewById(R.id.fb_login);
         fbButton.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
+
+        new TedPermission(this)
+                .setPermissionListener(permissionlistener)
+                .setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.RECEIVE_SMS)
+                .check();
+
 
         fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -72,15 +86,23 @@ public class LoginActivity extends Activity {
                 Log.i("bhc :", "Login attempt failed.");
             }
         });
-        akButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if( v.getId() == R.id.ak_login ){
-                    onLoginPhone(v);
-                }
-            }
-        });
+        //akButton.setOnClickListener(this);
+        button.setOnClickListener(this);
+    }
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //facebook 초기화
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+        //accountKit 초기화
+        AccountKit.initialize(getApplicationContext());
+
+        setContentView(R.layout.activity_login);
+        init();
 
         //현재 로그인 돼었는지 확인한다.
         AccessToken accessToken = AccountKit.getCurrentAccessToken();
@@ -88,6 +110,13 @@ public class LoginActivity extends Activity {
             //Handle Returning User
         } else {
             //Handle new or logged out user
+        }
+    }
+
+    public void onClick(View v) {
+
+        if(v.getId() == R.id.ak_login){
+            onLoginPhone(v);
         }
     }
 

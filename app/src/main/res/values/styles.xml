@@ -8,6 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
+    <style name="AppLoginTheme" parent="Theme.AccountKit">
+        <item name="com_accountkit_primary_color">#8acfba</item>
+        <item name="com_accountkit_primary_text_color">@android:color/white</item>
+        <item name="com_accountkit_secondary_text_color">#42d1f7</item>
+        <item name="com_accountkit_status_bar_color">#8acfba</item>
+
+        <item name="com_accountkit_input_accent_color">?attr/com_accountkit_primary_color</item>
+        <item name="com_accountkit_input_border_color">?attr/com_accountkit_primary_color</item>
+    </style>
+
+
+
     <style name="heartRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/custom_ratingbar_full</item>

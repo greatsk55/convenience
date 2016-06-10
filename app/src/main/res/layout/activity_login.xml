@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:facebook="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,12 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center_vertical|center_horizontal"
         >
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="30dp"/>
+<!--
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/ak_login"
             android:layout_width="300dp"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:text="전화번호로 회원가입"
             app:bootstrapBrand="success"
             app:bootstrapSize="lg"
@@ -24,15 +33,29 @@
             app:roundedCorners="true"
             android:layout_gravity="center|center_horizontal|center_vertical"
             android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="onLoginPhone"
             />
+            -->
+        <Button
+            android:id="@+id/ak_login"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="#00cc00"
+            android:text="전화번호로 로그인"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="5dp"/>
 
         <com.facebook.login.widget.LoginButton
             xmlns:fb="http://schemas.android.com/apk/res-auto"
             android:id="@+id/fb_login"
             android:layout_width="300dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center|center_horizontal|center_vertical"
+            facebook:com_facebook_login_text="페이스북으로 로그인"
             />
 
 
