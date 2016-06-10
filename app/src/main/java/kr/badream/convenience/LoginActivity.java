@@ -15,7 +15,10 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.accountkit.AccessToken;
+import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
+import com.facebook.accountkit.AccountKitCallback;
+import com.facebook.accountkit.AccountKitError;
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.PhoneNumber;
 import com.facebook.accountkit.ui.AccountKitActivity;
@@ -88,6 +91,23 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 Log.i("bhc :", "Login attempt failed.");
             }
         });
+
+        AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+            @Override
+            public void onSuccess(final Account account) {
+                // Get Account Kit ID
+                String accountKitId = account.getId();
+
+
+            }
+
+            @Override
+            public void onError(final AccountKitError error) {
+                // Handle Error
+            }
+        });
+
+
         //akButton.setOnClickListener(this);
         button.setOnClickListener(this);
     }
