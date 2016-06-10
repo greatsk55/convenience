@@ -1,164 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".Main_Login">
-
-
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/logo"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <LinearLayout
-        android:id="@+id/email_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/app_logo"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="@dimen/activity_layout_left_margin"
-        android:layout_marginRight="@dimen/activity_layout_right_margin"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="email : "
-            android:id="@+id/usereamil"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/useremail_field"
-            android:background="#FFFFFF" />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/email_view"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="@dimen/activity_layout_left_margin"
-        android:layout_marginRight="@dimen/activity_layout_right_margin"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@color/main_color"
-        android:layout_below="@+id/email_layout"
-        />
-
-    <LinearLayout
-        android:id="@+id/password_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/email_view"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="@dimen/activity_layout_left_margin"
-        android:layout_marginRight="@dimen/activity_layout_right_margin"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="password : "
-            android:id="@+id/password"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/password_field"
-            android:background="#ffffff" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/password_view"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="@dimen/activity_layout_left_margin"
-        android:layout_marginRight="@dimen/activity_layout_right_margin"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@color/main_color"
-        android:layout_below="@+id/password_layout"
-        />
-
-
-    <Button
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:id="@+id/login"
-        android:layout_below="@+id/password_view"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
-
-
-    <ImageView
-        android:layout_marginTop="30dp"
-        android:id="@+id/kakao_btn"
-        android:layout_below="@+id/login"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/kakao_btn"
-        />
-
-    <ImageView
-        android:id="@+id/facebook_btn"
-        android:layout_below="@+id/kakao_btn"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/facebook_btn"
-        />
+    android:layout_height="match_parent">
 
 
     <LinearLayout
-        android:id="@+id/register_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/facebook_btn"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
-        <TextView
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아이디가 없으신가요?"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="회원가입"
-            android:textStyle="bold"
-            android:id="@+id/register_button"
-            android:layout_marginLeft="20dp"
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/ak_login"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:text="전화번호로 회원가입"
+            app:bootstrapBrand="success"
+            app:bootstrapSize="lg"
+            app:buttonMode="regular"
+            app:showOutline="false"
+            app:roundedCorners="true"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:textAlignment="center"
             />
+
+        <com.facebook.login.widget.LoginButton
+            xmlns:fb="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fb_login"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            />
+
 
     </LinearLayout>
 
-    <com.facebook.login.widget.LoginButton
-        xmlns:fb="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/login_button"
-        android:layout_width="182dp"
-        android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
-        />
 
-</RelativeLayout>
+
+
+</LinearLayout>

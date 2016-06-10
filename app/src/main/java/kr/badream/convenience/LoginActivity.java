@@ -3,11 +3,11 @@ package kr.badream.convenience;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -35,6 +35,8 @@ public class LoginActivity extends Activity {
     private LoginButton fbButton;
     private CallbackManager callbackManager;
 
+    private BootstrapButton akButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +48,10 @@ public class LoginActivity extends Activity {
         //accountKit 초기화
         AccountKit.initialize(getApplicationContext());
 
-        setContentView(R.layout.activity_login2);
+        setContentView(R.layout.activity_login);
 
-        fbButton = (LoginButton) findViewById(R.id.login_button);
+        akButton = (BootstrapButton) findViewById(R.id.ak_login);
+        fbButton = (LoginButton) findViewById(R.id.fb_login);
         fbButton.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
 
         fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -67,6 +70,14 @@ public class LoginActivity extends Activity {
             @Override
             public void onError(FacebookException e) {
                 Log.i("bhc :", "Login attempt failed.");
+            }
+        });
+        akButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( v.getId() == R.id.ak_login ){
+                    onLoginPhone(v);
+                }
             }
         });
 
