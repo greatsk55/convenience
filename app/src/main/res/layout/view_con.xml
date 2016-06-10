@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/cu_image"
+            android:layout_margin="30dp"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/cu"/>
+
+
+        <ImageView
+            android:id="@+id/ge25_image"
+            android:layout_margin="30dp"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/gs25"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/ministop_image"
+            android:layout_margin="30dp"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/ministop"/>
+
+
+        <ImageView
+            android:id="@+id/seven_image"
+            android:layout_margin="30dp"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/seven"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/withme_image"
+            android:layout_margin="30dp"
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:src="@drawable/with_me"/>
+
+
+        <ImageView
+            android:layout_margin="30dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

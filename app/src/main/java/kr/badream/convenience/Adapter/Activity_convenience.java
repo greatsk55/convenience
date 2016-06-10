@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import kr.badream.convenience.R;
-import kr.badream.convenience.View.Activity_ctgview;
+import kr.badream.convenience.View.Activity_ctgView;
 
 /**
  * Created by Administrator on 2016-05-17.
@@ -28,7 +28,7 @@ public class Activity_convenience extends LinearLayout {
 
     private void init(){
 
-        final View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_main,null);
+        final View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_conview,null);
         view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
         cu = (ImageView) view.findViewById(R.id.cu_image);
@@ -39,7 +39,7 @@ public class Activity_convenience extends LinearLayout {
 
         cu.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                Intent ctgview_intent = new Intent( getContext(), Activity_ctgview.class);
+                Intent ctgview_intent = new Intent( getContext(), Activity_ctgView.class);
                 getContext().startActivity(ctgview_intent);
             }
         });

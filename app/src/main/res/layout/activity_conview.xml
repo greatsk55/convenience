@@ -21,8 +21,8 @@
             <include
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                layout="@layout/view_item_info"
-                />
+                layout="@layout/view_con"
+            />
         </RelativeLayout>
 
 

@@ -2,8 +2,6 @@ package kr.badream.convenience.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 
 import kr.badream.convenience.Adapter.Activity_convenience;
 import kr.badream.convenience.Adapter.Activity_myself;
-import kr.badream.convenience.Adapter.Item_mix_adapter;
 import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.R;
 
@@ -34,7 +31,7 @@ public final class TestFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private Activity_convenience Activity_convenience;
-    private Item_mix_adapter Item_mix_adapter;
+
 
     public static TestFragment newInstance(String content) {
         TestFragment fragment = new TestFragment();
@@ -72,15 +69,7 @@ public final class TestFragment extends Fragment {
         //Helper_userData user = new Helper_userData();
 
         switch (cases) {
-            case List:
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-                Item_mix_adapter = new Item_mix_adapter(getActivity(),
-                        se,
-                        (LinearLayoutManager) recyclerView.getLayoutManager());
-                recyclerView.setAdapter(Item_mix_adapter);
-                break;
         }
         return;
     }

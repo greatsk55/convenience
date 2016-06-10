@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
 import kr.badream.convenience.R;
 
-public class Activity_ctgview extends AppCompatActivity {
+public class Activity_ctgView extends AppCompatActivity {
 
     ImageView ctg_1;
     ImageView ctg_2;
@@ -23,8 +25,6 @@ public class Activity_ctgview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ctgview);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
 
         ctg_1 = (ImageView) findViewById(R.id.ctg_1);
         ctg_2 = (ImageView) findViewById(R.id.ctg_2);
@@ -40,5 +40,31 @@ public class Activity_ctgview extends AppCompatActivity {
             }
         });
 
+        setCustomActionbar();
+
+    }
+
+    private void setCustomActionbar(){
+
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        //set custom view layout
+        View mCustomView = LayoutInflater.from(this).inflate(R.layout.actionbar_main, null);
+        actionBar.setCustomView(mCustomView);
+
+        // set no padding both side
+        Toolbar parent = (Toolbar) mCustomView.getParent();
+        parent.setContentInsetsAbsolute(0, 0);
+
+        // set actionbar backgroung image
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.activity_layout_background));
+
+        //set actionbar layout layoutparams
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams((ActionBar.LayoutParams.MATCH_PARENT));
+        actionBar.setCustomView(mCustomView, params);
     }
 }
