@@ -17,26 +17,9 @@ public class ApplicationClass  extends Application {
         super.onCreate();
         TypefaceProvider.registerDefaultIconSets();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // Kitkat and lower has a bug that can cause in correct strict mode
-            // warnings about expected activity counts
-            enableStrictMode();
-        }
-
         //facebook 초기화
         FacebookSdk.sdkInitialize(getApplicationContext());
         AccountKit.initialize(getApplicationContext());
     }
-    public void enableStrictMode() {
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectAll()
-                .penaltyLog()
-                .penaltyDeath()
-                .build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectAll()
-                .penaltyLog()
-                .penaltyDeath()
-                .build());
-    }
+
 }
