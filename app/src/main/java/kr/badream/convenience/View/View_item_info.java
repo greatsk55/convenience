@@ -35,13 +35,13 @@ public class View_item_info extends AppCompatActivity {
         listview.setAdapter(adapter);
 
         // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cu),
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
                 "거지", "1000원", "22", "good" );
         // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.seven),
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
                 "최준호", "2000원", "33" , "야야야 이거 대박상품이야gfsdgsdkgksdnglksdnlkgnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
         // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.with_me),
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
                 "김성국", "3000원", "0", "쓰래기임");
 
         setCustomActionbar();

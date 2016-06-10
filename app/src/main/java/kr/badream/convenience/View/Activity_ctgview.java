@@ -61,7 +61,7 @@ public class Activity_ctgView extends AppCompatActivity {
         parent.setContentInsetsAbsolute(0, 0);
 
         // set actionbar backgroung image
-        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.main_color));
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.activity_layout_background));
 
         //set actionbar layout layoutparams
         ActionBar.LayoutParams params = new ActionBar.LayoutParams((ActionBar.LayoutParams.MATCH_PARENT));

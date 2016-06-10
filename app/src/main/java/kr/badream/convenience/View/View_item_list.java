@@ -44,14 +44,14 @@ public class View_item_list extends AppCompatActivity {
 
 
         // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cu),
-                "Good", "Account Box Black 36dp");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
+                "Good", "1000원");
         // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.seven),
-                "Circle", "Account Circle Black 36dp");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
+                "Circle", "2000원");
         // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.with_me),
-                "XXX", "Assignment Ind Black 36dp");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
+                "XXX", "3000원");
 
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

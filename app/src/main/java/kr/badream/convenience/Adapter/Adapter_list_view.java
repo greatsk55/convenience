@@ -55,7 +55,7 @@ public class Adapter_list_view  extends BaseAdapter {
         ImageView item_image = (ImageView) convertView.findViewById(R.id.item_image) ;
         TextView item_name = (TextView) convertView.findViewById(R.id.item_name) ;
         TextView item_price = (TextView) convertView.findViewById(R.id.item_price) ;
-        RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.rating);
+        //RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.rating);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
