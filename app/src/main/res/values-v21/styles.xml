@@ -11,7 +11,7 @@
     <style name="AppLoginTheme" parent="Theme.AccountKit">
         <item name="com_accountkit_primary_color">#8acfba</item>
         <item name="com_accountkit_primary_text_color">@android:color/white</item>
-        <item name="com_accountkit_secondary_text_color">#42d1f7</item>
+        <item name="com_accountkit_secondary_text_color">#8acfba</item>
         <item name="com_accountkit_status_bar_color">#8acfba</item>
 
         <item name="com_accountkit_input_accent_color">?attr/com_accountkit_primary_color</item>

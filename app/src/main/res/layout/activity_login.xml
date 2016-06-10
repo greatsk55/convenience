@@ -41,10 +41,11 @@
             android:id="@+id/ak_login"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:background="#00cc00"
+            android:background="#8acfba"
             android:text="전화번호로 로그인"
             android:textColor="#FFFFFF"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"/>
 
         <com.facebook.login.widget.LoginButton
             xmlns:fb="http://schemas.android.com/apk/res-auto"

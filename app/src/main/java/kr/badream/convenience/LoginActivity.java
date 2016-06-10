@@ -61,6 +61,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         //akButton = (BootstrapButton) findViewById(R.id.ak_login);
         button = (Button) findViewById(R.id.ak_login);
         fbButton = (LoginButton) findViewById(R.id.fb_login);
+        fbButton.setText("페이스북으로 로그인");
         fbButton.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
 
         new TedPermission(this)
@@ -96,11 +97,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //facebook 초기화
-        FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-        //accountKit 초기화
-        AccountKit.initialize(getApplicationContext());
 
         setContentView(R.layout.activity_login);
         init();
@@ -126,7 +123,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         AccountKitConfiguration.AccountKitConfigurationBuilder configurationBuilder =
                 new AccountKitConfiguration.AccountKitConfigurationBuilder(
                         LoginType.PHONE,
-                        AccountKitActivity.ResponseType.CODE).setReadPhoneStateEnabled(true).setReceiveSMS(true); // or .ResponseType.TOKEN
+                        AccountKitActivity.ResponseType.TOKEN)
+                        .setReadPhoneStateEnabled(true)
+                        .setReceiveSMS(true).setFacebookNotificationsEnabled(true);
+
+        // or .ResponseType.TOKEN
         // ... perform additional configuration ...
 
         intent.putExtra(
