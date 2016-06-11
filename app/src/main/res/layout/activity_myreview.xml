@@ -17,12 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FFFFFF">
+               <ListView
+                    android:id="@+id/review_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
 
-            <include
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                layout="@layout/view_item_info"
-                />
+                    android:scrollbars="vertical"
+                    android:theme="@style/AppTheme">
+                </ListView>
         </RelativeLayout>
 
 
@@ -44,3 +46,5 @@
 
 
 </RelativeLayout>
+
+

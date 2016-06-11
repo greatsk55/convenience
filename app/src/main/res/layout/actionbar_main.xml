@@ -12,6 +12,7 @@
         android:background="@drawable/ic_action_menu"/>
 
     <TextView
+        android:id="@+id/actionbar_title"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_centerInParent="true"

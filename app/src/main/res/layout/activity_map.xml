@@ -1,96 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_map" >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/map_layout"
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <fragment
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/map"
+        tools:context=".View.Activity_conView">
+
+
+        <RelativeLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            class="com.google.android.gms.maps.MapFragment"
-        />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
 
-    <LinearLayout
-        android:id="@+id/seach_layout"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/map_layout"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="  검색 : "/>
-        <EditText
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/map_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <fragment
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    class="com.google.android.gms.maps.MapFragment"
+                    />
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/seach_layout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/map_layout"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="  검색 : "/>
+                <EditText
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:id="@+id/conv_layout1"
-        android:layout_below="@+id/seach_layout"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            </LinearLayout>
 
-
-        <ImageView
-            android:id="@+id/cu_image"
-            android:layout_width="@dimen/activity_cImageViewsize"
-            android:layout_height="@dimen/activity_cImageViewsize"
-            android:src="@drawable/cu"/>
-
-
-        <ImageView
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/ge25_image"
-            android:layout_width="@dimen/activity_cImageViewsize"
-            android:layout_height="@dimen/activity_cImageViewsize"
-            android:src="@drawable/gs25"/>
-        <ImageView
-            android:id="@+id/ministop_image"
-            android:layout_width="@dimen/activity_cImageViewsize"
-            android:layout_height="@dimen/activity_cImageViewsize"
-            android:src="@drawable/ministop"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_below="@+id/conv_layout1"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/conv_layout1"
+                android:layout_below="@+id/seach_layout"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
 
-        <ImageView
-            android:id="@+id/seven_image"
-            android:layout_width="@dimen/activity_cImageViewsize"
-            android:layout_height="@dimen/activity_cImageViewsize"
-            android:src="@drawable/seven"/>
+                <ImageView
+                    android:id="@+id/cu_image"
+                    android:layout_width="@dimen/activity_cImageViewsize"
+                    android:layout_height="@dimen/activity_cImageViewsize"
+                    android:src="@drawable/cu"/>
 
-        <ImageView
-            android:layout_marginLeft="20dp"
-            android:id="@+id/withme_image"
-            android:layout_width="@dimen/activity_cImageViewsize"
-            android:layout_height="@dimen/activity_cImageViewsize"
-            android:src="@drawable/with_me"/>
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/ge25_image"
+                    android:layout_width="@dimen/activity_cImageViewsize"
+                    android:layout_height="@dimen/activity_cImageViewsize"
+                    android:src="@drawable/gs25"/>
+                <ImageView
+                    android:id="@+id/ministop_image"
+                    android:layout_width="@dimen/activity_cImageViewsize"
+                    android:layout_height="@dimen/activity_cImageViewsize"
+                    android:src="@drawable/ministop"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_below="@+id/conv_layout1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/seven_image"
+                    android:layout_width="@dimen/activity_cImageViewsize"
+                    android:layout_height="@dimen/activity_cImageViewsize"
+                    android:src="@drawable/seven"/>
+
+                <ImageView
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/withme_image"
+                    android:layout_width="@dimen/activity_cImageViewsize"
+                    android:layout_height="@dimen/activity_cImageViewsize"
+                    android:src="@drawable/with_me"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/drawer"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#ffffff">
+
+            <include
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/slidemenu_main"/>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+
 
 </RelativeLayout>

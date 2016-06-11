@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
 
+    >
+
+    <Button
+        android:id="@+id/menu_btn_login"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="login"/>
+    <TextView
+        android:id="@+id/menu_id"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID :"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/main_color"/>
+    <TextView
+        android:id="@+id/menu_review"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="내가 쓴 리뷰"
+        android:drawableLeft="@drawable/ic_action_mini_review"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/menu_like"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="좋아요"
+        android:drawableLeft="@drawable/ic_action_mini_heart"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/menu_conv"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="우리집 편의점"
+        android:drawableLeft="@drawable/ic_action_mini_heart"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/menu_rank"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="랭킹"
+        android:drawableLeft="@drawable/ic_action_mini_heart"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/menu_item"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="상품비교"
+        android:drawableLeft="@drawable/ic_action_mini_heart"
+        android:textSize="18sp"/>
 </LinearLayout>

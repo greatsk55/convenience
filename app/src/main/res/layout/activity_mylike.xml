@@ -18,11 +18,15 @@
             android:layout_height="match_parent"
             android:background="#FFFFFF">
 
-            <include
+            <ListView
+                android:id="@+id/item_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                layout="@layout/view_item_info"
-                />
+
+                android:scrollbars="vertical"
+                android:theme="@style/AppTheme">
+            </ListView>
+
         </RelativeLayout>
 
 

@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import kr.badream.convenience.Adapter.Adapter_list_view;
 import kr.badream.convenience.Adapter.Adapter_review_list_view;
+import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.R;
 
 public class View_item_info extends AppCompatActivity {
@@ -45,6 +47,8 @@ public class View_item_info extends AppCompatActivity {
                 "김성국", "3000원", "0", "쓰래기임");
 
         setCustomActionbar();
+        TextView act_title = (TextView) findViewById(R.id.actionbar_title);
+        act_title.setText("상품 이름 쓰셈");
     }
 
     private void setCustomActionbar() {
@@ -78,6 +82,7 @@ public class View_item_info extends AppCompatActivity {
 
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        new Define_menu_click(getApplicationContext(),dlDrawer);
 
         //actionbar에서 내비 제어할 버튼
         ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);

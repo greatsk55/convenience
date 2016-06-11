@@ -6,11 +6,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.R;
 
 public class Activity_conView extends AppCompatActivity {
@@ -74,8 +77,11 @@ public class Activity_conView extends AppCompatActivity {
         // navigation 으로 동작할 화면
         drawerView = (View) findViewById(R.id.drawer);
 
+
+
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        new Define_menu_click(getApplicationContext(),dlDrawer);
 
         //actionbar에서 내비 제어할 버튼
         ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);
