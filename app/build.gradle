@@ -30,13 +30,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
 
-    //Facebook SDK
-    //Google Play Services
-    //GSON library
-
-    //Account Kit
-
-    //bootstrap
     compile 'com.android.support:appcompat-v7:24.0.0-beta1'
     compile 'com.android.support:support-v13:24.0.0-beta1'
     compile 'com.android.support:support-v4:24.0.0-beta1'
@@ -49,13 +42,13 @@ dependencies {
 
     compile 'com.android.support:design:24.0.0-beta1'
     compile 'com.facebook.android:facebook-android-sdk:4.0.1'
-    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.code.gson:gson:2.6.1'
 
     compile 'com.facebook.android:account-kit-sdk:4.+'
     compile 'com.beardedhen:androidbootstrap:2.2.0'
-
     compile 'com.github.ParkSangGwon:TedPermission:v1.0.11'
 
-
-
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    compile 'com.squareup.okhttp3:okhttp:3.1.2'
 }

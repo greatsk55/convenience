@@ -98,7 +98,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 // Get Account Kit ID
                 String accountKitId = account.getId();
 
-
             }
 
             @Override
