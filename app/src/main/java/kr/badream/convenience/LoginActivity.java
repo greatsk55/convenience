@@ -6,6 +6,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,9 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
 import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
@@ -32,6 +36,9 @@ import com.facebook.login.widget.LoginButton;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -48,7 +55,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends Activity implements View.OnClickListener {
 
     private final String TAG = "LoginActivity";
-    public static final String BASE_URL = "http://52.79.184.0/";
+    public static final String BASE_URL = "http://52.78.10.188/";
 
     public static int APP_REQUEST_CODE = 99;
 
@@ -91,31 +98,42 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             @Override
             public void onSuccess(final LoginResult loginResult) {
                 final String id = loginResult.getAccessToken().getUserId();
-                Log.i("aaa", "what"+id);
-            }
+                Bundle params = new Bundle();
+                params.putString("fields", "id,name,gender");
+                new GraphRequest(
+                        com.facebook.AccessToken.getCurrentAccessToken(), //loginResult.getAccessToken(),
+                        "/me",
+                        params,
+                        HttpMethod.GET,
+                        new GraphRequest.Callback() {
+                            public void onCompleted(GraphResponse response) {
+                                try {
+                                    Log.e("JSON", response.toString());
+                                    JSONObject data = response.getJSONObject();
 
+                                    final String id = data.getString("id");
+                                    String name = data.getString("name");
+                                    String gender = data.getString("gender");
+
+                                    if (gender.equals("male")) {
+                                        registrationProcessWithRetrofit(id, 2, name, 1);
+                                    } else {
+                                        registrationProcessWithRetrofit(id, 2, name, 2);
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                ).executeAsync();
+            }
             @Override
             public void onCancel() {
                 Log.i("bhc :", "Login attempt canceled.");
             }
-
             @Override
             public void onError(FacebookException e) {
                 Log.i("bhc :", "Login attempt failed.");
-            }
-        });
-
-        AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
-            @Override
-            public void onSuccess(final Account account) {
-                // Get Account Kit ID
-                String accountKitId = account.getId();
-
-            }
-
-            @Override
-            public void onError(final AccountKitError error) {
-                // Handle Error
             }
         });
 
@@ -134,13 +152,19 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         init();
 
         //현재 로그인 돼었는지 확인한다.
-        AccessToken accessToken = AccountKit.getCurrentAccessToken();
-        if (accessToken != null) {
+        AccessToken accessToken1 = AccountKit.getCurrentAccessToken();
+        com.facebook.AccessToken accessToken2 = com.facebook.AccessToken.getCurrentAccessToken();
+
+        if (accessToken1 != null) {
             //Handle Returning User
-            finish();
-        } else {
+            //finish();
+        } else if( accessToken2 != null){
+            //Handle Returning User
+            //finish();
+        }else{
             //Handle new or logged out user
         }
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -170,45 +194,28 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
 
-
-
-    private void loginProcessWithRetrofit(final String id, int flag){
-        ApiInterface mApiService = this.getInterfaceService();
-        Call<User> mService = mApiService.authenticate(id, flag);
-        mService.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User mLoginObject = response.body();
-                String returnedResponse = mLoginObject.isLogin;
-                Toast.makeText(LoginActivity.this, "Returned " + returnedResponse, Toast.LENGTH_LONG).show();
-                //showProgress(false);
-                if(returnedResponse.trim().equals("1")){
-                    // redirect to Main Activity page
-
-                }
-                if(returnedResponse.trim().equals("0")){
-                    // use the registration button to register
-                    Toast.makeText( getApplicationContext(), "can\'t login. please retry.", Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                call.cancel();
-                Toast.makeText(getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-    private void registrationProcessWithRetrofit(final String id, int flag, String name, int gender){
+    private void registrationProcessWithRetrofit(final String id, int flag, String name,int gender){
         ApiInterface mApiService = this.getInterfaceService();
         Call<User> mService = mApiService.registration(id, flag, name, gender);
         mService.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+
+                Log.i("aaa", response.body().isLogin);
+
                 User mLoginObject = response.body();
                 String returnedResponse = mLoginObject.isLogin;
                 //showProgress(false);
                 if(returnedResponse.trim().equals("1")){
                     // redirect to Main Activity page
+                    String returnedUserID = mLoginObject.userID;
+                    String returnedName = mLoginObject.name;
+
+                    SharedPreferences prefs = getSharedPreferences("PrefName", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("userID", returnedUserID.trim());
+                    editor.putString("name", returnedName.trim());
+                    editor.commit();
 
                 }
                 if(returnedResponse.trim().equals("0")){
@@ -264,7 +271,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 toastMessage = "Login Cancelled";
             } else {
                 if (loginResult.getAccessToken() != null) {
-                    toastMessage = "Success:" + loginResult.getAccessToken().getAccountId();
+                    String id = loginResult.getAccessToken().getAccountId();
+                    toastMessage = "Success:" + id;
+                    registrationProcessWithRetrofit(id,1,"무명",0);
                 } else {
                     toastMessage = String.format(
                             "Success:%s...",
