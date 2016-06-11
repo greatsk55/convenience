@@ -12,6 +12,9 @@ import com.facebook.accountkit.AccountKit;
  * Created by user on 16. 6. 9.
  */
 public class ApplicationClass  extends Application {
+
+    public static User user = null;
+
     @Override
     public void onCreate() {
         super.onCreate();
