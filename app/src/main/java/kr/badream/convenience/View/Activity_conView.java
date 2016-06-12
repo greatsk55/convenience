@@ -44,17 +44,6 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
         seven.setOnClickListener(this);
         with.setOnClickListener(this);
 
-
-        /*
-        cu.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent ctgview_intent = new Intent( Activity_conView.this , Activity_ctgView.class);
-                ctgview_intent.putExtra("ctgID", "1");
-                startActivity(ctgview_intent);
-            }
-        });
-        */
-
         setCustomActionbar();
     }
 

@@ -48,14 +48,6 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         ctg_6.setOnClickListener(this);
         //TODO ctg_7추가해야함! Please ADD ctg_7 ImageView
 
-/*
-        ctg_1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
-                startActivity(view_item_list);
-            }
-        });
-*/
         setCustomActionbar();
 
     }
