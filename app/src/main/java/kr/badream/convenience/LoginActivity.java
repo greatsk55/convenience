@@ -169,6 +169,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     editor.putString("userID", returnedUserID.trim());
                     editor.putString("name", returnedName.trim());
                     editor.commit();
+
+                    Log.i("aaa", returnedName.trim());
                 }
                 if(returnedResponse.trim().equals("0")){
                     // use the registration button to register
@@ -178,6 +180,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 call.cancel();
+                Log.i("aaa", t.getMessage());
                 Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });

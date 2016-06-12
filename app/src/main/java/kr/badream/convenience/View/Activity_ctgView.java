@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.List;
 
 import kr.badream.convenience.Helper.ApiInterface;
@@ -106,29 +107,48 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         startActivity(view_item_list);
     }
 
-
+/*
     private void loadStoreCategoryListWithRetrofit(final int storeID, int mainCategory){
         ApiInterface mApiService = Helper_server.getInterfaceService();
-        Call<Helper_itemList> mService = mApiService.loadStoreCategoryList(storeID, mainCategory);
-        mService.enqueue(new Callback<Helper_itemList>() {
+        Call<List<Helper_itemData>> mService = mApiService.loadStoreCategoryList(storeID, mainCategory);
+
+
+        mService.enqueue(new Callback<List<Helper_itemData>>() {
             @Override
-            public void onResponse(Call<Helper_itemList> call, Response<Helper_itemList> response) {
+            public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
 
-                Helper_itemList mlistObject = response.body();
+                List<Helper_itemData> mlistObject = response.body();
 
-                for( Helper_itemData data : mlistObject.list) {
+                for( Helper_itemData data : mlistObject) {
                     Log.i("aaa", "prodID : " + data.prodID + " name : " + data.name);
                 }
             }
             @Override
-            public void onFailure(Call<Helper_itemList> call, Throwable t) {
+            public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
                 call.cancel();
                 Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });
     }
+*/
 
+    private void loadStoreCategoryListWithRetrofit(final int storeID, int mainCategory){
+        ApiInterface mApiService = Helper_server.getInterfaceService();
+        Call<List<Helper_itemData>> mService = mApiService.repoContributors("square", "retrofit");
 
+        mService.enqueue(new Callback<List<Helper_itemData>>() {
+            @Override
+            public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
+                Log.i("aaa", response.body().toString());
+            }
+            @Override
+            public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
+                call.cancel();
+                Log.i("aaa", t.getMessage());
+                Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     private void setCustomActionbar(){
 

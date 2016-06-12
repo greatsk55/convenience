@@ -54,6 +54,9 @@
 
 
         <activity android:name=".LoginActivity" >
+
+
+
         </activity>
         <activity
             android:name=".tests"

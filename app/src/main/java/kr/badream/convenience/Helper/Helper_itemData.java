@@ -22,6 +22,16 @@ public class Helper_itemData {
     public int price;
     public int views;
 
+    public String login;
+    public String html_url;
+    int contributions;
+
+    @Override
+    public String toString(){
+        return login + " (" + contributions + ")";
+    }
+
+
     public Helper_itemData(){
     }
 
