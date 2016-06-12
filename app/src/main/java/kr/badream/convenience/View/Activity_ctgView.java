@@ -15,7 +15,7 @@ import android.widget.TextView;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.R;
 
-public class Activity_ctgView extends AppCompatActivity {
+public class Activity_ctgView extends AppCompatActivity implements View.OnClickListener {
 
     ImageView ctg_1;
     ImageView ctg_2;
@@ -40,15 +40,44 @@ public class Activity_ctgView extends AppCompatActivity {
         ctg_5 = (ImageView) findViewById(R.id.ctg_5);
         ctg_6 = (ImageView) findViewById(R.id.ctg_6);
 
+        ctg_1.setOnClickListener(this);
+        ctg_2.setOnClickListener(this);
+        ctg_3.setOnClickListener(this);
+        ctg_4.setOnClickListener(this);
+        ctg_5.setOnClickListener(this);
+        ctg_6.setOnClickListener(this);
+        //TODO ctg_7추가해야함! Please ADD ctg_7 ImageView
+
+/*
         ctg_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
                 startActivity(view_item_list);
             }
         });
-
+*/
         setCustomActionbar();
 
+    }
+
+    @Override
+    public void onClick(View v){
+        Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
+        switch (v.getId()){
+            case R.id.ctg_1:
+                break;
+            case R.id.ctg_2:
+                break;
+            case R.id.ctg_3:
+                break;
+            case R.id.ctg_4:
+                break;
+            case R.id.ctg_5:
+                break;
+            case R.id.ctg_6:
+                break;
+        }
+        startActivity(view_item_list);
     }
 
     private void setCustomActionbar(){

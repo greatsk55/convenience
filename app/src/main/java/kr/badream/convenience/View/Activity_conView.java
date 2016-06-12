@@ -16,13 +16,13 @@ import android.widget.TextView;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.R;
 
-public class Activity_conView extends AppCompatActivity {
+public class Activity_conView extends AppCompatActivity implements View.OnClickListener {
 
     ImageView cu ;
     ImageView gs25 ;
-    ImageView mini_stop ;
+    ImageView mini;
     ImageView seven ;
-    ImageView with_me ;
+    ImageView with ;
 
     View drawerView;
     DrawerLayout dlDrawer;
@@ -34,18 +34,56 @@ public class Activity_conView extends AppCompatActivity {
 
         cu = (ImageView) findViewById(R.id.cu_image);
         gs25 = (ImageView) findViewById(R.id.ge25_image);
-        mini_stop = (ImageView) findViewById(R.id.ministop_image);
+        mini = (ImageView) findViewById(R.id.ministop_image);
         seven = (ImageView) findViewById(R.id.seven_image);
-        with_me = (ImageView) findViewById(R.id.withme_image);
+        with = (ImageView) findViewById(R.id.withme_image);
 
+        cu.setOnClickListener(this);
+        gs25.setOnClickListener(this);
+        mini.setOnClickListener(this);
+        seven.setOnClickListener(this);
+        with.setOnClickListener(this);
+
+
+        /*
         cu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent ctgview_intent = new Intent( Activity_conView.this , Activity_ctgView.class);
+                ctgview_intent.putExtra("ctgID", "1");
                 startActivity(ctgview_intent);
             }
         });
+        */
 
         setCustomActionbar();
+    }
+
+    @Override
+    public void onClick(View v){
+        Intent ctgview_intent = new Intent( Activity_conView.this , Activity_ctgView.class);
+
+        switch(v.getId()){
+            case R.id.cu_image:
+                ctgview_intent.putExtra("ctgID", "1");
+                break;
+
+            case R.id.ge25_image:
+                ctgview_intent.putExtra("ctgID", "2");
+                break;
+
+            case R.id.ministop_image:
+                ctgview_intent.putExtra("ctgID", "3");
+                break;
+
+            case R.id.seven_image:
+                ctgview_intent.putExtra("ctgID", "4");
+                break;
+
+            case R.id.withme_image:
+                ctgview_intent.putExtra("ctgID", "5");
+                break;
+        }
+        startActivity(ctgview_intent);
     }
 
     private void setCustomActionbar(){
@@ -92,8 +130,6 @@ public class Activity_conView extends AppCompatActivity {
         });
 
     }
-
-
 
 
 }
