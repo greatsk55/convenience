@@ -79,7 +79,7 @@
         <TextView
             android:layout_gravity="center"
             android:gravity="center"
-            android:id="@+id/item_review"
+            android:id="@+id/review_number"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:text="30"

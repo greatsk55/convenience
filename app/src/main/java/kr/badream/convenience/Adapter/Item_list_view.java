@@ -12,10 +12,10 @@ public class Item_list_view {
     private String item_price;
 
     private int item_review_number;
-    private int item_evaluation_number;
+    private int item_like_number;
 
-    public void setItem_evaluation_number(int item_evaluation_number) {
-        this.item_evaluation_number = item_evaluation_number;
+    public void setitem_like_number(int item_evaluation_number) {
+        this.item_like_number = item_evaluation_number;
     }
 
     public void setItem_name(String item_name) {
@@ -38,8 +38,8 @@ public class Item_list_view {
         return main_image;
     }
 
-    public int getItem_evaluation_number() {
-        return item_evaluation_number;
+    public int getItem_like_number() {
+        return item_like_number;
     }
 
     public int getItem_review_number() {

@@ -38,6 +38,7 @@
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
             android:value="@string/app_name" />
+
         <activity
             android:name="com.facebook.accountkit.ui.AccountKitActivity"
             android:theme="@style/AppLoginTheme"
@@ -78,7 +79,8 @@
         <activity android:name=".Menu_View.Activity_myreview" />
         <activity android:name=".Menu_View.Activity_mylike" />
         <activity android:name=".Menu_View.Activity_Rank" />
-        <activity android:name=".Menu_View.Activity_compare"></activity>
+        <activity android:name=".Menu_View.Activity_compare" />
+        <activity android:name=".View.Activity_register_review"></activity>
     </application>
 
 </manifest>

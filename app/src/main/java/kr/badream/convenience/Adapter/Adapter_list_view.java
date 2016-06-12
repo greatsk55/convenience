@@ -55,6 +55,8 @@ public class Adapter_list_view  extends BaseAdapter {
         ImageView item_image = (ImageView) convertView.findViewById(R.id.item_image) ;
         TextView item_name = (TextView) convertView.findViewById(R.id.item_name) ;
         TextView item_price = (TextView) convertView.findViewById(R.id.item_price) ;
+        TextView like_number = (TextView) convertView.findViewById(R.id.like_number) ;
+        TextView review_number = (TextView) convertView.findViewById(R.id.review_number) ;;
         //RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.rating);
 
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +74,8 @@ public class Adapter_list_view  extends BaseAdapter {
         item_image.setImageDrawable(item_list_view.getMain_image());
         item_name.setText(item_list_view.getItem_name());
         item_price.setText(item_list_view.getItem_price());
+        like_number.setText(""+item_list_view.getItem_like_number());
+        review_number.setText(""+item_list_view.getItem_review_number());
 
         return convertView;
     }
@@ -88,13 +92,15 @@ public class Adapter_list_view  extends BaseAdapter {
         return listViewItemList.get(position) ;
     }
 
-    // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable img, String item_name, String item_price) {
+    // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
+    public void addItem(Drawable img, String item_name, String item_price,int like_number , int review_number) {
         Item_list_view item = new Item_list_view();
 
         item.setMain_image(img);
         item.setItem_name(item_name);
         item.setItem_price(item_price);
+        item.setitem_like_number(like_number);
+        item.setItem_review_number(review_number);
 
         listViewItemList.add(item);
     }

@@ -70,7 +70,7 @@ public class Adapter_review_list_view  extends BaseAdapter {
         item_image.setImageDrawable(item_review_view.getMain_image());
         user_name.setText(item_review_view.getUser_name());
         item_price.setText(item_review_view.getItem_price());
-        like_number.setText(item_review_view.getLike_number());
+        like_number.setText(""+item_review_view.getLike_number());
         review_main.setText(item_review_view.getReview_main());
 
         return convertView;
@@ -88,8 +88,8 @@ public class Adapter_review_list_view  extends BaseAdapter {
         return reviewViewItemList.get(position) ;
     }
 
-    // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable img, String user_name, String item_price, String like_number, String review_main) {
+    // 1.이미지, 2.유저이름, 3.총 가격, 4.좋아요수, 5.리뷰내용
+    public void addItem(Drawable img, String user_name, String item_price, int like_number, String review_main) {
         Item_review_view item = new Item_review_view();
 
         item.setMain_image(img);
