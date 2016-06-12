@@ -72,10 +72,13 @@
             android:src="@drawable/with_me"/>
 
 
-        <ImageView
+        <TextView
+            android:background="#808080"
+            android:gravity="center"
             android:layout_margin="30dp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+            android:layout_width="@dimen/activity_cImageViewsize"
+            android:layout_height="@dimen/activity_cImageViewsize"
+            android:text="공통 상품"/>
 
 
     </LinearLayout>
