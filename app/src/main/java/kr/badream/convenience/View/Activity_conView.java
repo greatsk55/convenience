@@ -53,23 +53,23 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
 
         switch(v.getId()){
             case R.id.cu_image:
-                ctgview_intent.putExtra("ctgID", "1");
+                ctgview_intent.putExtra("storeID", 1);
                 break;
 
             case R.id.ge25_image:
-                ctgview_intent.putExtra("ctgID", "2");
+                ctgview_intent.putExtra("storeID", 2);
                 break;
 
             case R.id.ministop_image:
-                ctgview_intent.putExtra("ctgID", "3");
+                ctgview_intent.putExtra("storeID", 3);
                 break;
 
             case R.id.seven_image:
-                ctgview_intent.putExtra("ctgID", "4");
+                ctgview_intent.putExtra("storeID", 4);
                 break;
 
             case R.id.withme_image:
-                ctgview_intent.putExtra("ctgID", "5");
+                ctgview_intent.putExtra("storeID", 5);
                 break;
         }
         startActivity(ctgview_intent);

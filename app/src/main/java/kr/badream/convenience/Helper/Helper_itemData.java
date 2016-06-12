@@ -20,17 +20,19 @@ public class Helper_itemData {
     public String url;
     public String name;
     public int price;
+    public int views;
 
     public Helper_itemData(){
     }
 
-    public Helper_itemData(int prodID, int storeID, int mainCategory, int subCategory, String url, String name, int price){
+    public Helper_itemData(int prodID, int storeID, int mainCategory, int subCategory, String url, String name, int price, int views){
         this.prodID = prodID;
         this.storeID = storeID;
         this.mainCategory = mainCategory;
-        this.subCategory = 0;
+        this.subCategory = subCategory;
+        this.url = url;
         this.name = name;
         this.price = price;
-        this.url = url;
+        this.views = views;
     }
 }

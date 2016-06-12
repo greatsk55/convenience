@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import kr.badream.convenience.Helper.ApiInterface;
+import kr.badream.convenience.Helper.Helper_server;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,7 +56,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends Activity implements View.OnClickListener {
 
     private final String TAG = "LoginActivity";
-    public static final String BASE_URL = "http://52.78.10.188/";
+
 
     public static int APP_REQUEST_CODE = 99;
 
@@ -148,18 +149,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
 
 
-    private ApiInterface getInterfaceService() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        final ApiInterface mInterfaceService = retrofit.create(ApiInterface.class);
-        return mInterfaceService;
-    }
-
-
     private void registrationProcessWithRetrofit(final String id, int flag, String name,int gender){
-        ApiInterface mApiService = this.getInterfaceService();
+        ApiInterface mApiService = Helper_server.getInterfaceService();
         Call<User> mService = mApiService.registration(id, flag, name, gender);
         mService.enqueue(new Callback<User>() {
             @Override
@@ -191,10 +182,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         });
     }
-
-
-
-
 
     public void onClick(View v) {
         if(v.getId() == R.id.ak_login){

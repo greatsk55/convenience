@@ -1,31 +1,46 @@
 package kr.badream.convenience.View;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.List;
+
+import kr.badream.convenience.Helper.ApiInterface;
 import kr.badream.convenience.Helper.Define_menu_click;
+import kr.badream.convenience.Helper.Helper_itemData;
+import kr.badream.convenience.Helper.Helper_itemList;
+import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.R;
+import kr.badream.convenience.User;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Activity_ctgView extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView ctg_1;
-    ImageView ctg_2;
-    ImageView ctg_3;
-    ImageView ctg_4;
-    ImageView ctg_5;
-    ImageView ctg_6;
+    private ImageView ctg_1;
+    private ImageView ctg_2;
+    private ImageView ctg_3;
+    private ImageView ctg_4;
+    private ImageView ctg_5;
+    private ImageView ctg_6;
 
-    View drawerView;
-    DrawerLayout dlDrawer;
+    private View drawerView;
+    private DrawerLayout dlDrawer;
+
+    private int storeID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +63,9 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         ctg_6.setOnClickListener(this);
         //TODO ctg_7추가해야함! Please ADD ctg_7 ImageView
 
+        Intent intent = getIntent();
+        storeID = intent.getIntExtra("storeID",1);
+
         setCustomActionbar();
 
     }
@@ -57,20 +75,59 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
         switch (v.getId()){
             case R.id.ctg_1:
+                //간편식사 easy
+                loadStoreCategoryListWithRetrofit(storeID, 3);
                 break;
             case R.id.ctg_2:
+                //즉석식품 insta
+                loadStoreCategoryListWithRetrofit(storeID, 2);
                 break;
             case R.id.ctg_3:
+                //식품 food
+                loadStoreCategoryListWithRetrofit(storeID, 6);
                 break;
             case R.id.ctg_4:
+                //아이스크림 ice
+                loadStoreCategoryListWithRetrofit(storeID, 5);
                 break;
             case R.id.ctg_5:
+                //과자 snack
+                loadStoreCategoryListWithRetrofit(storeID, 4);
                 break;
             case R.id.ctg_6:
+                //음료 drink
+                loadStoreCategoryListWithRetrofit(storeID, 1);
+                break;
+            default :
+                //TODO 비식품 해줘야함 notFood
                 break;
         }
         startActivity(view_item_list);
     }
+
+
+    private void loadStoreCategoryListWithRetrofit(final int storeID, int mainCategory){
+        ApiInterface mApiService = Helper_server.getInterfaceService();
+        Call<Helper_itemList> mService = mApiService.loadStoreCategoryList(storeID, mainCategory);
+        mService.enqueue(new Callback<Helper_itemList>() {
+            @Override
+            public void onResponse(Call<Helper_itemList> call, Response<Helper_itemList> response) {
+
+                Helper_itemList mlistObject = response.body();
+
+                for( Helper_itemData data : mlistObject.list) {
+                    Log.i("aaa", "prodID : " + data.prodID + " name : " + data.name);
+                }
+            }
+            @Override
+            public void onFailure(Call<Helper_itemList> call, Throwable t) {
+                call.cancel();
+                Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
 
     private void setCustomActionbar(){
 
