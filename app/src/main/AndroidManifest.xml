@@ -54,13 +54,6 @@
 
 
         <activity android:name=".LoginActivity" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
         <activity
             android:name=".tests"
@@ -76,7 +69,11 @@
         <activity android:name=".View.View_item_list" />
         <activity android:name=".View.View_item_info" />
         <activity android:name=".View.Activity_conView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Menu_View.Activity_myreview" />
         <activity android:name=".Menu_View.Activity_mylike" />

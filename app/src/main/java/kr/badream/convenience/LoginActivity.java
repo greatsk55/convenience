@@ -62,11 +62,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     //페이스북 로그인, 콜백
     private LoginButton fbButton;
     private CallbackManager callbackManager;
-
-    private BootstrapButton akButton;
     private Button button;
-
-    private View mProgressView;
 
 
     private PermissionListener permissionlistener = new PermissionListener() {
@@ -80,7 +76,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             //Toast.makeText(MainActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
         }
     };
-
     private void init(){
         //akButton = (BootstrapButton) findViewById(R.id.ak_login);
         button = (Button) findViewById(R.id.ak_login);
@@ -141,7 +136,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         button.setOnClickListener(this);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,40 +144,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.activity_login);
         init();
-
-        //현재 로그인 돼었는지 확인한다.
-        AccessToken accessToken1 = AccountKit.getCurrentAccessToken();
-        com.facebook.AccessToken accessToken2 = com.facebook.AccessToken.getCurrentAccessToken();
-
-        if (accessToken1 != null) {
-            //Handle Returning User
-            //finish();
-        } else if( accessToken2 != null){
-            //Handle Returning User
-            //finish();
-        }else{
-            //Handle new or logged out user
-        }
-
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        }
-    }
+
     private ApiInterface getInterfaceService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -201,8 +165,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
 
-                Log.i("aaa", response.body().isLogin);
-
                 User mLoginObject = response.body();
                 String returnedResponse = mLoginObject.isLogin;
                 //showProgress(false);
@@ -211,12 +173,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     String returnedUserID = mLoginObject.userID;
                     String returnedName = mLoginObject.name;
 
-                    SharedPreferences prefs = getSharedPreferences("PrefName", MODE_PRIVATE);
+                    SharedPreferences prefs = getSharedPreferences("userData", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("userID", returnedUserID.trim());
                     editor.putString("name", returnedName.trim());
                     editor.commit();
-
                 }
                 if(returnedResponse.trim().equals("0")){
                     // use the registration button to register
