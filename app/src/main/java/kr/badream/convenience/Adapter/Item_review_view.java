@@ -10,7 +10,7 @@ public class Item_review_view {
     private Drawable main_image;
     private String user_name;
     private String item_price;
-    private String like_number;
+    private int like_number;
     private String review_main;
 
     public void setMain_image(Drawable main_image) {
@@ -21,7 +21,7 @@ public class Item_review_view {
         this.item_price = item_price;
     }
 
-    public void setLike_number(String like_number) {
+    public void setLike_number(int like_number) {
         this.like_number = like_number;
     }
 
@@ -41,7 +41,7 @@ public class Item_review_view {
         return main_image;
     }
 
-    public String getLike_number() {
+    public int getLike_number() {
         return like_number;
     }
 

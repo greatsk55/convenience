@@ -36,14 +36,9 @@ public class Activity_myreview extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.review_list);
         listview.setAdapter(adapter);
 
+        // 1.이미지, 2.유저이름, 3.총 가격, 4.좋아요수, 5.리뷰내용
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
-                "나", "1000원", "22", "good" );
-        // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
-                "나", "2000원", "33" , "야야야 이거 대박!");
-        // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
-                "나", "3000원", "0", "쓰래기임");
+                "나", "1000원", 22, "good" );
 
         setCustomActionbar();
 
