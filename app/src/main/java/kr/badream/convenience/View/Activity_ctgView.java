@@ -76,6 +76,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.ctg_1:
                 //간편식사 easy
+                Log.i("aaa isis", ""+storeID);
                 loadStoreCategoryListWithRetrofit(storeID, 3);
                 break;
             case R.id.ctg_2:
