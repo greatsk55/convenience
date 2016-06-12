@@ -6,8 +6,8 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -17,12 +17,16 @@
             android:layout_height="35dp"
             android:text="상품 :"
             android:gravity="center"
+
             />
 
-        <ImageView
+        <TextView
+            android:gravity="center"
             android:layout_width="110dp"
             android:layout_height="35dp"
-            android:background="#808080"
+            android:background="@drawable/cate4"
+            android:text="전체보기"
+            android:textStyle="bold"
             android:layout_gravity="center"/>
 
         <TextView
@@ -31,10 +35,13 @@
             android:text="정렬순:"
             android:gravity="center"/>
 
-        <ImageView
+        <TextView
+            android:textStyle="bold"
+            android:gravity="center"
             android:layout_width="110dp"
             android:layout_height="35dp"
-            android:background="#808080"
+            android:text="전체보기"
+            android:background="@drawable/cate4"
             android:layout_gravity="center"/>
 
     </LinearLayout>
