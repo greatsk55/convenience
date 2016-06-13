@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Rating;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -54,12 +55,18 @@ public class Adapter_list_view  extends BaseAdapter {
 
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView item_image = (ImageView) convertView.findViewById(R.id.item_image) ;
-        TextView item_name = (TextView) convertView.findViewById(R.id.item_name) ;
-        TextView item_price = (TextView) convertView.findViewById(R.id.item_price) ;
-        TextView like_number = (TextView) convertView.findViewById(R.id.like_number) ;
-        TextView review_number = (TextView) convertView.findViewById(R.id.review_number) ;;
-        //RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.rating);
+//        ImageView item_image = (ImageView) convertView.findViewById(R.id.item_image) ;
+//        TextView item_name = (TextView) convertView.findViewById(R.id.item_name) ;
+//        TextView item_price = (TextView) convertView.findViewById(R.id.item_price) ;
+//        TextView like_number = (TextView) convertView.findViewById(R.id.like_number) ;
+//        TextView review_number = (TextView) convertView.findViewById(R.id.review_number) ;;
+
+
+        ImageView item_image = ViewHolderHelper.get(convertView, R.id.item_image);
+        TextView item_name = ViewHolderHelper.get(convertView, R.id.item_name);
+        TextView item_price = ViewHolderHelper.get(convertView, R.id.item_price);
+        TextView like_number = ViewHolderHelper.get(convertView, R.id.like_number);
+        TextView review_number = ViewHolderHelper.get(convertView, R.id.review_number);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -106,6 +113,28 @@ public class Adapter_list_view  extends BaseAdapter {
         item.setItem_review_number(review_number);
 
         listViewItemList.add(item);
+    }
+
+    public static class ViewHolderHelper{
+        public static <T extends View> T get(View convertView, int id) {
+
+            SparseArray<View> viewHolder = (SparseArray<View>) convertView.getTag();
+
+            if (viewHolder == null) {
+
+                viewHolder = new SparseArray<View>();
+                convertView.setTag(viewHolder);
+            }
+
+            View childView = viewHolder.get(id);
+
+            if (childView == null) {
+
+                childView = convertView.findViewById(id);
+                viewHolder.put(id, childView);
+            }
+            return (T) childView;
+        }
     }
 
 
