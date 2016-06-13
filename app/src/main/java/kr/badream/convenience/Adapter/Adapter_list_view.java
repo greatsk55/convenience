@@ -63,18 +63,20 @@ public class Adapter_list_view  extends BaseAdapter {
 
 
         ImageView item_image = ViewHolderHelper.get(convertView, R.id.item_image);
+        ImageView conv_image = ViewHolderHelper.get(convertView, R.id.conv_image);
         TextView item_name = ViewHolderHelper.get(convertView, R.id.item_name);
         TextView item_price = ViewHolderHelper.get(convertView, R.id.item_price);
         TextView like_number = ViewHolderHelper.get(convertView, R.id.like_number);
         TextView review_number = ViewHolderHelper.get(convertView, R.id.review_number);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent ctgview_intent = new Intent( context , View_item_info.class);
-                context.startActivity(ctgview_intent);
-                Log.e("position","position: " + pos);
-            }
-        });
+
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent ctgview_intent = new Intent( context , View_item_info.class);
+//                context.startActivity(ctgview_intent);
+//                Log.e("position","position: " + pos);
+//            }
+//        });
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         Item_list_view item_list_view = listViewItemList.get(position);
@@ -86,6 +88,14 @@ public class Adapter_list_view  extends BaseAdapter {
         item_price.setText(item_list_view.getItem_price());
         like_number.setText(""+item_list_view.getItem_like_number());
         review_number.setText(""+item_list_view.getItem_review_number());
+
+        switch (item_list_view.getConv_image()){
+            case 1:conv_image.setImageResource(R.drawable.cu);break;
+            case 2:conv_image.setImageResource(R.drawable.with_me);break;
+            case 3:conv_image.setImageResource(R.drawable.gs25);break;
+            case 4:conv_image.setImageResource(R.drawable.seven);break;
+            case 5:conv_image.setImageResource(R.drawable.ministop);break;
+        }
 
         return convertView;
     }
@@ -102,8 +112,12 @@ public class Adapter_list_view  extends BaseAdapter {
         return listViewItemList.get(position) ;
     }
 
+    public void clear(){
+        listViewItemList.clear();
+    }
+
     // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
-    public void addItem(String img, String item_name, String item_price,int like_number , int review_number) {
+    public void addItem(String img, String item_name, String item_price,int like_number , int review_number, int conv_image) {
         Item_list_view item = new Item_list_view();
 
         item.setMain_image(img);
@@ -111,6 +125,7 @@ public class Adapter_list_view  extends BaseAdapter {
         item.setItem_price(item_price);
         item.setitem_like_number(like_number);
         item.setItem_review_number(review_number);
+        item.setConv_image(conv_image);
 
         listViewItemList.add(item);
     }

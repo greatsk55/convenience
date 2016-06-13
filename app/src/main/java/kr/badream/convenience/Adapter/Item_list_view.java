@@ -2,17 +2,24 @@ package kr.badream.convenience.Adapter;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016-06-04.
  */
-public class Item_list_view {
+public class Item_list_view implements Serializable {
 
+    private int conv_image;
     private String main_image;
     private String item_name;
     private String item_price;
 
     private int item_review_number;
     private int item_like_number;
+
+    public void setConv_image(int conv_image) {
+        this.conv_image = conv_image;
+    }
 
     public void setitem_like_number(int item_evaluation_number) {
         this.item_like_number = item_evaluation_number;
@@ -32,6 +39,10 @@ public class Item_list_view {
 
     public void setMain_image(String main_image) {
         this.main_image = main_image;
+    }
+
+    public int getConv_image() {
+        return conv_image;
     }
 
     public String getMain_image() {

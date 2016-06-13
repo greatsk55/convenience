@@ -6,28 +6,51 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+
 import kr.badream.convenience.Adapter.Adapter_list_view;
 import kr.badream.convenience.Adapter.Adapter_review_list_view;
+import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
+import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.R;
 
 public class View_item_info extends AppCompatActivity {
+
     View drawerView;
     DrawerLayout dlDrawer;
+
+    ListView listview;
+    Adapter_review_list_view adapter;
+
+    ImageView info_image;
+    TextView info_price;
+    Button info_btn_like;
+    Button info_btn_review_write;
+    TextView info_review_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_info);
 
-        ListView listview;
-        Adapter_review_list_view adapter;
+        // 레이아웃 설정
+        info_image = (ImageView) findViewById(R.id.info_image) ;
+        info_price = (TextView) findViewById(R.id.info_price) ;
+        info_btn_like = (Button) findViewById(R.id.info_btn_like) ;
+        info_btn_review_write = (Button) findViewById(R.id.info_btn_review_write) ;
+        info_review_number = (TextView) findViewById(R.id.info_review_number) ;
 
         // Adapter 생성
         adapter = new Adapter_review_list_view();
@@ -36,6 +59,13 @@ public class View_item_info extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.review_list);
         listview.setAdapter(adapter);
 
+        Item_list_view item = (Item_list_view) getIntent().getSerializableExtra("list");
+        Log.e("item0","item"+item.getItem_name());
+
+        Glide.with(getApplicationContext()).load(item.getMain_image()).into(info_image);
+        info_price.setText(item.getItem_price());
+        info_btn_like.setText(""+item.getItem_like_number());
+        info_review_number.setText(""+item.getItem_review_number());
         // 1.이미지, 2.유저이름, 3.총 가격, 4.좋아요수, 5.리뷰내용
         // 첫 번째 아이템 추가.
 //        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
@@ -49,7 +79,7 @@ public class View_item_info extends AppCompatActivity {
 
         setCustomActionbar();
         TextView act_title = (TextView) findViewById(R.id.actionbar_title);
-        act_title.setText("상품 이름 쓰셈");
+        act_title.setText(item.getItem_name());
     }
 
     private void setCustomActionbar() {

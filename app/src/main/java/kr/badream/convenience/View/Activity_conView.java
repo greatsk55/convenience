@@ -56,11 +56,11 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
                 ctgview_intent.putExtra("storeID", 1);
                 break;
 
-            case R.id.ge25_image:
+            case R.id.withme_image:
                 ctgview_intent.putExtra("storeID", 2);
                 break;
 
-            case R.id.ministop_image:
+            case R.id.ge25_image:
                 ctgview_intent.putExtra("storeID", 3);
                 break;
 
@@ -68,7 +68,7 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
                 ctgview_intent.putExtra("storeID", 4);
                 break;
 
-            case R.id.withme_image:
+            case R.id.ministop_image:
                 ctgview_intent.putExtra("storeID", 5);
                 break;
         }
