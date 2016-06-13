@@ -2,10 +2,12 @@ package kr.badream.convenience.Adapter;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016-06-04.
  */
-public class Item_list_view {
+public class Item_list_view implements Serializable {
 
     private String main_image;
     private String item_name;

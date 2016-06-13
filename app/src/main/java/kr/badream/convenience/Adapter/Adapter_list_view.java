@@ -68,13 +68,13 @@ public class Adapter_list_view  extends BaseAdapter {
         TextView like_number = ViewHolderHelper.get(convertView, R.id.like_number);
         TextView review_number = ViewHolderHelper.get(convertView, R.id.review_number);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent ctgview_intent = new Intent( context , View_item_info.class);
-                context.startActivity(ctgview_intent);
-                Log.e("position","position: " + pos);
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent ctgview_intent = new Intent( context , View_item_info.class);
+//                context.startActivity(ctgview_intent);
+//                Log.e("position","position: " + pos);
+//            }
+//        });
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         Item_list_view item_list_view = listViewItemList.get(position);

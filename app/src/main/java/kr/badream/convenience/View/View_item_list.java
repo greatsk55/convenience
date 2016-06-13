@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import kr.badream.convenience.Adapter.Adapter_list_view;
@@ -81,8 +82,10 @@ public class View_item_list extends AppCompatActivity {
 
                 // TODO : use item data.
 
-                Intent ctgview_intent = new Intent(getApplicationContext(), Activity_ctgView.class);
-                startActivity(ctgview_intent);
+                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
+                view_item_info.putExtra("list", item);
+
+                startActivity(view_item_info);
             }
         });
 

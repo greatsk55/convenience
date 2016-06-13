@@ -23,11 +23,11 @@
 
 
         <ImageView
-            android:id="@+id/ge25_image"
+            android:id="@+id/ministop_image"
             android:layout_margin="30dp"
             android:layout_width="@dimen/activity_cImageViewsize"
             android:layout_height="@dimen/activity_cImageViewsize"
-            android:src="@drawable/gs25"/>
+            android:src="@drawable/ministop"/>
 
 
     </LinearLayout>
@@ -40,11 +40,11 @@
 
 
         <ImageView
-            android:id="@+id/ministop_image"
+            android:id="@+id/ge25_image"
             android:layout_margin="30dp"
             android:layout_width="@dimen/activity_cImageViewsize"
             android:layout_height="@dimen/activity_cImageViewsize"
-            android:src="@drawable/ministop"/>
+            android:src="@drawable/gs25"/>
 
 
         <ImageView
@@ -73,12 +73,12 @@
 
 
         <TextView
-            android:background="#808080"
+            android:background="#FFFFFF"
             android:gravity="center"
             android:layout_margin="30dp"
             android:layout_width="@dimen/activity_cImageViewsize"
             android:layout_height="@dimen/activity_cImageViewsize"
-            android:text="공통 상품"/>
+            android:text=""/>
 
 
     </LinearLayout>
