@@ -5,8 +5,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
@@ -36,10 +38,33 @@ public class Activity_Search extends AppCompatActivity {
         ArrayAdapter<Helper_itemData> adapter = new ArrayAdapter<Helper_itemData>
                 (this, android.R.layout.simple_dropdown_item_1line, list);
 
-        AutoCompleteTextView text = (AutoCompleteTextView)
+        final AutoCompleteTextView text = (AutoCompleteTextView)
                 findViewById(R.id.edit_search);
 
         text.setAdapter(adapter);
+        text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("aaa", "선택된 아이템:"+ parent.getItemAtPosition(position));
+            }
+        });
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                text.showDropDown();
+            }
+        });
+        text.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("aaa", "셀렉된 아이템:");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d("aaa","아무것도 안 셀렉됨:");
+            }
+        });
     }
 
     private void setCustomActionbar() {

@@ -45,4 +45,9 @@ public class Helper_itemData implements Serializable {
         this.price = price;
         this.views = views;
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }
