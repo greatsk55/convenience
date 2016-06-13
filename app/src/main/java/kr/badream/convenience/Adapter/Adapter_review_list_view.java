@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,11 +52,18 @@ public class Adapter_review_list_view  extends BaseAdapter {
 
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView item_image = (ImageView) convertView.findViewById(R.id.item_image) ;
-        TextView user_name = (TextView) convertView.findViewById(R.id.user_name) ;
-        TextView item_price = (TextView) convertView.findViewById(R.id.item_price) ;
-        TextView like_number = (TextView) convertView.findViewById(R.id.like_number);
-        TextView review_main = (TextView) convertView.findViewById(R.id.review_main);
+
+//        ImageView item_image = (ImageView) convertView.findViewById(R.id.item_image) ;
+//        TextView user_name = (TextView) convertView.findViewById(R.id.user_name) ;
+//        TextView item_price = (TextView) convertView.findViewById(R.id.item_price) ;
+//        TextView like_number = (TextView) convertView.findViewById(R.id.like_number);
+//        TextView review_main = (TextView) convertView.findViewById(R.id.review_main);
+
+        ImageView item_image = ViewHolderHelper.get(convertView, R.id.item_image);
+        TextView user_name = ViewHolderHelper.get(convertView, R.id.user_name);
+        TextView item_price = ViewHolderHelper.get(convertView, R.id.item_price);
+        TextView like_number = ViewHolderHelper.get(convertView, R.id.like_number);
+        TextView review_main = ViewHolderHelper.get(convertView, R.id.review_main);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -102,6 +110,29 @@ public class Adapter_review_list_view  extends BaseAdapter {
         item.setReview_main(review_main);
 
         reviewViewItemList.add(item);
+    }
+
+    public static class ViewHolderHelper{
+        public static <T extends View> T get(View convertView, int id) {
+
+            SparseArray<View> viewHolder = (SparseArray<View>) convertView.getTag();
+
+            if (viewHolder == null) {
+
+                viewHolder = new SparseArray<View>();
+                convertView.setTag(viewHolder);
+            }
+
+            View childView = viewHolder.get(id);
+
+            if (childView == null) {
+
+                childView = convertView.findViewById(id);
+                viewHolder.put(id, childView);
+            }
+            return (T) childView;
+
+        }
     }
 
 
