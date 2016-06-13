@@ -75,7 +75,6 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v){
-        Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
         switch (v.getId()){
             case R.id.ctg_1:
                 //간편식사 easy
@@ -105,8 +104,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
                 //TODO 비식품 해줘야함 notFood
                 break;
         }
-        view_item_list.putExtra("list", list);
-        startActivity(view_item_list);
+
     }
 
 
@@ -124,6 +122,9 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
                 for( Helper_itemData data : mlistObject) {
                     list.add(data);
                 }
+                Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
+                view_item_list.putExtra("list", list);
+                startActivity(view_item_list);
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
