@@ -22,7 +22,6 @@ import java.util.List;
 import kr.badream.convenience.Helper.ApiInterface;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
-import kr.badream.convenience.Helper.Helper_itemList;
 import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.R;
 import kr.badream.convenience.User;
