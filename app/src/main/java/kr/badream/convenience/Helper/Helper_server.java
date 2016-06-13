@@ -12,11 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Helper_server {
     public static final String BASE_URL = "http://52.78.10.188/";
 
-    public static ApiInterface getInterfaceService() {/*
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Helper_server.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();*/
+    public static ApiInterface getInterfaceService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(LenientGsonConverterFactory.create())
