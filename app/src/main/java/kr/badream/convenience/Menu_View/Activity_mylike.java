@@ -39,14 +39,14 @@ public class Activity_mylike extends AppCompatActivity {
 
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
         // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
-                "Good", "1000원", 10 , 20);
-        // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
-                "Circle", "2000원", 20 , 30);
-        // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
-                "XXX", "3000원", 11, 55);
+//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
+//                "Good", "1000원", 10 , 20);
+//        // 두 번째 아이템 추가.
+//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
+//                "Circle", "2000원", 20 , 30);
+//        // 세 번째 아이템 추가.
+//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
+//                "XXX", "3000원", 11, 55);
 
         setCustomActionbar();
 
