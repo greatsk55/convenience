@@ -7,13 +7,13 @@ import android.graphics.drawable.Drawable;
  */
 public class Item_review_view {
 
-    private Drawable main_image;
+    private String main_image;
     private String user_name;
     private String item_price;
     private int like_number;
     private String review_main;
 
-    public void setMain_image(Drawable main_image) {
+    public void setMain_image(String main_image) {
         this.main_image = main_image;
     }
 
@@ -37,7 +37,7 @@ public class Item_review_view {
         return item_price;
     }
 
-    public Drawable getMain_image() {
+    public String getMain_image() {
         return main_image;
     }
 

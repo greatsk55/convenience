@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
  */
 public class Item_list_view {
 
-    private Drawable main_image;
+    private String main_image;
     private String item_name;
     private String item_price;
 
@@ -30,11 +30,11 @@ public class Item_list_view {
         this.item_review_number = item_review_number;
     }
 
-    public void setMain_image(Drawable main_image) {
+    public void setMain_image(String main_image) {
         this.main_image = main_image;
     }
 
-    public Drawable getMain_image() {
+    public String getMain_image() {
         return main_image;
     }
 

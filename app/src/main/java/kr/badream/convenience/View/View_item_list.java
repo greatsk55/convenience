@@ -56,20 +56,20 @@ public class View_item_list extends AppCompatActivity {
 
 
         //TODO 왜 리스트뷰를 쓰는지. Drawable을 URL로 바꿔서 Glide로 이미지 가져오게하기
-        /*
-        for( Helper_itemData data : list){
-            adapter.addItem();
-        }
-        */
 
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
-                "Good", "1000원", 10 , 20);
-        // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
-                "Circle", "2000원", 20 ,30);
-        // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
-                "XXX", "3000원", 30  ,40);
+
+        for( Helper_itemData data : list){
+            adapter.addItem(data.url, data.name, data.price, 0, 0);
+        }
+        Log.e("size", "= "+list.size());
+//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
+//                "Good", "1000원", 10 , 20);
+//        // 두 번째 아이템 추가.
+//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
+//                "Circle", "2000원", 20 ,30);
+//        // 세 번째 아이템 추가.
+//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
+//                "XXX", "3000원", 30  ,40);
 
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

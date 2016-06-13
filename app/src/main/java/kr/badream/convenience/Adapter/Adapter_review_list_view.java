@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import kr.badream.convenience.R;
@@ -67,7 +69,8 @@ public class Adapter_review_list_view  extends BaseAdapter {
         Item_review_view item_review_view = reviewViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        item_image.setImageDrawable(item_review_view.getMain_image());
+        //item_image.setImageDrawable(item_review_view.getMain_image());
+        Glide.with(context).load(item_review_view.getMain_image()).into(item_image);
         user_name.setText(item_review_view.getUser_name());
         item_price.setText(item_review_view.getItem_price());
         like_number.setText(""+item_review_view.getLike_number());
@@ -89,7 +92,7 @@ public class Adapter_review_list_view  extends BaseAdapter {
     }
 
     // 1.이미지, 2.유저이름, 3.총 가격, 4.좋아요수, 5.리뷰내용
-    public void addItem(Drawable img, String user_name, String item_price, int like_number, String review_main) {
+    public void addItem(String img, String user_name, String item_price, int like_number, String review_main) {
         Item_review_view item = new Item_review_view();
 
         item.setMain_image(img);
