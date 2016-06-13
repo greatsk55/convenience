@@ -16,7 +16,9 @@ public class Helper_itemData implements Serializable {
     //storeID
     // CU = 1
     // Withme = 2
-
+    // GS = 3
+    // Seven = 4
+    // mini = 5
 
 
     public int prodID;

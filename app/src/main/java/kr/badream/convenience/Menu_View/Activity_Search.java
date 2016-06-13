@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import kr.badream.convenience.Helper.Define_menu_click;
+import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.R;
 
 public class Activity_Search extends AppCompatActivity {
@@ -18,13 +23,23 @@ public class Activity_Search extends AppCompatActivity {
     View drawerView;
     DrawerLayout dlDrawer;
 
+    private ArrayList<Helper_itemData> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
         setCustomActionbar();
 
+        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
+
+        ArrayAdapter<Helper_itemData> adapter = new ArrayAdapter<Helper_itemData>
+                (this, android.R.layout.simple_dropdown_item_1line, list);
+
+        AutoCompleteTextView text = (AutoCompleteTextView)
+                findViewById(R.id.edit_search);
+
+        text.setAdapter(adapter);
     }
 
     private void setCustomActionbar() {

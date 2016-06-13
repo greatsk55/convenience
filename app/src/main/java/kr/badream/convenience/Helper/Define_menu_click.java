@@ -92,9 +92,9 @@ public class Define_menu_click{
         });
         menu_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent activity_compare = new Intent( context , Activity_Search.class);
-                activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(activity_compare);
+                Helper_search helper_search = new Helper_search();
+                helper_search.loadAllItemListWithRetrofit(context, 10, 1);
+
             }
         });
     }

@@ -24,11 +24,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edt_search"
+                <AutoCompleteTextView
+                    android:id="@+id/edit_search"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:completionHint="목록에서 찾는 물건을 선택하세요"
+                    android:completionThreshold="1"
                     android:hint="물품 검색"
+                    />
+                <EditText
+                    android:id="@+id/input"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:drawableLeft="@drawable/ic_action_search"/>
                 <Button
