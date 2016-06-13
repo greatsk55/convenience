@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -44,6 +46,15 @@ public class View_item_list extends AppCompatActivity {
     TextView btn_ctg_item;
     TextView btn_ctg_array;
 
+    RadioGroup rd;
+    RadioButton r0;
+    RadioButton r1;
+    RadioButton r2;
+    RadioButton r3;
+    RadioButton r4;
+    RadioButton r5;
+    RadioButton r6;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,10 +74,12 @@ public class View_item_list extends AppCompatActivity {
 
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
 
-        // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
+        // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
         for( Helper_itemData data : list){
-            adapter.addItem(data.url, data.name, data.price, 0, 0);
+            adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
         }
+
+
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -95,7 +108,62 @@ public class View_item_list extends AppCompatActivity {
                 View layout = inflater.inflate(R.layout.dialog_radio,(ViewGroup) findViewById(R.id.popup));
                 AlertDialog.Builder aDialog = new AlertDialog.Builder(View_item_list.this);
 
-                Log.e("gg","ggok");
+                r0 = (RadioButton)layout.findViewById(R.id.radio0);
+                r1 = (RadioButton)layout.findViewById(R.id.radio1);
+                r2 = (RadioButton)layout.findViewById(R.id.radio2);
+                r3 = (RadioButton)layout.findViewById(R.id.radio3);
+                r4 = (RadioButton)layout.findViewById(R.id.radio4);
+                r5 = (RadioButton)layout.findViewById(R.id.radio5);
+                r6 = (RadioButton)layout.findViewById(R.id.radio6);
+                aDialog.setTitle("상품"); //타이틀바 제목
+                aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
+                aDialog.setPositiveButton("확인",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if(r0.isChecked()){
+                                    setAdapter(0,0);
+                                }
+                                else if(r1.isChecked()){
+                                    setAdapter(1,0);
+                                }
+                                else if(r2.isChecked()){
+                                    setAdapter(2,0);
+                                }
+                                else if(r3.isChecked()){
+                                    setAdapter(3,0);
+                                }
+                                else if(r4.isChecked()){
+                                    setAdapter(4,0);
+                                }
+                                else if(r5.isChecked()){
+                                    setAdapter(5,0);
+                                }
+                                else if(r6.isChecked()){
+                                    setAdapter(6,0);
+                                }
+
+                            }
+                        }).setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 'No'
+                                return;
+                            }
+                        });
+                AlertDialog ad = aDialog.create();
+
+                ad.show();
+            }
+        });
+        btn_ctg_array.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                LayoutInflater inflater = (LayoutInflater) View_item_list.this.getSystemService(View_item_list.this.LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.dialog_array,(ViewGroup) findViewById(R.id.popup));
+                AlertDialog.Builder aDialog = new AlertDialog.Builder(View_item_list.this);
+
                 aDialog.setTitle("상품"); //타이틀바 제목
                 aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
                 aDialog.setPositiveButton("확인",
@@ -115,11 +183,6 @@ public class View_item_list extends AppCompatActivity {
                 AlertDialog ad = aDialog.create();
 
                 ad.show();
-            }
-        });
-        btn_ctg_array.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
             }
         });
 
@@ -168,7 +231,77 @@ public class View_item_list extends AppCompatActivity {
                 dlDrawer.openDrawer(drawerView);
             }
         });
+    }
+
+    public void setAdapter(int item, int array){
+
+        adapter.clear();
+
+        switch (item){
+            //전체 보기
+            case 0:
+                if(array == 0)
+                    for( Helper_itemData data : list){
+                            adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
+                    }
+                break;
+            //주먹밥
+            case 1:
+                if(array == 0)
+                    for( Helper_itemData data : list){
+                        if(data.name.charAt(0)=='주'){
+                            adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
+                        }
+                    }
+                break;
+            //도시락
+            case 2:
+                if(array == 0)
+                    for( Helper_itemData data : list){
+                        if(data.name.charAt(0)=='도' && !data.name.contains("도너츠")){
+                            adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
+                        }
+                    }
+                break;
+            //햄버거
+            case 3:
+                if(array == 0)
+                    for( Helper_itemData data : list){
+                        if(data.name.charAt(0)=='햄'){
+                            adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
+                        }
+                    }
+                break;
+            //김밥
+            case 4:
+                if(array == 0)
+                    for( Helper_itemData data : list){
+                        if(data.name.charAt(0)=='김'){
+                            adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
+                        }
+                    }
+                break;
+            //샌드위치
+            case 5:
+                if(array == 0)
+                    for( Helper_itemData data : list){
+                        if(data.name.charAt(0)=='샌'){
+                            adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
+                        }
+                    }
+                break;
+            //나머지
+            case 6:
+                if(array == 0)
+                    for( Helper_itemData data : list){
+                        if(data.name.charAt(0)!='주' && data.name.charAt(0) !='샌' && data.name.charAt(0)!='김'&& (data.name.charAt(0)!='도'|| data.name.contains("도너츠")) && data.name.charAt(0)!='햄'){
+                            adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
+                        }
+                    }
+                break;
+        }
 
 
+        adapter.notifyDataSetChanged();
     }
 }

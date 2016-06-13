@@ -109,7 +109,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
     }
 
 
-    private void loadStoreCategoryListWithRetrofit(final int storeID, int mainCategory){
+    private void loadStoreCategoryListWithRetrofit(final int storeID, final int mainCategory){
         final ProgressDialog mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
@@ -137,6 +137,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
 
 
                 Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
+                view_item_list.putExtra("ctg", mainCategory);
                 view_item_list.putExtra("list", list);
                 startActivity(view_item_list);
             }
