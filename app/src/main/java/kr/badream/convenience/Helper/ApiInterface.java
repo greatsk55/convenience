@@ -15,6 +15,7 @@ public interface ApiInterface {
     @GET("index.php/{storeID}/{mainCategory}")
     Call<List<Helper_itemData>> loadStoreCategoryList(@Path("storeID") int storeID, @Path("mainCategory") int mainCategory);
     */
+
     @GET("index.php/{storeID}/{mainCategory}")
     Call<List<Helper_itemData>> loadStoreCategoryList(@Path("storeID") int storeID, @Path("mainCategory") int mainCategory);
 

@@ -13,6 +13,12 @@ import kr.badream.convenience.R;
 //TODO 방정보를 저장할 자료형 클래스
 public class Helper_itemData implements Serializable {
 
+    //storeID
+    // CU = 1
+    // Withme = 2
+
+
+
     public int prodID;
     public int storeID;
     public int mainCategory;
