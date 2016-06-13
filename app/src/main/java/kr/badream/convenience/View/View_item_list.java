@@ -56,6 +56,7 @@ public class View_item_list extends AppCompatActivity {
     RadioButton r6;
 
     int mainCtg;
+    int storeID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,8 @@ public class View_item_list extends AppCompatActivity {
 
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
         mainCtg = getIntent().getIntExtra("ctg",-1);
+        storeID = getIntent().getIntExtra("storeID",-1);
+
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
         for( Helper_itemData data : list){
             adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
@@ -107,8 +110,9 @@ public class View_item_list extends AppCompatActivity {
         btn_ctg_item.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //즉석 식품
-                if(mainCtg == 3) {
+                Log.e("mainCtg", " = " + mainCtg);
+                //cu 즉석 식품
+                if(mainCtg == 3 && storeID == 1) {
 
                     LayoutInflater inflater = (LayoutInflater) View_item_list.this.getSystemService(View_item_list.this.LAYOUT_INFLATER_SERVICE);
                     View layout = inflater.inflate(R.layout.dialog_radio, (ViewGroup) findViewById(R.id.popup));
@@ -238,7 +242,6 @@ public class View_item_list extends AppCompatActivity {
     public void setAdapter(int item, int array){
 
         adapter.clear();
-
         switch (item){
             //전체 보기
             case 0:

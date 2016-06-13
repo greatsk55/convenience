@@ -137,6 +137,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
 
 
                 Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
+                view_item_list.putExtra("storeID",storeID);
                 view_item_list.putExtra("ctg", mainCategory);
                 view_item_list.putExtra("list", list);
                 startActivity(view_item_list);
