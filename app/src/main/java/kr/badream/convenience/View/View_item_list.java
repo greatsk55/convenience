@@ -55,6 +55,8 @@ public class View_item_list extends AppCompatActivity {
     RadioButton r5;
     RadioButton r6;
 
+    int mainCtg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,7 @@ public class View_item_list extends AppCompatActivity {
         btn_ctg_item.setClickable(true);
 
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
-
+        mainCtg = getIntent().getIntExtra("ctg",-1);
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
         for( Helper_itemData data : list){
             adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
@@ -104,58 +106,58 @@ public class View_item_list extends AppCompatActivity {
 
         btn_ctg_item.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                LayoutInflater inflater = (LayoutInflater) View_item_list.this.getSystemService(View_item_list.this.LAYOUT_INFLATER_SERVICE);
-                View layout = inflater.inflate(R.layout.dialog_radio,(ViewGroup) findViewById(R.id.popup));
-                AlertDialog.Builder aDialog = new AlertDialog.Builder(View_item_list.this);
 
-                r0 = (RadioButton)layout.findViewById(R.id.radio0);
-                r1 = (RadioButton)layout.findViewById(R.id.radio1);
-                r2 = (RadioButton)layout.findViewById(R.id.radio2);
-                r3 = (RadioButton)layout.findViewById(R.id.radio3);
-                r4 = (RadioButton)layout.findViewById(R.id.radio4);
-                r5 = (RadioButton)layout.findViewById(R.id.radio5);
-                r6 = (RadioButton)layout.findViewById(R.id.radio6);
-                aDialog.setTitle("상품"); //타이틀바 제목
-                aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
-                aDialog.setPositiveButton("확인",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                //즉석 식품
+                if(mainCtg == 3) {
 
-                                if(r0.isChecked()){
-                                    setAdapter(0,0);
-                                }
-                                else if(r1.isChecked()){
-                                    setAdapter(1,0);
-                                }
-                                else if(r2.isChecked()){
-                                    setAdapter(2,0);
-                                }
-                                else if(r3.isChecked()){
-                                    setAdapter(3,0);
-                                }
-                                else if(r4.isChecked()){
-                                    setAdapter(4,0);
-                                }
-                                else if(r5.isChecked()){
-                                    setAdapter(5,0);
-                                }
-                                else if(r6.isChecked()){
-                                    setAdapter(6,0);
-                                }
+                    LayoutInflater inflater = (LayoutInflater) View_item_list.this.getSystemService(View_item_list.this.LAYOUT_INFLATER_SERVICE);
+                    View layout = inflater.inflate(R.layout.dialog_radio, (ViewGroup) findViewById(R.id.popup));
+                    AlertDialog.Builder aDialog = new AlertDialog.Builder(View_item_list.this);
 
-                            }
-                        }).setNegativeButton("취소",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // 'No'
-                                return;
-                            }
-                        });
-                AlertDialog ad = aDialog.create();
+                    r0 = (RadioButton) layout.findViewById(R.id.radio0);
+                    r1 = (RadioButton) layout.findViewById(R.id.radio1);
+                    r2 = (RadioButton) layout.findViewById(R.id.radio2);
+                    r3 = (RadioButton) layout.findViewById(R.id.radio3);
+                    r4 = (RadioButton) layout.findViewById(R.id.radio4);
+                    r5 = (RadioButton) layout.findViewById(R.id.radio5);
+                    r6 = (RadioButton) layout.findViewById(R.id.radio6);
 
-                ad.show();
+                    aDialog.setTitle("상품"); //타이틀바 제목
+                    aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
+                    aDialog.setPositiveButton("확인",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    if (r0.isChecked()) {
+                                        setAdapter(0, 0);
+                                    } else if (r1.isChecked()) {
+                                        setAdapter(1, 0);
+                                    } else if (r2.isChecked()) {
+                                        setAdapter(2, 0);
+                                    } else if (r3.isChecked()) {
+                                        setAdapter(3, 0);
+                                    } else if (r4.isChecked()) {
+                                        setAdapter(4, 0);
+                                    } else if (r5.isChecked()) {
+                                        setAdapter(5, 0);
+                                    } else if (r6.isChecked()) {
+                                        setAdapter(6, 0);
+                                    }
+
+                                }
+                            }).setNegativeButton("취소",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // 'No'
+                                    return;
+                                }
+                            });
+                    AlertDialog ad = aDialog.create();
+
+                    ad.show();
+                }
             }
         });
         btn_ctg_array.setOnClickListener(new View.OnClickListener() {
