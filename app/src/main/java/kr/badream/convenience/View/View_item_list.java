@@ -55,9 +55,6 @@ public class View_item_list extends AppCompatActivity {
         // 첫 번째 아이템 추가.
 
 
-        //TODO 왜 리스트뷰를 쓰는지. Drawable을 URL로 바꿔서 Glide로 이미지 가져오게하기
-
-
         for( Helper_itemData data : list){
             adapter.addItem(data.url, data.name, data.price, 0, 0);
         }

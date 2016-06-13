@@ -154,6 +154,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private void registrationProcessWithRetrofit(final String id, int flag, String name,int gender){
         final ProgressDialog mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
 

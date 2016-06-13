@@ -112,6 +112,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
     private void loadStoreCategoryListWithRetrofit(final int storeID, int mainCategory){
         final ProgressDialog mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
 
