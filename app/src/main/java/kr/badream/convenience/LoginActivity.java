@@ -5,6 +5,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -151,6 +152,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
 
     private void registrationProcessWithRetrofit(final String id, int flag, String name,int gender){
+        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
         ApiInterface mApiService = Helper_server.getInterfaceService();
         Call<User> mService = mApiService.registration(id, flag, name, gender);
         mService.enqueue(new Callback<User>() {
@@ -165,18 +171,20 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     String returnedUserID = mLoginObject.userID;
                     String returnedName = mLoginObject.name;
 
-
-
                     SharedPreferences prefs = getSharedPreferences("userData", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("userID", returnedUserID.trim());
                     editor.putString("name", returnedName.trim());
                     editor.commit();
 
-                    Log.i("aaa", returnedName.trim());
+                    if (mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
                 }
                 if(returnedResponse.trim().equals("0")){
                     // use the registration button to register
+                    if (mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
+
                     Toast.makeText( getApplicationContext(), "can\'t join. please retry.", Toast.LENGTH_LONG).show();
                 }
             }

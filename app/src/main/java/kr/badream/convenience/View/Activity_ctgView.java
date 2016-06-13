@@ -1,5 +1,6 @@
 package kr.badream.convenience.View;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
@@ -109,6 +110,11 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
 
 
     private void loadStoreCategoryListWithRetrofit(final int storeID, int mainCategory){
+        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
         ApiInterface mApiService = Helper_server.getInterfaceService();
         Call<List<Helper_itemData>> mService = mApiService.loadStoreCategoryList(storeID, mainCategory);
 
@@ -122,6 +128,11 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
                 for( Helper_itemData data : mlistObject) {
                     list.add(data);
                 }
+
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+
                 Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
                 view_item_list.putExtra("list", list);
                 startActivity(view_item_list);
@@ -129,6 +140,10 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
                 call.cancel();
+
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
                 Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });
