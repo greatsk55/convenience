@@ -19,23 +19,14 @@ public class Helper_itemData {
 
     public String url;
     public String name;
-    public int price;
+    public String price;
     public int views;
-
-    public String login;
-    public String html_url;
-    int contributions;
-
-    @Override
-    public String toString(){
-        return login + " (" + contributions + ")";
-    }
 
 
     public Helper_itemData(){
     }
 
-    public Helper_itemData(int prodID, int storeID, int mainCategory, int subCategory, String url, String name, int price, int views){
+    public Helper_itemData(int prodID, int storeID, int mainCategory, int subCategory, String url, String name, String price, int views){
         this.prodID = prodID;
         this.storeID = storeID;
         this.mainCategory = mainCategory;

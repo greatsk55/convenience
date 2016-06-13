@@ -107,7 +107,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         startActivity(view_item_list);
     }
 
-/*
+
     private void loadStoreCategoryListWithRetrofit(final int storeID, int mainCategory){
         ApiInterface mApiService = Helper_server.getInterfaceService();
         Call<List<Helper_itemData>> mService = mApiService.loadStoreCategoryList(storeID, mainCategory);
@@ -126,25 +126,6 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
                 call.cancel();
-                Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-*/
-
-    private void loadStoreCategoryListWithRetrofit(final int storeID, int mainCategory){
-        ApiInterface mApiService = Helper_server.getInterfaceService();
-        Call<List<Helper_itemData>> mService = mApiService.repoContributors("square", "retrofit");
-
-        mService.enqueue(new Callback<List<Helper_itemData>>() {
-            @Override
-            public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
-                Log.i("aaa", response.body().toString());
-            }
-            @Override
-            public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
-                call.cancel();
-                Log.i("aaa", t.getMessage());
                 Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });

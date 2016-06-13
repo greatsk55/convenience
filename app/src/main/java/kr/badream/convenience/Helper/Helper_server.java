@@ -11,7 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class Helper_server {
     public static final String BASE_URL = "http://52.78.10.188/";
-    public static final String URL = "https://api.github.com/";
 
     public static ApiInterface getInterfaceService() {/*
         Retrofit retrofit = new Retrofit.Builder()
@@ -23,15 +22,6 @@ public class Helper_server {
                 .addConverterFactory(LenientGsonConverterFactory.create())
                 .build();
 
-        final ApiInterface mInterfaceService = retrofit.create(ApiInterface.class);
-        return mInterfaceService;
-    }
-
-    public static ApiInterface getService(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Helper_server.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
         final ApiInterface mInterfaceService = retrofit.create(ApiInterface.class);
         return mInterfaceService;
     }

@@ -1,5 +1,7 @@
 package kr.badream.convenience.Helper;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import kr.badream.convenience.User;
@@ -14,12 +16,9 @@ public interface ApiInterface {
     Call<List<Helper_itemData>> loadStoreCategoryList(@Path("storeID") int storeID, @Path("mainCategory") int mainCategory);
     */
     @GET("index.php/{storeID}/{mainCategory}")
-    Call<Helper_itemData> loadStoreCategoryList(@Path("storeID") int storeID, @Path("mainCategory") int mainCategory);
+    Call<List<Helper_itemData>> loadStoreCategoryList(@Path("storeID") int storeID, @Path("mainCategory") int mainCategory);
 
     @POST("index.php/{ID}/{flag}/{name}/{gender}")
     Call<User> registration(@Path("ID") String id, @Path("flag") int flag, @Path("name") String name, @Path("gender") int gender);
 
-
-    @GET("repos/{owner}/{repo}/contributors")
-    Call<List<Helper_itemData>> repoContributors(@Path("owner") String owner, @Path("repo") String repo);
 }

@@ -36,6 +36,7 @@ import com.facebook.login.widget.LoginButton;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -164,6 +165,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     String returnedUserID = mLoginObject.userID;
                     String returnedName = mLoginObject.name;
 
+
+
                     SharedPreferences prefs = getSharedPreferences("userData", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("userID", returnedUserID.trim());
@@ -185,6 +188,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         });
     }
+
 
     public void onClick(View v) {
         if(v.getId() == R.id.ak_login){
