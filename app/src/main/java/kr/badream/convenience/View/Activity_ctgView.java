@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.badream.convenience.Helper.ApiInterface;
@@ -42,6 +43,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
     private DrawerLayout dlDrawer;
 
     private int storeID;
+    private ArrayList<Helper_itemData> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
 
         Intent intent = getIntent();
         storeID = intent.getIntExtra("storeID",1);
+        list = new ArrayList<Helper_itemData>();
 
         setCustomActionbar();
 
@@ -77,7 +80,6 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.ctg_1:
                 //간편식사 easy
-                Log.i("aaa isis", ""+storeID);
                 loadStoreCategoryListWithRetrofit(storeID, 3);
                 break;
             case R.id.ctg_2:
@@ -104,6 +106,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
                 //TODO 비식품 해줘야함 notFood
                 break;
         }
+        view_item_list.putExtra("list", list);
         startActivity(view_item_list);
     }
 
@@ -120,7 +123,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
                 List<Helper_itemData> mlistObject = response.body();
 
                 for( Helper_itemData data : mlistObject) {
-                    Log.i("aaa", "prodID : " + data.prodID + " name : " + data.name);
+                    list.add(data);
                 }
             }
             @Override

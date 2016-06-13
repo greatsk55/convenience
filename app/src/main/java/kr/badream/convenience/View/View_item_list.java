@@ -15,9 +15,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import kr.badream.convenience.Adapter.Adapter_list_view;
 import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
+import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.R;
 
 /**
@@ -26,8 +29,10 @@ import kr.badream.convenience.R;
 public class View_item_list extends AppCompatActivity {
 
 
-    View drawerView;
-    DrawerLayout dlDrawer;
+    private View drawerView;
+    private DrawerLayout dlDrawer;
+
+    private ArrayList<Helper_itemData> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +49,19 @@ public class View_item_list extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.item_list);
         listview.setAdapter(adapter);
 
+        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
+
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
         // 첫 번째 아이템 추가.
+
+
+        //TODO 왜 리스트뷰를 쓰는지. Drawable을 URL로 바꿔서 Glide로 이미지 가져오게하기
+        /*
+        for( Helper_itemData data : list){
+            adapter.addItem();
+        }
+        */
+
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
                 "Good", "1000원", 10 , 20);
         // 두 번째 아이템 추가.

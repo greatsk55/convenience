@@ -1,6 +1,7 @@
 package kr.badream.convenience.Helper;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import kr.badream.convenience.R;
@@ -10,7 +11,7 @@ import kr.badream.convenience.R;
  */
 
 //TODO 방정보를 저장할 자료형 클래스
-public class Helper_itemData {
+public class Helper_itemData implements Serializable {
 
     public int prodID;
     public int storeID;
