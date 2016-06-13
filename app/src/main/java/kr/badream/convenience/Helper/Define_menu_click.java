@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import kr.badream.convenience.Menu_View.Activity_Rank;
+import kr.badream.convenience.Menu_View.Activity_Search;
 import kr.badream.convenience.Menu_View.Activity_compare;
 import kr.badream.convenience.Menu_View.Activity_map;
 import kr.badream.convenience.Menu_View.Activity_mylike;
@@ -31,6 +32,8 @@ public class Define_menu_click{
     TextView menu_rank;
     TextView menu_item;
 
+    TextView menu_search;
+
     public Define_menu_click(final Context context , DrawerLayout drw) {
 
         btn_login = (Button) drw.findViewById(R.id.menu_btn_login);
@@ -40,6 +43,8 @@ public class Define_menu_click{
         menu_conv = (TextView) drw.findViewById(R.id.menu_conv);
         menu_rank = (TextView) drw.findViewById(R.id.menu_rank);
         menu_item = (TextView) drw.findViewById(R.id.menu_item);
+        menu_search = (TextView) drw.findViewById(R.id.menu_search);
+
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -81,6 +86,13 @@ public class Define_menu_click{
         menu_item.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent activity_compare = new Intent( context , Activity_compare.class);
+                activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(activity_compare);
+            }
+        });
+        menu_search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent activity_compare = new Intent( context , Activity_Search.class);
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(activity_compare);
             }
