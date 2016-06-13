@@ -1,5 +1,7 @@
 package kr.badream.convenience.View;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -10,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -34,40 +37,35 @@ public class View_item_list extends AppCompatActivity {
 
     private ArrayList<Helper_itemData> list;
 
+    ListView listview;
+    Adapter_list_view adapter;
+
+    TextView btn_ctg_item;
+    TextView btn_ctg_array;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
-        ListView listview;
-        Adapter_list_view adapter;
-
         // Adapter 생성
         adapter = new Adapter_list_view();
-
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView) findViewById(R.id.item_list);
         listview.setAdapter(adapter);
 
+        // 상위 정렬 버튼
+        btn_ctg_item = (TextView) findViewById(R.id.btn_ctg_item);
+        btn_ctg_array = (TextView) findViewById(R.id.btn_ctg_array);
+
+        btn_ctg_item.setClickable(true);
+
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
 
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
-        // 첫 번째 아이템 추가.
-
-
         for( Helper_itemData data : list){
             adapter.addItem(data.url, data.name, data.price, 0, 0);
         }
-        Log.e("size", "= "+list.size());
-//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
-//                "Good", "1000원", 10 , 20);
-//        // 두 번째 아이템 추가.
-//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
-//                "Circle", "2000원", 20 ,30);
-//        // 세 번째 아이템 추가.
-//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
-//                "XXX", "3000원", 30  ,40);
-
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -85,6 +83,40 @@ public class View_item_list extends AppCompatActivity {
 
                 Intent ctgview_intent = new Intent(getApplicationContext(), Activity_ctgView.class);
                 startActivity(ctgview_intent);
+            }
+        });
+
+        btn_ctg_item.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                LayoutInflater inflater = (LayoutInflater) View_item_list.this.getSystemService(View_item_list.this.LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.dialog_radio,(ViewGroup) findViewById(R.id.popup));
+                AlertDialog.Builder aDialog = new AlertDialog.Builder(View_item_list.this);
+
+                Log.e("gg","ggok");
+                aDialog.setTitle("상품"); //타이틀바 제목
+                aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
+                aDialog.setPositiveButton("확인",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 'No'
+                                return;
+                            }
+                        });
+                AlertDialog ad = aDialog.create();
+
+                ad.show();
+            }
+        });
+        btn_ctg_array.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
             }
         });
 

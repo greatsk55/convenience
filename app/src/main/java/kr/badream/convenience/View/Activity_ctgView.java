@@ -126,6 +126,8 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
 
                 List<Helper_itemData> mlistObject = response.body();
 
+                //여기서 초기화 안해줘서 계속 중첩하며 아이템 증가함
+                list = new ArrayList<Helper_itemData>();
                 for( Helper_itemData data : mlistObject) {
                     list.add(data);
                 }

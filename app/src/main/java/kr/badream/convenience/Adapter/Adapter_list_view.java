@@ -102,6 +102,10 @@ public class Adapter_list_view  extends BaseAdapter {
         return listViewItemList.get(position) ;
     }
 
+    public void clear(){
+        listViewItemList.clear();
+    }
+
     // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
     public void addItem(String img, String item_name, String item_price,int like_number , int review_number) {
         Item_list_view item = new Item_list_view();
