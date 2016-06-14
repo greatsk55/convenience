@@ -31,11 +31,6 @@ public class LoginHelper {
         if (accessToken1 != null ) {
             //Handle Returning User
 
-            //로그인일때 데이터 로드하는법.
-            //SharedPreferences prefs = getSharedPreferences("userData", MODE_PRIVATE);
-            //String id = prefs.getString("userID", "");
-            //String name = prefs.getString("name", "");
-
             return true;
         } else if( accessToken2 != null){
             //로그인 상태일때 액티비티를 종료한다.
@@ -47,13 +42,12 @@ public class LoginHelper {
             editor.clear();
             editor.commit();
 
-            Intent intent = new Intent(context, LoginActivity.class);
-            context.startActivity(intent);
-
-            AccessToken access1 = AccountKit.getCurrentAccessToken();
-            com.facebook.AccessToken access2 = com.facebook.AccessToken.getCurrentAccessToken();
-            if( access1 != null || access2 != null ){ return true; }
-            else return false;
+            return false;
         }
+    }
+
+    public static void openLoginActivity(Context context){
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
     }
 }

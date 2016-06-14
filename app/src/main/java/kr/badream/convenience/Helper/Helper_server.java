@@ -1,5 +1,6 @@
 package kr.badream.convenience.Helper;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.badream.convenience.LoginActivity;
 import kr.badream.convenience.Menu_View.Activity_Search;
 import kr.badream.convenience.Menu_View.Activity_map;
 import kr.badream.convenience.R;
@@ -69,6 +71,8 @@ public class Helper_server {
 
                     if (mProgressDialog.isShowing())
                         mProgressDialog.dismiss();
+
+
                 }
                 if(returnedResponse.trim().equals("0")){
                     // use the registration button to register
@@ -118,8 +122,6 @@ public class Helper_server {
             }
         });
     }
-
-
     public static void loadStoreCategoryListWithRetrofit(final Context context,final int storeID, final int mainCategory){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);

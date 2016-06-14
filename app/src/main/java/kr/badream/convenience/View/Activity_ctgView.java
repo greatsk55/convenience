@@ -69,9 +69,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         Intent intent = getIntent();
         storeID = intent.getIntExtra("storeID",1);
 
-
         setCustomActionbar();
-
     }
 
     @Override

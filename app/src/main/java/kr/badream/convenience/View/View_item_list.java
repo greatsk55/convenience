@@ -85,12 +85,11 @@ public class View_item_list extends AppCompatActivity {
         btn_ctg_item.setClickable(true);
 
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
-        mainCtg = getIntent().getIntExtra("ctg",-1);
-        storeID = getIntent().getIntExtra("storeID",-1);
+        mainCtg = getIntent().getIntExtra("ctg", -1);
+        storeID = getIntent().getIntExtra("storeID", -1);
 
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
         for( Helper_itemData data : list){
-
             adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
         }
 
@@ -114,6 +113,8 @@ public class View_item_list extends AppCompatActivity {
                 startActivity(view_item_info);
             }
         });
+
+
 
         btn_ctg_item.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -140,7 +141,6 @@ public class View_item_list extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     if (r0.isChecked()) {
                                         setAdapter(ALL_SUBCATEGORY, 0);
                                     } else if (r1.isChecked()) {
@@ -156,7 +156,6 @@ public class View_item_list extends AppCompatActivity {
                                     } else if (r6.isChecked()) {
                                         setAdapter(ETC, 0);
                                     }
-
                                 }
                             }).setNegativeButton("취소",
                             new DialogInterface.OnClickListener() {
