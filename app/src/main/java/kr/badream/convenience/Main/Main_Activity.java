@@ -40,7 +40,6 @@ public class Main_Activity extends Activity {
             }
             Log.d("lol key : ", something);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             Log.e("name not found", e.toString());
         }
     }

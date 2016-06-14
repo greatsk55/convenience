@@ -115,9 +115,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                                     String gender = data.getString("gender");
 
                                     if (gender.equals("male")) {
-                                        Helper_server.registrationProcessWithRetrofit(getApplicationContext(),id, 2, name, 1);
+                                        Helper_server.registrationProcessWithRetrofit(LoginActivity.this, id, 2, name, 1);
                                     } else {
-                                        Helper_server.registrationProcessWithRetrofit(getApplicationContext(),id, 2, name, 2);
+                                        Helper_server.registrationProcessWithRetrofit(LoginActivity.this, id, 2, name, 2);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -182,20 +182,18 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             String toastMessage;
             if (loginResult.getError() != null) {
                 toastMessage = loginResult.getError().getErrorType().getMessage();
-                //TODO 로그인 실패 액티비티
             } else if (loginResult.wasCancelled()) {
                 toastMessage = "Login Cancelled";
             } else {
                 if (loginResult.getAccessToken() != null) {
                     String id = loginResult.getAccessToken().getAccountId();
                     toastMessage = "Success:" + id;
-                    Helper_server.registrationProcessWithRetrofit(getApplicationContext(),id,1,"무명",0);
+                    Helper_server.registrationProcessWithRetrofit(this,id,1,"무명",0);
                 } else {
                     toastMessage = String.format(
                             "Success:%s...",
                             loginResult.getAuthorizationCode().substring(0,10));
                 }
-                //TODO Login 후 처리
             }
 
             // Surface the result to your user in an appropriate way.
