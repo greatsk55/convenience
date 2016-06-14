@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -26,12 +27,16 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 import kr.badream.convenience.Adapter.Adapter_review_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
+import kr.badream.convenience.Helper.Helper_mapData;
 import kr.badream.convenience.R;
 
 public class Activity_map extends ActionBarActivity implements LocationListener {
@@ -41,6 +46,8 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
 
     private LocationManager locationManager;
     private String provider;
+
+    public static List<Helper_mapData> map_data;
 
     View drawerView;
     DrawerLayout dlDrawer;
@@ -60,6 +67,8 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         provider = locationManager.getBestProvider(criteria, true);
+
+
 
         if (provider == null) {  //위치정보 설정이 안되어 있으면 설정하는 엑티비티로 이동합니다
             new AlertDialog.Builder(Activity_map.this)
@@ -91,12 +100,16 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
             setUpMapIfNeeded();
         }
 
-        Marker seoul = map.addMarker(new MarkerOptions().position(SEOUL)
-                .title("Seoul"));
+//
+        for( Helper_mapData data : map_data){
+            LatLng position = new LatLng(Double.parseDouble(data.latitude), Double.parseDouble(data.longitude));
+            map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.mini_cu)).position(position).title("cu " + data.storeName));
+        }
 
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom( SEOUL, 15));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.6082699933, 126.999125684),7));
+        map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
+        //map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
 
-        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
 
         setCustomActionbar();
 
@@ -131,6 +144,10 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
     public void onLocationChanged(Location location) {
         double lat = location.getLatitude();
         double lng = location.getLongitude();
+        Log.e("현재위치","gg = " + lat + " " + lng);
+       // map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.6082699933, 126.999125684),15));
+
+
     }
 
     @Override
@@ -193,4 +210,6 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
         });
 
     }
+
+
 }
