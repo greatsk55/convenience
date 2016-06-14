@@ -118,7 +118,6 @@ public class Helper_server {
                 activity_map.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 activity_map.putExtra("list", list);
                 context.startActivity(activity_map);
-
             }
             @Override
             public void onFailure(Call<List<Helper_mapData>> call, Throwable t) {
