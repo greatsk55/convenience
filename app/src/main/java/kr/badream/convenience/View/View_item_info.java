@@ -151,7 +151,7 @@ public class View_item_info extends AppCompatActivity {
         actionBar.setCustomView(mCustomView, params);
 
         TextView act_title = (TextView) findViewById(R.id.actionbar_title);
-        act_title.setText("리뷰 등록하기");
+        act_title.setText(item_name);
 
         // setNavigation--------------------------------------------------
 
