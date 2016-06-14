@@ -295,7 +295,7 @@ public class Helper_server {
             }
         });
     }
-    
+
     public static void getAllItemList_to_register_review(final Activity context,final int userID, final int storeID, int mainCategory){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
