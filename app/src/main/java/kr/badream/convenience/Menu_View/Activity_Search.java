@@ -1,5 +1,6 @@
 package kr.badream.convenience.Menu_View;
 
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +17,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.R;
+import kr.badream.convenience.View.View_item_info;
 
 public class Activity_Search extends AppCompatActivity {
 
@@ -35,7 +38,7 @@ public class Activity_Search extends AppCompatActivity {
 
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
 
-        ArrayAdapter<Helper_itemData> adapter = new ArrayAdapter<Helper_itemData>
+        final ArrayAdapter<Helper_itemData> adapter = new ArrayAdapter<Helper_itemData>
                 (this, android.R.layout.simple_dropdown_item_1line, list);
 
         final AutoCompleteTextView text = (AutoCompleteTextView)
@@ -46,6 +49,11 @@ public class Activity_Search extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("aaa", "선택된 아이템:"+ parent.getItemAtPosition(position));
+                Helper_itemData data = adapter.getItem(position);
+
+                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
+                view_item_info.putExtra("list", new Item_list_view(data.url, data.name, data.price, 0, 0, data.storeID));
+                startActivity(view_item_info);
             }
         });
         text.setOnClickListener(new View.OnClickListener() {

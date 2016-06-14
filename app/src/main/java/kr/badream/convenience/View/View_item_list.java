@@ -32,8 +32,17 @@ import kr.badream.convenience.R;
 /**
  * Created by Administrator on 2016-06-04.
  */
+
+//TODO 소스 정리 해야할듯
 public class View_item_list extends AppCompatActivity {
 
+    public final int ALL_SUBCATEGORY=0;
+    public final int JUMUKBAP=1;
+    public final int DOSIRAK=2;
+    public final int HAMBURGER=3;
+    public final int GIMBAP=4;
+    public final int SANDWICH=5;
+    public final int ETC=6;
 
     private View drawerView;
     private DrawerLayout dlDrawer;
@@ -81,10 +90,9 @@ public class View_item_list extends AppCompatActivity {
 
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
         for( Helper_itemData data : list){
+
             adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
         }
-
-
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -134,19 +142,19 @@ public class View_item_list extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     if (r0.isChecked()) {
-                                        setAdapter(0, 0);
+                                        setAdapter(ALL_SUBCATEGORY, 0);
                                     } else if (r1.isChecked()) {
-                                        setAdapter(1, 0);
+                                        setAdapter(JUMUKBAP, 0);
                                     } else if (r2.isChecked()) {
-                                        setAdapter(2, 0);
+                                        setAdapter(DOSIRAK, 0);
                                     } else if (r3.isChecked()) {
-                                        setAdapter(3, 0);
+                                        setAdapter(HAMBURGER, 0);
                                     } else if (r4.isChecked()) {
-                                        setAdapter(4, 0);
+                                        setAdapter(GIMBAP, 0);
                                     } else if (r5.isChecked()) {
-                                        setAdapter(5, 0);
+                                        setAdapter(SANDWICH, 0);
                                     } else if (r6.isChecked()) {
-                                        setAdapter(6, 0);
+                                        setAdapter(ETC, 0);
                                     }
 
                                 }
@@ -240,18 +248,17 @@ public class View_item_list extends AppCompatActivity {
     }
 
     public void setAdapter(int item, int array){
-
         adapter.clear();
         switch (item){
             //전체 보기
-            case 0:
+            case ALL_SUBCATEGORY:
                 if(array == 0)
                     for( Helper_itemData data : list){
                             adapter.addItem(data.url, data.name, data.price, 0, 0, data.storeID);
                     }
                 break;
             //주먹밥
-            case 1:
+            case JUMUKBAP:
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)=='주'){
@@ -260,7 +267,7 @@ public class View_item_list extends AppCompatActivity {
                     }
                 break;
             //도시락
-            case 2:
+            case DOSIRAK:
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)=='도' && !data.name.contains("도너츠")){
@@ -269,7 +276,7 @@ public class View_item_list extends AppCompatActivity {
                     }
                 break;
             //햄버거
-            case 3:
+            case HAMBURGER:
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)=='햄'){
@@ -278,7 +285,7 @@ public class View_item_list extends AppCompatActivity {
                     }
                 break;
             //김밥
-            case 4:
+            case GIMBAP:
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)=='김'){
@@ -287,7 +294,7 @@ public class View_item_list extends AppCompatActivity {
                     }
                 break;
             //샌드위치
-            case 5:
+            case SANDWICH:
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)=='샌'){
@@ -296,7 +303,7 @@ public class View_item_list extends AppCompatActivity {
                     }
                 break;
             //나머지
-            case 6:
+            case ETC:
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)!='주' && data.name.charAt(0) !='샌' && data.name.charAt(0)!='김'&& (data.name.charAt(0)!='도'|| data.name.contains("도너츠")) && data.name.charAt(0)!='햄'){

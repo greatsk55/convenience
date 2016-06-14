@@ -17,6 +17,16 @@ public class Item_list_view implements Serializable {
     private int item_review_number;
     private int item_like_number;
 
+    public Item_list_view(String img, String item_name, String item_price,int like_number , int review_number, int conv_image) {
+
+        this.setMain_image(img);
+        this.setItem_name(item_name);
+        this.setItem_price(item_price);
+        this.setitem_like_number(like_number);
+        this.setItem_review_number(review_number);
+        this.setConv_image(conv_image);
+    }
+
     public void setConv_image(int conv_image) {
         this.conv_image = conv_image;
     }
