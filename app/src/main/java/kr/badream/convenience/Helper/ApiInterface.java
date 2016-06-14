@@ -27,7 +27,7 @@ public interface ApiInterface {
     Call<Helper_reviewData> postReview(@Path("userID") int userID, @Path("userName") String userName, @Path("prodID") String prodID, @Path("price") String price,
                                        @Path("contents") String contents);
 
-    @GET("index.php/{userID}/{prodID}")
+    @GET("index2.php/{userID}/{prodID}")
     Call<Helper_itemInfo> loadItemInfoList(@Path("userID") int userID, @Path("prodID") int prodID);
 
 }
