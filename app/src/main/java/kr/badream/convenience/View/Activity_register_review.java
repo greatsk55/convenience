@@ -36,6 +36,8 @@ public class Activity_register_review extends AppCompatActivity {
     private DrawerLayout dlDrawer;
     private Button btn_register;
 
+    TextView item_price;
+
     private ArrayList<Helper_itemData> list;
 
     //    ListView listview;
@@ -47,6 +49,7 @@ public class Activity_register_review extends AppCompatActivity {
         setContentView(R.layout.activity_register_review);
 
         btn_register = (Button) findViewById(R.id.btn_register);
+        item_price = (TextView) findViewById(R.id.item_price);
 
         adapter = new Adapter_mini_list_view();
 
@@ -93,15 +96,7 @@ public class Activity_register_review extends AppCompatActivity {
 
                     setSearch(layout);
 
-                    aDialog.setPositiveButton("확인",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //TODO 검색된 아이템을 adapter 에 추가해주면 된다.
-                                    //adapter.additem();
-                                    //adapter.notifyDataSetChanged();
-                                }
-                            }).setNegativeButton("취소",
+                    aDialog.setNegativeButton("취소",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -121,6 +116,7 @@ public class Activity_register_review extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TODO 리뷰 등록
+
             }
         });
 
@@ -143,9 +139,16 @@ public class Activity_register_review extends AppCompatActivity {
                 Log.d("aaa", "선택된 아이템:"+ parent.getItemAtPosition(position));
                 Helper_itemData data = add_adapter.getItem(position);
 
-                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
-                view_item_info.putExtra("list", new Item_list_view(data.url, data.name, data.price, 0, 0, data.storeID));
-                startActivity(view_item_info);
+                //TODO 검색된 아이템을 adapter 에 추가해주면 된다.
+                adapter.addItem(1,data.url,data.name);
+
+                int price = Integer.parseInt(""+item_price.getText());
+                price += Integer.parseInt(data.price);
+                item_price.setText(price);
+//
+//                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
+//                view_item_info.putExtra("list", new Item_list_view(data.url, data.name, data.price, 0, 0, data.storeID));
+//                startActivity(view_item_info);
             }
         });
         text.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +202,7 @@ public class Activity_register_review extends AppCompatActivity {
 
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        new Define_menu_click(getApplicationContext(),dlDrawer,this);
+        Define_menu_click.set_menu_click(getApplicationContext(),dlDrawer,this);
 
         //actionbar에서 내비 제어할 버튼
         ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);
