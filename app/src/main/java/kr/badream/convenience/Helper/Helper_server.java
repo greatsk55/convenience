@@ -61,12 +61,12 @@ public class Helper_server {
                 //showProgress(false);
                 if(returnedResponse.trim().equals("1")){
                     // redirect to Main Activity page
-                    String returnedUserID = mLoginObject.userID;
+                    int returnedUserID = mLoginObject.userID;
                     String returnedName = mLoginObject.name;
 
                     SharedPreferences prefs = context.getSharedPreferences("userData", context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString("userID", returnedUserID.trim());
+                    editor.putInt("userID", returnedUserID);
                     editor.putString("name", returnedName.trim());
                     editor.commit();
 

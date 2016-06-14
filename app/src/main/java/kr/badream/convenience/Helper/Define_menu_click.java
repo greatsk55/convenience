@@ -104,7 +104,7 @@ public class Define_menu_click{
         });
         menu_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                Helper_server.loadStoreCategoryListWithRetrofit( activity, LoginHelper.getUserID(context),ALLCATEGORY, 0);
             }
         });
     }

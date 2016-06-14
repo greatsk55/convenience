@@ -19,6 +19,7 @@ public class Helper_reviewData {
         this.prodID = prodID;
         this.userID = userID;
         this.userName = userName;
+        this.content = content;
         this.price = price;
         this.likes = likes;
     }

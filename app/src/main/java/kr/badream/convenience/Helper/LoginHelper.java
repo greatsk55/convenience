@@ -19,9 +19,9 @@ import kr.badream.convenience.User;
  */
 public class LoginHelper {
 
-    public static String getUserID(Context context){
+    public static int getUserID(Context context){
         SharedPreferences prefs = context.getSharedPreferences("userData", context.MODE_PRIVATE);
-        return prefs.getString("userID", "");
+        return prefs.getInt("userID", 0);
     }
     public static String getUserName(Context context){
         SharedPreferences prefs = context.getSharedPreferences("userData", context.MODE_PRIVATE);

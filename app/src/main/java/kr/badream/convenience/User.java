@@ -4,7 +4,7 @@ package kr.badream.convenience;
  * Created by user on 16. 6. 11.
  */
 public class User {
-    public String userID;
+    public int userID;
     public String name;
 
     public String isLogin;
