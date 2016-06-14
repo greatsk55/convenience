@@ -20,6 +20,7 @@ import kr.badream.convenience.Menu_View.Activity_Search;
 import kr.badream.convenience.Menu_View.Activity_map;
 import kr.badream.convenience.R;
 import kr.badream.convenience.User;
+import kr.badream.convenience.View.View_item_info;
 import kr.badream.convenience.View.View_item_list;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -220,6 +221,44 @@ public class Helper_server {
         });
     }
 
+    public static void setLikedWithRetrofit(final Activity context, final int userID, final int prodID){
+        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+        ApiInterface mApiService = Helper_server.getInterfaceService();
+        Call<Helper_itemInfo> mService = mApiService.setLiked(userID, prodID);
+
+
+        mService.enqueue(new Callback<Helper_itemInfo>() {
+            @Override
+            public void onResponse(Call<Helper_itemInfo> call, Response<Helper_itemInfo> response) {
+
+                Helper_itemInfo mlistObject = response.body();
+
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+                Intent intent = new Intent(context, View_item_info.class);
+
+                intent.putExtra("item_info", mlistObject);
+                context.startActivity(intent);
+                context.finish();
+            }
+            @Override
+            public void onFailure(Call<Helper_itemInfo> call, Throwable t) {
+                call.cancel();
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+                Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
     public static void loadItemInfoListWithRetrofit(final Activity context, final int userID, int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -229,31 +268,26 @@ public class Helper_server {
         mProgressDialog.show();
 
         ApiInterface mApiService = Helper_server.getInterfaceService();
-        Call<List<Helper_reviewData>> mService = mApiService.loadItemInfoList(userID, prodID);
+        Call<Helper_itemInfo> mService = mApiService.loadItemInfoList(userID, prodID);
 
-        mService.enqueue(new Callback<List<Helper_reviewData>>() {
+        mService.enqueue(new Callback<Helper_itemInfo>() {
             @Override
-            public void onResponse(Call<List<Helper_reviewData>> call, Response<List<Helper_reviewData>> response) {
-                ArrayList<Helper_reviewData> list;
-                list = new ArrayList<Helper_reviewData>();
-                //TODO 널값처리함
-                if(response.body() != null) {
-                    List<Helper_reviewData> mlistObject = response.body();
+            public void onResponse(Call<Helper_itemInfo> call, Response<Helper_itemInfo> response) {
 
-                    for (Helper_reviewData data : mlistObject) {
-                        list.add(data);
-                    }
+                if(response.body() != null) {
+                    Helper_itemInfo mlistObject = response.body();
+
                     if (mProgressDialog.isShowing())
                         mProgressDialog.dismiss();
 
                     Intent activity_compare = new Intent(context, Activity_Search.class);
                     activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    activity_compare.putExtra("list", list);
+                    activity_compare.putExtra("list", mlistObject);
                     context.startActivity(activity_compare);
                 }
             }
             @Override
-            public void onFailure(Call<List<Helper_reviewData>> call, Throwable t) {
+            public void onFailure(Call<Helper_itemInfo> call, Throwable t) {
                 call.cancel();
 
                 if (mProgressDialog.isShowing())

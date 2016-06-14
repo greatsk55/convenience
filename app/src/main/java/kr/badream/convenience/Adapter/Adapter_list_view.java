@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import kr.badream.convenience.Helper.Helper_itemInfo;
 import kr.badream.convenience.R;
 import kr.badream.convenience.View.View_item_info;
 import kr.badream.convenience.View.View_item_list;
@@ -28,7 +29,7 @@ import kr.badream.convenience.View.View_item_list;
  */
 public class Adapter_list_view  extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    private ArrayList<Item_list_view> listViewItemList = new ArrayList<Item_list_view>() ;
+    private ArrayList<Helper_itemInfo> listViewItemList = new ArrayList<Helper_itemInfo>() ;
 
     // ListViewAdapter의 생성자
     public Adapter_list_view() {
@@ -79,17 +80,17 @@ public class Adapter_list_view  extends BaseAdapter {
 //        });
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        Item_list_view item_list_view = listViewItemList.get(position);
+        Helper_itemInfo item_list_view = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
         //item_image.setImageDrawable(item_list_view.getMain_image());
-        Glide.with(context).load(item_list_view.getMain_image()).into(item_image);
-        item_name.setText(item_list_view.getItem_name());
-        item_price.setText(item_list_view.getItem_price());
-        like_number.setText(""+item_list_view.getItem_like_number());
-        review_number.setText(""+item_list_view.getItem_review_number());
+        Glide.with(context).load(item_list_view.url).into(item_image);
+        item_name.setText(item_list_view.name);
+        item_price.setText(item_list_view.price);
+        like_number.setText(""+item_list_view.likes);
+        review_number.setText(""+item_list_view.reviews);
 
-        switch (item_list_view.getConv_image()){
+        switch (item_list_view.storeID){
             case 1:conv_image.setImageResource(R.drawable.cu);break;
             case 2:conv_image.setImageResource(R.drawable.with_me);break;
             case 3:conv_image.setImageResource(R.drawable.gs25);break;
@@ -118,15 +119,15 @@ public class Adapter_list_view  extends BaseAdapter {
 
     // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
     public void addItem(int prodID, String img, String item_name, String item_price,int like_number , int review_number, int conv_image) {
-        Item_list_view item = new Item_list_view();
+        Helper_itemInfo item = new Helper_itemInfo();
 
-        item.setItem_prodID(prodID);
-        item.setMain_image(img);
-        item.setItem_name(item_name);
-        item.setItem_price(item_price);
-        item.setitem_like_number(like_number);
-        item.setItem_review_number(review_number);
-        item.setConv_image(conv_image);
+        item.prodID = prodID;
+        item.url = (img);
+        item.name = (item_name);
+        item.price = (item_price);
+        item.likes = (like_number);
+        item.reviews = (review_number);
+        item.storeID = (conv_image);
 
         listViewItemList.add(item);
     }

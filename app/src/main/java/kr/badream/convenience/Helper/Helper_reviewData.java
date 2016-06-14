@@ -1,9 +1,11 @@
 package kr.badream.convenience.Helper;
 
+import java.io.Serializable;
+
 /**
  * Created by user on 16. 6. 14.
  */
-public class Helper_reviewData {
+public class Helper_reviewData implements Serializable {
     public int reviewID;
     public int prodID;
     public int userID;

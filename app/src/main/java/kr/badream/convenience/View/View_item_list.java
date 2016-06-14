@@ -24,9 +24,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import kr.badream.convenience.Adapter.Adapter_list_view;
-import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
+import kr.badream.convenience.Helper.Helper_itemInfo;
 import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
@@ -105,15 +105,15 @@ public class View_item_list extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 // get item
-                Item_list_view item = (Item_list_view) parent.getItemAtPosition(position);
+                Helper_itemInfo item = (Helper_itemInfo) parent.getItemAtPosition(position);
 
-                String titleStr = item.getItem_name();
-                String descStr = item.getItem_price();
+                String titleStr = item.name;
+                String descStr = item.price;
 
                 Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
 
                 if(LoginHelper.isLogin(getApplicationContext())){
-                    Helper_server.loadItemInfoListWithRetrofit(View_item_list.this, LoginHelper.getUserID(getApplicationContext()), item.getProdID());
+                    Helper_server.loadItemInfoListWithRetrofit(View_item_list.this, LoginHelper.getUserID(getApplicationContext()), item.prodID);
                 }
                 view_item_info.putExtra("item_info", item);
                 view_item_info.putExtra("list", list);

@@ -22,9 +22,10 @@ import java.util.ArrayList;
 
 import kr.badream.convenience.Adapter.Adapter_list_view;
 import kr.badream.convenience.Adapter.Adapter_review_list_view;
-import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
+import kr.badream.convenience.Helper.Helper_itemInfo;
+import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
 
@@ -45,6 +46,7 @@ public class View_item_info extends AppCompatActivity {
     private ArrayList<Helper_itemData> list;
 
     boolean isLogin;
+
 
     @Override
     protected void onResume() {
@@ -77,24 +79,28 @@ public class View_item_info extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.review_list);
         listview.setAdapter(adapter);
 
-        Item_list_view item = (Item_list_view) getIntent().getSerializableExtra("item_info");
-        Log.e("item0","item"+item.getItem_name());
+        final Helper_itemInfo item = (Helper_itemInfo) getIntent().getSerializableExtra("item_info");
+        Log.e("item0","item"+item.name);
 
-        Glide.with(getApplicationContext()).load(item.getMain_image()).into(info_image);
-        info_price.setText(item.getItem_price());
-        info_btn_like.setText(""+item.getItem_like_number());
-        info_review_number.setText(""+item.getItem_review_number());
+        Glide.with(getApplicationContext()).load(item.url).into(info_image);
+        info_price.setText(item.price);
+        info_btn_like.setText(""+item.likes);
+        info_review_number.setText(""+item.reviews);
 
 
         info_btn_like.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (info_btn_like.isSelected()){
-                    info_btn_like.setSelected(false);
+                if(item.isLiked== 1){
+                    item.likes = item.likes-1;
+                    item.isLiked = 0;
+                    info_btn_like.setText(""+item.likes);
+                    Helper_server.setLikedWithRetrofit(View_item_info.this, LoginHelper.getUserID(getApplicationContext()), item.prodID);
+                }else{
+                    item.likes = item.likes+1;
+                    item.isLiked = 1;
+                    info_btn_like.setText(""+item.likes);
+                    Helper_server.setLikedWithRetrofit(View_item_info.this, LoginHelper.getUserID(getApplicationContext()), item.prodID);
                 }
-                else{
-                    info_btn_like.setSelected(true);
-                }
-
             }
         });
         info_btn_review_write.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +115,7 @@ public class View_item_info extends AppCompatActivity {
 
         setCustomActionbar();
         TextView act_title = (TextView) findViewById(R.id.actionbar_title);
-        act_title.setText(item.getItem_name());
+        act_title.setText(item.name);
     }
 
     private void setCustomActionbar() {
