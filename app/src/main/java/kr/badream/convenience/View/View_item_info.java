@@ -92,12 +92,7 @@ public class View_item_info extends AppCompatActivity {
         info_btn_like.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(isLogin){
-                    if (info_btn_like.isSelected()){
-                        info_btn_like.setSelected(false);
-                    }
-                    else{
-                        info_btn_like.setSelected(true);
-                    }
+                    Helper_server.setLikedWithRetrofit(View_item_info.this, LoginHelper.getUserID(getApplicationContext()), item.prodID);
                 }
                 else{
                     LoginHelper.openLoginActivity(View_item_info.this);
