@@ -178,7 +178,6 @@ public class Helper_server {
     }
 
 
-
     public static void loadItemInfoListWithRetrofit(final Activity context, final int userID, int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -206,7 +205,6 @@ public class Helper_server {
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 activity_compare.putExtra("list", list);
                 context.startActivity(activity_compare);
-
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {

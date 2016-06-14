@@ -17,12 +17,14 @@ public class Item_list_view implements Serializable {
     private int item_review_number;
     private int item_like_number;
 
+    private int prodID;
+
     public Item_list_view(){
 
     }
 
-    public Item_list_view(String img, String item_name, String item_price,int like_number , int review_number, int conv_image) {
-
+    public Item_list_view(int prodID, String img, String item_name, String item_price,int like_number , int review_number, int conv_image) {
+        this.prodID = prodID;
         this.setMain_image(img);
         this.setItem_name(item_name);
         this.setItem_price(item_price);
@@ -31,6 +33,9 @@ public class Item_list_view implements Serializable {
         this.setConv_image(conv_image);
     }
 
+    public void setItem_prodID(int prodID){
+        this.prodID = prodID;
+    }
     public void setConv_image(int conv_image) {
         this.conv_image = conv_image;
     }
@@ -62,6 +67,8 @@ public class Item_list_view implements Serializable {
     public String getMain_image() {
         return main_image;
     }
+
+    public int getProdID(){return prodID;}
 
     public int getItem_like_number() {
         return item_like_number;

@@ -117,9 +117,10 @@ public class Adapter_list_view  extends BaseAdapter {
     }
 
     // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수
-    public void addItem(String img, String item_name, String item_price,int like_number , int review_number, int conv_image) {
+    public void addItem(int prodID, String img, String item_name, String item_price,int like_number , int review_number, int conv_image) {
         Item_list_view item = new Item_list_view();
 
+        item.setItem_prodID(prodID);
         item.setMain_image(img);
         item.setItem_name(item_name);
         item.setItem_price(item_price);
