@@ -59,7 +59,7 @@ public class Activity_Search extends AppCompatActivity {
                 Helper_itemData data = adapter.getItem(position);
 
                 Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
-                view_item_info.putExtra("list", new Item_list_view(data.url, data.name, data.price, 0, 0, data.storeID));
+                view_item_info.putExtra("list", new Item_list_view(data.prodID, data.url, data.name, data.price, 0, 0, data.storeID));
                 startActivity(view_item_info);
             }
         });
