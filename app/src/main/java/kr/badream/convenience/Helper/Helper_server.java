@@ -234,8 +234,6 @@ public class Helper_server {
         mService.enqueue(new Callback<Helper_itemInfo>() {
             @Override
             public void onResponse(Call<Helper_itemInfo> call, Response<Helper_itemInfo> response) {
-
-                Log.i("aaa", response.errorBody().toString());
                 Helper_itemInfo mlistObject = response.body();
 
                 if (mProgressDialog.isShowing())
