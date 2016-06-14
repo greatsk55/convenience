@@ -34,8 +34,23 @@ public class Helper_itemData implements Serializable {
     public int reviews;
     public int views;
 
+    public int isLiked;
 
     public Helper_itemData(){
+    }
+
+    public Helper_itemData(int prodID, int storeID, int mainCategory, int subCategory, String url, String name, String price, int likes, int reviews, int views, int isLiked){
+        this.prodID = prodID;
+        this.storeID = storeID;
+        this.mainCategory = mainCategory;
+        this.subCategory = subCategory;
+        this.url = url;
+        this.name = name;
+        this.price = price;
+        this.likes = likes;
+        this.reviews = reviews;
+        this.views = views;
+        this.isLiked = isLiked;
     }
 
     public Helper_itemData(int prodID, int storeID, int mainCategory, int subCategory, String url, String name, String price, int likes, int reviews, int views){
