@@ -42,6 +42,8 @@ public class View_item_info extends AppCompatActivity {
     Button info_btn_review_write;
     TextView info_review_number;
 
+    private ArrayList<Helper_itemData> list;
+
     boolean isLogin;
 
     @Override
@@ -62,6 +64,8 @@ public class View_item_info extends AppCompatActivity {
         info_btn_review_write = (Button) findViewById(R.id.info_btn_review_write) ;
         info_review_number = (TextView) findViewById(R.id.info_review_number) ;
 
+        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
+
         //로그인 체크
         if(LoginHelper.isLogin(getApplicationContext()))    isLogin = true;
         else isLogin = false;
@@ -73,7 +77,7 @@ public class View_item_info extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.review_list);
         listview.setAdapter(adapter);
 
-        Item_list_view item = (Item_list_view) getIntent().getSerializableExtra("list");
+        Item_list_view item = (Item_list_view) getIntent().getSerializableExtra("item_info");
         Log.e("item0","item"+item.getItem_name());
 
         Glide.with(getApplicationContext()).load(item.getMain_image()).into(info_image);
@@ -97,6 +101,7 @@ public class View_item_info extends AppCompatActivity {
             public void onClick(View v) {
                 if(isLogin){
                     Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
+                    activity_register_review.putExtra("list", list);
                     startActivity(activity_register_review);
                 }
             }

@@ -12,7 +12,7 @@ import retrofit2.http.Path;
 
 public interface ApiInterface {
     @GET("index2.php/{userID}/{prodID}")
-    Call<List<Helper_itemData>> loadItemInfoList(@Path("userID") int userID, @Path("prodID") int prodID);
+    Call<List<Helper_reviewData>> loadItemInfoList(@Path("userID") int userID, @Path("prodID") int prodID);
 
     @GET("index.php/{storeID}")
     Call<List<Helper_mapData>> loadMapList(@Path("storeID") int storeID);

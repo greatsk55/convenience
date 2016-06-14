@@ -66,11 +66,8 @@ public class Activity_register_review extends AppCompatActivity {
         listview.setAdapter(adapter);
         adapter.addItem(0,"","아이템 추가");
 
-        //search
-
 
         //serach
-
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
 
 
@@ -147,10 +144,11 @@ public class Activity_register_review extends AppCompatActivity {
 
                 //TODO 검색된 아이템을 adapter 에 추가해주면 된다.
                 adapter.addItem(1,data.url,data.name);
+                Log.d("aaa", "선택된 아이템:"+ data.price + " " + item_price.getText() + " " + data.price.substring(0,data.price.indexOf('원')));
 
                 int price = Integer.parseInt(""+item_price.getText());
-                price += Integer.parseInt(data.price);
-                item_price.setText(price);
+                price += Integer.parseInt(data.price.substring(0,data.price.indexOf('원')));
+                item_price.setText(""+price+"원");
 //
 //                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
 //                view_item_info.putExtra("list", new Item_list_view(data.url, data.name, data.price, 0, 0, data.storeID));
@@ -160,8 +158,8 @@ public class Activity_register_review extends AppCompatActivity {
         text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("aasa","::"+text.length() + add_adapter.getCount());
-                //text.showDropDown();
+                //Log.e("aasa","::"+text.length() + add_adapter.getCount());
+                text.showDropDown();
             }
         });
         text.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

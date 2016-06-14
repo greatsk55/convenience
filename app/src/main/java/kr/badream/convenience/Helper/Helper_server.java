@@ -224,32 +224,36 @@ public class Helper_server {
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
 
         ApiInterface mApiService = Helper_server.getInterfaceService();
-        Call<List<Helper_itemData>> mService = mApiService.loadItemInfoList(userID, prodID);
+        Call<List<Helper_reviewData>> mService = mApiService.loadItemInfoList(userID, prodID);
 
-        mService.enqueue(new Callback<List<Helper_itemData>>() {
+        mService.enqueue(new Callback<List<Helper_reviewData>>() {
             @Override
-            public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
-                ArrayList<Helper_itemData> list;
-                list = new ArrayList<Helper_itemData>();
-                List<Helper_itemData> mlistObject = response.body();
+            public void onResponse(Call<List<Helper_reviewData>> call, Response<List<Helper_reviewData>> response) {
+                ArrayList<Helper_reviewData> list;
+                list = new ArrayList<Helper_reviewData>();
+                //TODO 널값처리함
+                if(response.body() != null) {
+                    List<Helper_reviewData> mlistObject = response.body();
 
-                for( Helper_itemData data : mlistObject) {
-                    list.add(data);
+                    for (Helper_reviewData data : mlistObject) {
+                        list.add(data);
+                    }
+                    if (mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
+
+                    Intent activity_compare = new Intent(context, Activity_Search.class);
+                    activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    activity_compare.putExtra("list", list);
+                    context.startActivity(activity_compare);
                 }
-                if (mProgressDialog.isShowing())
-                    mProgressDialog.dismiss();
-
-                Intent activity_compare = new Intent( context , Activity_Search.class);
-                activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                activity_compare.putExtra("list", list);
-                context.startActivity(activity_compare);
             }
             @Override
-            public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
+            public void onFailure(Call<List<Helper_reviewData>> call, Throwable t) {
                 call.cancel();
 
                 if (mProgressDialog.isShowing())

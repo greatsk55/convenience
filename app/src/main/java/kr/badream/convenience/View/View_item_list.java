@@ -115,9 +115,8 @@ public class View_item_list extends AppCompatActivity {
                 if(LoginHelper.isLogin(getApplicationContext())){
                     Helper_server.loadItemInfoListWithRetrofit(View_item_list.this, LoginHelper.getUserID(getApplicationContext()), item.getProdID());
                 }
-
-                view_item_info.putExtra("list", item);
-
+                view_item_info.putExtra("item_info", item);
+                view_item_info.putExtra("list", list);
                 startActivity(view_item_info);
             }
         });
