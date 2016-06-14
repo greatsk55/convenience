@@ -11,10 +11,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
-
-    @POST("index2.php/{userID}/{prodID}")
-    Call<Helper_itemInfo> loadItemInfoList(@Path("userID") int userID, @Path("prodID") int prodID);
-
     @GET("index.php/{storeID}")
     Call<List<Helper_mapData>> loadMapList(@Path("storeID") int storeID);
 
@@ -27,5 +23,8 @@ public interface ApiInterface {
     @POST("index.php/{ID}/{flag}/{name}/{gender}")
     Call<User> registration(@Path("ID") String id, @Path("flag") int flag, @Path("name") String name, @Path("gender") int gender);
 
+
+    @POST("index2.php/{userID}/{prodID}")
+    Call<Helper_itemInfo> loadItemInfoList(@Path("userID") int userID, @Path("prodID") int prodID);
 
 }
