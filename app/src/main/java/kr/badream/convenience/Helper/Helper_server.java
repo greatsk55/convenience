@@ -176,49 +176,9 @@ public class Helper_server {
             }
         });
     }
-    /*
-    public static void loadAllItemListWithRetrofit(final Activity context, final int storeID, int mainCategory){
-        final ProgressDialog mProgressDialog = new ProgressDialog(context);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
-        mProgressDialog.setMessage("Loading...");
-        mProgressDialog.show();
-
-        ApiInterface mApiService = Helper_server.getInterfaceService();
-        Call<List<Helper_itemData>> mService = mApiService.loadStoreCategoryList(storeID, mainCategory);
 
 
-        mService.enqueue(new Callback<List<Helper_itemData>>() {
-            @Override
-            public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
-                ArrayList<Helper_itemData> list;
-                list = new ArrayList<Helper_itemData>();
-                List<Helper_itemData> mlistObject = response.body();
 
-                for( Helper_itemData data : mlistObject) {
-                    list.add(data);
-                }
-                if (mProgressDialog.isShowing())
-                    mProgressDialog.dismiss();
-
-                Intent activity_compare = new Intent( context , Activity_Search.class);
-                activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                activity_compare.putExtra("list", list);
-                context.startActivity(activity_compare);
-
-            }
-            @Override
-            public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
-                call.cancel();
-
-                if (mProgressDialog.isShowing())
-                    mProgressDialog.dismiss();
-
-                Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-    */
     public static void loadItemInfoListWithRetrofit(final Activity context, final int userID, int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
