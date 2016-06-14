@@ -23,7 +23,17 @@ public interface ApiInterface {
     @POST("index.php/{ID}/{flag}/{name}/{gender}")
     Call<User> registration(@Path("ID") String id, @Path("flag") int flag, @Path("name") String name, @Path("gender") int gender);
 
+    @POST("index.php/{userID}/{userName}/{prodID}/{price}/{contents}")
+    Call<Helper_reviewData> postReview(@Path("userID") String userID, @Path("userName") String userName, @Path("prodID") String prodID, @Path("price") String price,
+                                       @Path("contents") String contents);
+
     @GET("index.php/{userID}/{prodID}")
     Call<Helper_itemInfo> loadItemInfoList(@Path("userID") int userID, @Path("prodID") int prodID);
 
 }
+
+
+
+
+
+

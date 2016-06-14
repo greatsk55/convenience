@@ -219,7 +219,6 @@ public class Helper_server {
             }
         });
     }
-
     public static void setLikedWithRetrofit(final Activity context, final int userID, final int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -256,8 +255,6 @@ public class Helper_server {
             }
         });
     }
-
-
     public static void loadItemInfoListWithRetrofit(final Activity context, final int userID, int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -290,6 +287,33 @@ public class Helper_server {
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 
+                Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+    public static void postReviewWithRetrofit(final Activity context, final String userID, String userName, String prodID, String price, String contents){
+        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+        ApiInterface mApiService = Helper_server.getInterfaceService();
+        Call<Helper_reviewData> mService = mApiService.postReview( userID, userName, prodID, price, contents);
+        mService.enqueue(new Callback<Helper_reviewData>() {
+            @Override
+            public void onResponse(Call<Helper_reviewData> call, Response<Helper_reviewData> response) {
+
+                Helper_reviewData mLoginObject = response.body();
+
+
+            }
+            @Override
+            public void onFailure(Call<Helper_reviewData> call, Throwable t) {
+                call.cancel();
+                Log.i("aaa", t.getMessage());
                 Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });

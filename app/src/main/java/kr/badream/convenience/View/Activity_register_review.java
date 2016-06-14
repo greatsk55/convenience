@@ -138,6 +138,8 @@ public class Activity_register_review extends AppCompatActivity {
                 userName = LoginHelper.getUserName(getApplicationContext());
                 contents = "" + edit_contents.getText();
                 Log.e("print register", " = " + userID + " " + userName + " " + prodID + " "+ total_price + " " + contents );
+
+
             }
         });
 
