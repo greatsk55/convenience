@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -54,7 +54,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAZVHdR1YgnPJKhL5DP7Kfl_UpMcYJFXWE" />
 
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".tests"
             android:label="@string/title_activity_login" />
@@ -74,9 +74,9 @@
         <activity android:name=".Menu_View.Activity_mylike" />
         <activity android:name=".Menu_View.Activity_Rank" />
         <activity android:name=".Menu_View.Activity_compare" />
-        <activity android:name=".View.Activity_register_review" >
-        </activity>
-        <activity android:name=".Menu_View.Activity_Search"></activity>
+        <activity android:name=".View.Activity_register_review"></activity>
+        <activity android:name=".Menu_View.Activity_Search" />
+        <activity android:name=".View.Activity_view_review"></activity>
     </application>
 
 </manifest>

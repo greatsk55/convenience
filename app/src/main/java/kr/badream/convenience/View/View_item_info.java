@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -89,6 +90,14 @@ public class View_item_info extends AppCompatActivity {
         info_btn_like.setText(""+item.likes);
         info_review_number.setText(""+item.reviews);
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                // get item
+                Helper_reviewData item = (Helper_reviewData) parent.getItemAtPosition(position);
+
+            }
+        });
 
         info_btn_like.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
