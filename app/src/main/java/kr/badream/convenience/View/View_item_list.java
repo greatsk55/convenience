@@ -118,14 +118,7 @@ public class View_item_list extends AppCompatActivity {
                 String titleStr = item.name;
                 String descStr = item.price;
 
-                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
-
-                if(LoginHelper.isLogin(getApplicationContext())){
-                    Helper_server.loadItemInfoListWithRetrofit(View_item_list.this, LoginHelper.getUserID(getApplicationContext()), item.prodID);
-                }
-                view_item_info.putExtra("item_info", item);
-                view_item_info.putExtra("list", list);
-                startActivity(view_item_info);
+                Helper_server.loadItemInfoListWithRetrofit(View_item_list.this, LoginHelper.getUserID(getApplicationContext()), item.prodID);
             }
         });
 

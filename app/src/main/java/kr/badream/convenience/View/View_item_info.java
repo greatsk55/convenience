@@ -26,6 +26,7 @@ import kr.badream.convenience.Adapter.Adapter_review_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.Helper.Helper_itemInfo;
+import kr.badream.convenience.Helper.Helper_reviewData;
 import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
@@ -44,7 +45,7 @@ public class View_item_info extends AppCompatActivity {
     Button info_btn_review_write;
     TextView info_review_number;
 
-    private ArrayList<Helper_itemData> list;
+    private Helper_itemInfo list;
 
     boolean isLogin;
 
@@ -67,7 +68,7 @@ public class View_item_info extends AppCompatActivity {
         info_btn_review_write = (Button) findViewById(R.id.info_btn_review_write) ;
         info_review_number = (TextView) findViewById(R.id.info_review_number) ;
 
-        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
+        list = (Helper_itemInfo) getIntent().getSerializableExtra("list");
 
         //로그인 체크
         if(LoginHelper.isLogin(getApplicationContext()))    isLogin = true;

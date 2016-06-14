@@ -278,7 +278,7 @@ public class Helper_server {
                     if (mProgressDialog.isShowing())
                         mProgressDialog.dismiss();
 
-                    Intent activity_compare = new Intent(context, Activity_Search.class);
+                    Intent activity_compare = new Intent(context, View_item_info.class);
                     activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     activity_compare.putExtra("list", mlistObject);
                     context.startActivity(activity_compare);
