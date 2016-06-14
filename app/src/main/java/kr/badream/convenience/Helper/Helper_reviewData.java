@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Helper_reviewData implements Serializable {
     public int reviewID;
-    public int prodID;
+    public String prodID;
     public int userID;
     public String userName;
     public String contents;
@@ -16,7 +16,7 @@ public class Helper_reviewData implements Serializable {
 
     public int isLiked;
 
-    public Helper_reviewData(int reviewID, int prodID, int userID, String userName, String content, String price, int likes, int isLiked){
+    public Helper_reviewData(int reviewID, String prodID, int userID, String userName, String content, String price, int likes, int isLiked){
         this.reviewID = reviewID;
         this.prodID = prodID;
         this.userID = userID;

@@ -27,6 +27,7 @@ import kr.badream.convenience.Adapter.Adapter_mini_list_view;
 import kr.badream.convenience.Adapter.item_mini_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
+import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.HorizontalListView;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
@@ -138,6 +139,8 @@ public class Activity_register_review extends AppCompatActivity {
                 userName = LoginHelper.getUserName(getApplicationContext());
                 contents = "" + edit_contents.getText();
                 Log.e("print register", " = " + userID + " " + userName + " " + prodID + " "+ total_price + " " + contents );
+
+                Helper_server.postReviewWithRetrofit(Activity_register_review.this, userID, userName, prodID, total_price, contents);
             }
         });
 

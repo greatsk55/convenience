@@ -63,6 +63,10 @@ public class Helper_server {
                 //showProgress(false);
                 if(returnedResponse.trim().equals("1")){
                     // redirect to Main Activity page
+
+                    if (mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
+
                     int returnedUserID = mLoginObject.userID;
                     String returnedName = mLoginObject.name;
 
@@ -71,9 +75,6 @@ public class Helper_server {
                     editor.putInt("userID", returnedUserID);
                     editor.putString("name", returnedName.trim());
                     editor.commit();
-
-                    if (mProgressDialog.isShowing())
-                        mProgressDialog.dismiss();
 
                     context.finish();
                 }
@@ -220,7 +221,6 @@ public class Helper_server {
             }
         });
     }
-
     public static void setLikedWithRetrofit(final Activity context, final int userID, final int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -257,8 +257,6 @@ public class Helper_server {
             }
         });
     }
-
-
     public static void loadItemInfoListWithRetrofit(final Activity context, final int userID, int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -328,6 +326,34 @@ public class Helper_server {
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 
+                Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+    public static void postReviewWithRetrofit(final Activity context, final int userID, String userName, String prodID, String price, String contents){
+        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+        ApiInterface mApiService = Helper_server.getInterfaceService();
+        Call<Helper_reviewData> mService = mApiService.postReview( userID, userName, prodID, price, contents);
+        mService.enqueue(new Callback<Helper_reviewData>() {
+            @Override
+            public void onResponse(Call<Helper_reviewData> call, Response<Helper_reviewData> response) {
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+                context.finish();
+            }
+            @Override
+            public void onFailure(Call<Helper_reviewData> call, Throwable t) {
+                call.cancel();
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
                 Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });
