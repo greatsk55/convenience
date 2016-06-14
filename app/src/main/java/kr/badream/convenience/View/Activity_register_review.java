@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import kr.badream.convenience.Adapter.item_mini_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.Helper.HorizontalListView;
+import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
 
 public class Activity_register_review extends AppCompatActivity {
@@ -37,6 +39,14 @@ public class Activity_register_review extends AppCompatActivity {
     private Button btn_register;
 
     TextView item_price;
+    EditText edit_contents;
+
+    //TODO 서버로 보낼 데이터
+    String prodID;
+    int userID;
+    String userName;
+    String contents;
+    String total_price;
 
     private ArrayList<Helper_itemData> list;
 
@@ -56,6 +66,7 @@ public class Activity_register_review extends AppCompatActivity {
 
         btn_register = (Button) findViewById(R.id.btn_register);
         item_price = (TextView) findViewById(R.id.item_price);
+        edit_contents = (EditText) findViewById(R.id.edit_contents);
 
         adapter = new Adapter_mini_list_view();
 
@@ -70,7 +81,12 @@ public class Activity_register_review extends AppCompatActivity {
         //serach
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
 
-
+        // 서버로 보낼 데이터 초기화
+        prodID = "";
+        userID = 0;
+        userName = "";
+        contents = "";
+        total_price = "";
 
 
 //        adapter.addItem("","쿵쿵따");
@@ -96,10 +112,7 @@ public class Activity_register_review extends AppCompatActivity {
                     AlertDialog.Builder aDialog = new AlertDialog.Builder(Activity_register_review.this);
                     aDialog.setTitle("상품"); //타이틀바 제목
                     aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
-
-                    setSearch(layout);
-
-                    aDialog.setNegativeButton("취소",
+                    aDialog.setNegativeButton("닫기",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -109,6 +122,8 @@ public class Activity_register_review extends AppCompatActivity {
                             });
                     AlertDialog ad = aDialog.create();
 
+                    //search
+                    setSearch(layout,ad);
                     ad.show();
                 }
 
@@ -120,6 +135,10 @@ public class Activity_register_review extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO 리뷰 등록
 
+                userID = LoginHelper.getUserID(getApplicationContext());
+                userName = LoginHelper.getUserName(getApplicationContext());
+                contents = "" + edit_contents.getText();
+                Log.e("print register", " = " + userID + " " + userName + " " + prodID + " "+ total_price + " " + contents );
             }
         });
 
@@ -128,7 +147,7 @@ public class Activity_register_review extends AppCompatActivity {
     }
 
 
-    private  void setSearch(View layout){
+    private  void setSearch(View layout, final AlertDialog ad){
 
         final ArrayAdapter<Helper_itemData> add_adapter = new ArrayAdapter<Helper_itemData>
                 (this, android.R.layout.simple_dropdown_item_1line, list);
@@ -139,20 +158,33 @@ public class Activity_register_review extends AppCompatActivity {
         text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("aaa", "선택된 아이템:"+ parent.getItemAtPosition(position));
+                Log.d("aaa", "선택된 아이템:?!?!?"+ parent.getItemAtPosition(position));
                 Helper_itemData data = add_adapter.getItem(position);
 
                 //TODO 검색된 아이템을 adapter 에 추가해주면 된다.
                 adapter.addItem(1,data.url,data.name);
-                Log.d("aaa", "선택된 아이템:"+ data.price + " " + item_price.getText() + " " + data.price.substring(0,data.price.indexOf('원')));
 
-                int price = Integer.parseInt(""+item_price.getText());
-                price += Integer.parseInt(data.price.substring(0,data.price.indexOf('원')));
-                item_price.setText(""+price+"원");
-//
-//                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
-//                view_item_info.putExtra("list", new Item_list_view(data.url, data.name, data.price, 0, 0, data.storeID));
-//                startActivity(view_item_info);
+                // -원 이랑 , 때어내기
+                String p1 = (""+item_price.getText());
+
+                if(p1.contains("원"))
+                    p1 = p1.substring(0, p1.indexOf("원"));
+
+
+                int price = Integer.parseInt(""+p1);
+
+                // -원 이랑 , 때어내기
+                String p2 = data.price.substring(0,data.price.indexOf("원"));
+                p2 = p2.replace(",","");
+
+                price += Integer.parseInt(p2);
+                item_price.setText(price+"원");
+
+                //TODO 물품 아이디 추가
+                prodID += data.prodID+",";
+                total_price = price+"원";
+
+                ad.dismiss();
             }
         });
         text.setOnClickListener(new View.OnClickListener() {

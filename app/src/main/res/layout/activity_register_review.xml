@@ -24,7 +24,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_marginRight="15dp"
             android:id="@+id/item_list"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:background="#ffffff">
         </kr.badream.convenience.Helper.HorizontalListView>
 
@@ -59,7 +59,7 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <EditText
             android:layout_below="@+id/price_layout"
-            android:id="@+id/edit_main"
+            android:id="@+id/edit_contents"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
