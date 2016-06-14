@@ -4,7 +4,6 @@ package kr.badream.convenience.Helper;
  * Created by user on 16. 6. 14.
  */
 public class Helper_reviewData {
-    public int isLiked;
     public int reviewID;
     public int prodID;
     public int userID;
@@ -13,8 +12,9 @@ public class Helper_reviewData {
     public String price;
     public int likes;
 
-    public Helper_reviewData(int isLiked, int reviewID, int prodID, int userID, String userName, String content, String price, int likes){
-        this.isLiked = isLiked;
+    public int isLiked;
+
+    public Helper_reviewData(int reviewID, int prodID, int userID, String userName, String content, String price, int likes, int isLiked){
         this.reviewID = reviewID;
         this.prodID = prodID;
         this.userID = userID;
@@ -22,5 +22,6 @@ public class Helper_reviewData {
         this.content = content;
         this.price = price;
         this.likes = likes;
+        this.isLiked = isLiked;
     }
 }
