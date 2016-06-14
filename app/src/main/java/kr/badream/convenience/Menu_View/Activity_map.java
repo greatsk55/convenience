@@ -110,7 +110,6 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
         map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
         //map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
 
-
         setCustomActionbar();
 
     }
