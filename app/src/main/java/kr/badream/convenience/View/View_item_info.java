@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -88,11 +89,17 @@ public class View_item_info extends AppCompatActivity {
 
         info_btn_like.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (info_btn_like.isSelected()){
-                    info_btn_like.setSelected(false);
+                if(isLogin){
+                    if (info_btn_like.isSelected()){
+                        info_btn_like.setSelected(false);
+                    }
+                    else{
+                        info_btn_like.setSelected(true);
+                    }
                 }
                 else{
-                    info_btn_like.setSelected(true);
+                    LoginHelper.openLoginActivity(View_item_info.this);
+                    Toast.makeText(getApplicationContext(),"로그인 하셔야 합니다.", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -103,6 +110,10 @@ public class View_item_info extends AppCompatActivity {
                     Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
                     activity_register_review.putExtra("list", list);
                     startActivity(activity_register_review);
+                }
+                else{
+                    LoginHelper.openLoginActivity(View_item_info.this);
+                    Toast.makeText(getApplicationContext(),"로그인 하셔야 합니다.", Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -11,25 +11,28 @@ import kr.badream.convenience.Adapter.Item_list_view;
 public class Helper_sort {
 
     //Comparator 를 만든다.
-    public final static Comparator<Item_list_view> comparator_Item_list_view_like = new Comparator<Item_list_view>() {
+    public final static Comparator<Helper_itemData> comparator_itemData_view_like = new Comparator<Helper_itemData>() {
         @Override
-        public int compare(Item_list_view item1, Item_list_view item2) {
+        public int compare(Helper_itemData item1, Helper_itemData item2) {
 //            return Collator.getInstance().compare(item1.getItem_like_number(),item2.getItem_like_number());
-            return ( item1.getItem_like_number() > item2.getItem_like_number() ? 1:-1);
+            return ( item1.likes > item2.likes ? 1:-1);
         }
 
         private final Collator collator = Collator.getInstance();
 
     };
 
-    public final static Comparator<Item_list_view> comparator_Item_list_view_review = new Comparator<Item_list_view>() {
+    public final static Comparator<Helper_itemData> comparator_itemData_view_review = new Comparator<Helper_itemData>() {
         @Override
-        public int compare(Item_list_view item1, Item_list_view item2) {
+        public int compare(Helper_itemData item1, Helper_itemData item2) {
 //            return Collator.getInstance().compare(item1.getItem_like_number(),item2.getItem_like_number());
-            return ( item1.getItem_review_number() > item2.getItem_review_number() ? 1:-1);
+            return ( item1.reviews > item2.reviews ? 1:-1);
         }
 
         private final Collator collator = Collator.getInstance();
 
     };
+
+
+
 }

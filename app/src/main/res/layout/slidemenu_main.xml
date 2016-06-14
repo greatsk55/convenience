@@ -41,9 +41,19 @@
         android:layout_height="3dp"
         android:background="@color/main_color"/>
     <TextView
-        android:id="@+id/menu_review"
+        android:id="@+id/menu_home"
         android:gravity="center_vertical"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="홈"
+        android:drawableLeft="@drawable/ic_action_mini_home"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/menu_review"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
          android:layout_width="match_parent"
         android:layout_height="wrap_content"
