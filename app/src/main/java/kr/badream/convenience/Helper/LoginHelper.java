@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 
 import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.AccountKit;
+import com.facebook.accountkit.LoginResult;
+import com.facebook.accountkit.internal.LoginStatus;
+import com.facebook.login.LoginManager;
 
 import kr.badream.convenience.LoginActivity;
 import kr.badream.convenience.User;

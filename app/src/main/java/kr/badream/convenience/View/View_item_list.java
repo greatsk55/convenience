@@ -27,6 +27,7 @@ import kr.badream.convenience.Adapter.Adapter_list_view;
 import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
+import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
 
 /**
@@ -102,9 +103,12 @@ public class View_item_list extends AppCompatActivity {
                 String titleStr = item.getItem_name();
                 String descStr = item.getItem_price();
 
-                Log.e("abc", "abc" + titleStr + descStr);
-
                 Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
+
+                if(LoginHelper.isLogin(getApplicationContext())){
+                    //view_item_info.putExtra("ID",)
+                }
+
                 view_item_info.putExtra("list", item);
 
                 startActivity(view_item_info);
