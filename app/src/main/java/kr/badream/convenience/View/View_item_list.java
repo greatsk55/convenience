@@ -113,7 +113,7 @@ public class View_item_list extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 // get item
-                Helper_itemInfo item = (Helper_itemInfo) parent.getItemAtPosition(position);
+                Helper_itemData item = (Helper_itemData) parent.getItemAtPosition(position);
 
                 String titleStr = item.name;
                 String descStr = item.price;

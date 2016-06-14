@@ -272,11 +272,11 @@ public class Helper_server {
             @Override
             public void onResponse(Call<Helper_itemInfo> call, Response<Helper_itemInfo> response) {
 
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
                 if(response.body() != null) {
                     Helper_itemInfo mlistObject = response.body();
-
-                    if (mProgressDialog.isShowing())
-                        mProgressDialog.dismiss();
 
                     Intent activity_compare = new Intent(context, View_item_info.class);
                     activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
