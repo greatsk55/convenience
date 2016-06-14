@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -42,7 +43,7 @@ public class Helper_server {
         return mInterfaceService;
     }
 
-    public static void registrationProcessWithRetrofit(final Context context, final String id, int flag, String name, int gender){
+    public static void registrationProcessWithRetrofit(final Activity context, final String id, int flag, String name, int gender){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
@@ -72,7 +73,7 @@ public class Helper_server {
                     if (mProgressDialog.isShowing())
                         mProgressDialog.dismiss();
 
-
+                    context.finish();
                 }
                 if(returnedResponse.trim().equals("0")){
                     // use the registration button to register
@@ -90,8 +91,12 @@ public class Helper_server {
             }
         });
     }
-
-    public static void loadMapListWithRetrofit(final Context context, final int storeID){
+    public static void loadMapListWithRetrofit(final Activity context, final int storeID){
+        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
 
         ApiInterface mApiService = Helper_server.getInterfaceService();
         Call<List<Helper_mapData>> mService = mApiService.loadMapList(storeID);
@@ -106,7 +111,8 @@ public class Helper_server {
                 for( Helper_mapData data : mlistObject) {
                     list.add(data);
                 }
-                //TODO 여기서 SearchActivity를 호출한다. 리스트 전달을 하면서
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
 
                 Intent activity_map = new Intent( context , Activity_map.class);
                 activity_map.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -118,11 +124,14 @@ public class Helper_server {
             public void onFailure(Call<List<Helper_mapData>> call, Throwable t) {
                 call.cancel();
 
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
                 Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });
     }
-    public static void loadStoreCategoryListWithRetrofit(final Context context,final int storeID, final int mainCategory){
+    public static void loadStoreCategoryListWithRetrofit(final Activity context,final int storeID, final int mainCategory){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
@@ -167,7 +176,12 @@ public class Helper_server {
             }
         });
     }
-    public static void loadAllItemListWithRetrofit(final Context context, final int storeID, int mainCategory){
+    public static void loadAllItemListWithRetrofit(final Activity context, final int storeID, int mainCategory){
+        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
 
         ApiInterface mApiService = Helper_server.getInterfaceService();
         Call<List<Helper_itemData>> mService = mApiService.loadStoreCategoryList(storeID, mainCategory);
@@ -183,7 +197,8 @@ public class Helper_server {
                 for( Helper_itemData data : mlistObject) {
                     list.add(data);
                 }
-                //TODO 여기서 SearchActivity를 호출한다. 리스트 전달을 하면서
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
 
                 Intent activity_compare = new Intent( context , Activity_Search.class);
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -194,6 +209,9 @@ public class Helper_server {
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
                 call.cancel();
+
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
 
                 Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }

@@ -77,27 +77,27 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.ctg_1:
                 //간편식사 easy
-                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 3);
+                Helper_server.loadStoreCategoryListWithRetrofit(this,storeID, 3);
                 break;
             case R.id.ctg_2:
                 //즉석식품 insta
-                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 2);
+                Helper_server.loadStoreCategoryListWithRetrofit(this,storeID, 2);
                 break;
             case R.id.ctg_3:
                 //식품 food
-                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 6);
+                Helper_server.loadStoreCategoryListWithRetrofit(this,storeID, 6);
                 break;
             case R.id.ctg_4:
                 //아이스크림 ice
-                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 5);
+                Helper_server.loadStoreCategoryListWithRetrofit(this,storeID, 5);
                 break;
             case R.id.ctg_5:
                 //과자 snack
-                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 4);
+                Helper_server.loadStoreCategoryListWithRetrofit(this,storeID, 4);
                 break;
             case R.id.ctg_6:
                 //음료 drink
-                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 1);
+                Helper_server.loadStoreCategoryListWithRetrofit(this,storeID, 1);
                 break;
             default :
                 //TODO 비식품 해줘야함 notFood
@@ -105,8 +105,6 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         }
 
     }
-
-
 
 
     private void setCustomActionbar(){

@@ -104,9 +104,6 @@ public class View_item_list extends AppCompatActivity {
 
                 Log.e("abc", "abc" + titleStr + descStr);
 
-
-                // TODO : use item data.
-
                 Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
                 view_item_info.putExtra("list", item);
 
