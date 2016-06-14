@@ -37,7 +37,7 @@ public class Define_menu_click{
 
     TextView menu_search;
 
-    public Define_menu_click(final Context context , DrawerLayout drw) {
+    public Define_menu_click(final Context context , DrawerLayout drw, final Activity activity) {
 
         btn_login = (Button) drw.findViewById(R.id.menu_btn_login);
         menu_id = (TextView) drw.findViewById(R.id.menu_id);
@@ -74,7 +74,7 @@ public class Define_menu_click{
         });
         menu_conv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Helper_server.loadMapListWithRetrofit((Activity)context, ALLCATEGORY);
+                Helper_server.loadMapListWithRetrofit( activity , ALLCATEGORY);
 
             }
         });
@@ -94,7 +94,7 @@ public class Define_menu_click{
         });
         menu_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Helper_server.loadAllItemListWithRetrofit((Activity)context, ALLCATEGORY, 1);
+                Helper_server.loadAllItemListWithRetrofit(activity, ALLCATEGORY, 1);
 
             }
         });

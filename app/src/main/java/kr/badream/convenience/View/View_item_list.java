@@ -235,7 +235,8 @@ public class View_item_list extends AppCompatActivity {
 
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        new Define_menu_click(getApplicationContext(),dlDrawer);
+        new Define_menu_click(getApplicationContext(),dlDrawer,this);
+
         TextView act_title = (TextView) findViewById(R.id.actionbar_title);
         act_title.setText("상품 목록");
 
