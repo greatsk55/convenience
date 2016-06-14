@@ -176,7 +176,7 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
 
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        new Define_menu_click(getApplicationContext(),dlDrawer);
+        new Define_menu_click(getApplicationContext(),dlDrawer,this);
 
         //actionbar에서 내비 제어할 버튼
         ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);
