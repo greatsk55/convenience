@@ -62,6 +62,10 @@ public class Helper_server {
                 //showProgress(false);
                 if(returnedResponse.trim().equals("1")){
                     // redirect to Main Activity page
+
+                    if (mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
+
                     int returnedUserID = mLoginObject.userID;
                     String returnedName = mLoginObject.name;
 
@@ -70,9 +74,6 @@ public class Helper_server {
                     editor.putInt("userID", returnedUserID);
                     editor.putString("name", returnedName.trim());
                     editor.commit();
-
-                    if (mProgressDialog.isShowing())
-                        mProgressDialog.dismiss();
 
                     context.finish();
                 }
@@ -293,7 +294,7 @@ public class Helper_server {
     }
 
 
-    public static void postReviewWithRetrofit(final Activity context, final String userID, String userName, String prodID, String price, String contents){
+    public static void postReviewWithRetrofit(final Activity context, final int userID, String userName, String prodID, String price, String contents){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
@@ -305,15 +306,16 @@ public class Helper_server {
         mService.enqueue(new Callback<Helper_reviewData>() {
             @Override
             public void onResponse(Call<Helper_reviewData> call, Response<Helper_reviewData> response) {
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
 
-                Helper_reviewData mLoginObject = response.body();
-
-
+                context.finish();
             }
             @Override
             public void onFailure(Call<Helper_reviewData> call, Throwable t) {
                 call.cancel();
-                Log.i("aaa", t.getMessage());
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
                 Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });
