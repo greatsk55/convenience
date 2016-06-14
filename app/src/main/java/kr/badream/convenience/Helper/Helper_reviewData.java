@@ -10,7 +10,7 @@ public class Helper_reviewData implements Serializable {
     public int prodID;
     public int userID;
     public String userName;
-    public String content;
+    public String contents;
     public String price;
     public int likes;
 
@@ -21,7 +21,7 @@ public class Helper_reviewData implements Serializable {
         this.prodID = prodID;
         this.userID = userID;
         this.userName = userName;
-        this.content = content;
+        this.contents = content;
         this.price = price;
         this.likes = likes;
         this.isLiked = isLiked;
