@@ -45,6 +45,12 @@ public class View_item_info extends AppCompatActivity {
     boolean isLogin;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_info);
@@ -132,7 +138,8 @@ public class View_item_info extends AppCompatActivity {
 
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        new Define_menu_click(getApplicationContext(),dlDrawer,this);
+        Define_menu_click.set_menu_click(getApplicationContext(),dlDrawer,this);
+
 
         //actionbar에서 내비 제어할 버튼
         ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);

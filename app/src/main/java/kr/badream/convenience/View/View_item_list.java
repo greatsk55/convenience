@@ -70,6 +70,12 @@ public class View_item_list extends AppCompatActivity {
     int storeID;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
@@ -236,7 +242,7 @@ public class View_item_list extends AppCompatActivity {
 
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        new Define_menu_click(getApplicationContext(),dlDrawer,this);
+        Define_menu_click.set_menu_click(getApplicationContext(),dlDrawer,this);
 
         TextView act_title = (TextView) findViewById(R.id.actionbar_title);
         act_title.setText("상품 목록");

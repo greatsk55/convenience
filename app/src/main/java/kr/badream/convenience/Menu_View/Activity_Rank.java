@@ -23,6 +23,13 @@ public class Activity_Rank extends AppCompatActivity {
     DrawerLayout dlDrawer;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
@@ -64,8 +71,10 @@ public class Activity_Rank extends AppCompatActivity {
 
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        new Define_menu_click(getApplicationContext(),dlDrawer,this);
-//actionbar에서 내비 제어할 버튼
+        Define_menu_click.set_menu_click(getApplicationContext(),dlDrawer,this);
+
+
+        //actionbar에서 내비 제어할 버튼
         ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);
         btn_menu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

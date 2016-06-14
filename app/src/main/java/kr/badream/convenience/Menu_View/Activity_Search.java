@@ -31,6 +31,13 @@ public class Activity_Search extends AppCompatActivity {
     private ArrayList<Helper_itemData> list;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
@@ -107,7 +114,7 @@ public class Activity_Search extends AppCompatActivity {
 
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        new Define_menu_click(getApplicationContext(),dlDrawer,this);
+        Define_menu_click.set_menu_click(getApplicationContext(),dlDrawer,this);
 
         //actionbar에서 내비 제어할 버튼
         ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);

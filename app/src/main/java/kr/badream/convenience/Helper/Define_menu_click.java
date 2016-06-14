@@ -23,21 +23,19 @@ import kr.badream.convenience.R;
  */
 public class Define_menu_click{
 
-    public final int ALLCATEGORY=10;
+    public static final int ALLCATEGORY=10;
 
-    DrawerLayout drw;
+    public static void set_menu_click(final Context context , DrawerLayout drw, final Activity activity) {
 
-    Button btn_login;
-    TextView menu_id;
-    TextView menu_review;
-    TextView menu_like;
-    TextView menu_conv;
-    TextView menu_rank;
-    TextView menu_item;
+        Button btn_login;
+        TextView menu_id;
+        TextView menu_review;
+        TextView menu_like;
+        TextView menu_conv;
+        TextView menu_rank;
+        TextView menu_item;
 
-    TextView menu_search;
-
-    public Define_menu_click(final Context context , DrawerLayout drw, final Activity activity) {
+        TextView menu_search;
 
         btn_login = (Button) drw.findViewById(R.id.menu_btn_login);
         menu_id = (TextView) drw.findViewById(R.id.menu_id);
@@ -104,7 +102,7 @@ public class Define_menu_click{
         });
         menu_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Helper_server.loadStoreCategoryListWithRetrofit( activity, LoginHelper.getUserID(context),ALLCATEGORY, 0);
+                Helper_server.loadStoreCategoryListWithRetrofit( activity, LoginHelper.getUserID(context), ALLCATEGORY, 0);
             }
         });
     }
