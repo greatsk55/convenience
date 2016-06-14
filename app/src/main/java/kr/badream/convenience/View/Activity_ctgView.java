@@ -47,6 +47,13 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
     private int storeID;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ctgview);

@@ -45,6 +45,12 @@ public class View_item_info extends AppCompatActivity {
     boolean isLogin;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_info);

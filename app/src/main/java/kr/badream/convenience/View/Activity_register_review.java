@@ -44,6 +44,12 @@ public class Activity_register_review extends AppCompatActivity {
     Adapter_mini_list_view adapter;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_review);

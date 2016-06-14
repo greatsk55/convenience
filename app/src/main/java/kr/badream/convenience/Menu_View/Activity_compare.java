@@ -28,6 +28,12 @@ public class Activity_compare extends AppCompatActivity {
         setCustomActionbar();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
     private void setCustomActionbar() {
 
         ActionBar actionBar = getSupportActionBar();
@@ -69,6 +75,5 @@ public class Activity_compare extends AppCompatActivity {
                 dlDrawer.openDrawer(drawerView);
             }
         });
-
     }
 }

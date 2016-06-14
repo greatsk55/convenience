@@ -28,6 +28,13 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
     DrawerLayout dlDrawer;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conview);

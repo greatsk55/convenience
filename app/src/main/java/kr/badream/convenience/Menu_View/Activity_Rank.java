@@ -23,6 +23,13 @@ public class Activity_Rank extends AppCompatActivity {
     DrawerLayout dlDrawer;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);

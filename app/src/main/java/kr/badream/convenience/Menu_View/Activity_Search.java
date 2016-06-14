@@ -31,6 +31,13 @@ public class Activity_Search extends AppCompatActivity {
     private ArrayList<Helper_itemData> list;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);

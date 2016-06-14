@@ -22,6 +22,13 @@ public class Activity_myreview extends AppCompatActivity {
     DrawerLayout dlDrawer;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myreview);

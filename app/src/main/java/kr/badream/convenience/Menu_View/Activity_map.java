@@ -46,6 +46,12 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
     DrawerLayout dlDrawer;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setCustomActionbar();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
