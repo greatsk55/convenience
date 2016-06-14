@@ -24,7 +24,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import kr.badream.convenience.Adapter.Adapter_mini_list_view;
-import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Adapter.item_mini_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;

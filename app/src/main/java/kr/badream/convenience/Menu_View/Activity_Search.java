@@ -17,9 +17,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
+import kr.badream.convenience.Helper.Helper_itemInfo;
+import kr.badream.convenience.Helper.Helper_server;
+import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
 import kr.badream.convenience.View.View_item_info;
 
@@ -58,9 +60,7 @@ public class Activity_Search extends AppCompatActivity {
                 Log.d("aaa", "선택된 아이템:"+ parent.getItemAtPosition(position));
                 Helper_itemData data = adapter.getItem(position);
 
-                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
-                view_item_info.putExtra("list", new Item_list_view(data.prodID, data.url, data.name, data.price, 0, 0, data.storeID));
-                startActivity(view_item_info);
+                Helper_server.loadItemInfoListWithRetrofit(Activity_Search.this, LoginHelper.getUserID(getApplicationContext()), data.prodID);
             }
         });
         text.setOnClickListener(new View.OnClickListener() {
