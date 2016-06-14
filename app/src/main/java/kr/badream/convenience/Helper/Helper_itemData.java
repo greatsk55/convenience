@@ -29,13 +29,16 @@ public class Helper_itemData implements Serializable {
     public String url;
     public String name;
     public String price;
+
+    public int likes;
+    public int reviews;
     public int views;
 
 
     public Helper_itemData(){
     }
 
-    public Helper_itemData(int prodID, int storeID, int mainCategory, int subCategory, String url, String name, String price, int views){
+    public Helper_itemData(int prodID, int storeID, int mainCategory, int subCategory, String url, String name, String price, int likes, int reviews, int views){
         this.prodID = prodID;
         this.storeID = storeID;
         this.mainCategory = mainCategory;
@@ -43,6 +46,8 @@ public class Helper_itemData implements Serializable {
         this.url = url;
         this.name = name;
         this.price = price;
+        this.likes = likes;
+        this.reviews = reviews;
         this.views = views;
     }
 

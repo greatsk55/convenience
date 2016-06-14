@@ -1,5 +1,6 @@
 package kr.badream.convenience.Helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
@@ -73,7 +74,7 @@ public class Define_menu_click{
         });
         menu_conv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Helper_server.loadMapListWithRetrofit(context, ALLCATEGORY);
+                Helper_server.loadMapListWithRetrofit((Activity)context, ALLCATEGORY);
 
             }
         });
@@ -93,7 +94,7 @@ public class Define_menu_click{
         });
         menu_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Helper_server.loadAllItemListWithRetrofit(context, ALLCATEGORY, 1);
+                Helper_server.loadAllItemListWithRetrofit((Activity)context, ALLCATEGORY, 1);
 
             }
         });

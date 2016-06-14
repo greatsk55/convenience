@@ -106,7 +106,7 @@ public class View_item_list extends AppCompatActivity {
                 Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
 
                 if(LoginHelper.isLogin(getApplicationContext())){
-                    //view_item_info.putExtra("ID",)
+
                 }
 
                 view_item_info.putExtra("list", item);
@@ -220,6 +220,7 @@ public class View_item_list extends AppCompatActivity {
         parent.setContentInsetsAbsolute(0, 0);
 
         // set actionbar backgroung image
+        //TODO Deprecated 수정하기
         actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.activity_main_background));
 
         //set actionbar layout layoutparams
