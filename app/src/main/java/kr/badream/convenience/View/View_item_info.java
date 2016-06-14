@@ -1,5 +1,6 @@
 package kr.badream.convenience.View;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -66,6 +67,7 @@ public class View_item_info extends AppCompatActivity {
         info_price.setText(item.getItem_price());
         info_btn_like.setText(""+item.getItem_like_number());
         info_review_number.setText(""+item.getItem_review_number());
+
         // 1.이미지, 2.유저이름, 3.총 가격, 4.좋아요수, 5.리뷰내용
         // 첫 번째 아이템 추가.
 //        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
@@ -76,6 +78,13 @@ public class View_item_info extends AppCompatActivity {
 //        // 세 번째 아이템 추가.
 //        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
 //                "김성국", "3000원", 0 , "쓰래기임");
+
+        info_btn_review_write.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
+                startActivity(activity_register_review);
+            }
+        });
 
         setCustomActionbar();
         TextView act_title = (TextView) findViewById(R.id.actionbar_title);
