@@ -73,6 +73,7 @@ public class Define_menu_click{
             public void onClick(View v) {
                 Log.e("ee","ee");
                 Intent activity_myreview = new Intent( context , Activity_myreview.class);
+                activity_myreview.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 activity_myreview.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(activity_myreview);
             }
@@ -80,6 +81,7 @@ public class Define_menu_click{
         menu_like.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent activity_mylike = new Intent( context , Activity_mylike.class);
+                activity_mylike.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 activity_mylike.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(activity_mylike);
             }
@@ -87,13 +89,13 @@ public class Define_menu_click{
         menu_conv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Helper_server.loadMapListWithRetrofit( activity , ALLCATEGORY);
-
             }
         });
         menu_rank.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent activity_Rank = new Intent( context , Activity_Rank.class);
                 activity_Rank.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity_Rank.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(activity_Rank);
             }
         });
@@ -101,6 +103,7 @@ public class Define_menu_click{
             public void onClick(View v) {
                 Intent activity_compare = new Intent( context , Activity_compare.class);
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity_compare.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(activity_compare);
             }
         });

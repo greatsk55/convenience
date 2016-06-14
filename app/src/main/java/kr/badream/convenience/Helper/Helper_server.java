@@ -114,8 +114,11 @@ public class Helper_server {
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 
+
+
                 Intent activity_map = new Intent( context , Activity_map.class);
                 activity_map.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity_map.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 activity_map.putExtra("list", list);
                 context.startActivity(activity_map);
             }
@@ -201,6 +204,7 @@ public class Helper_server {
 
                 Intent activity_compare = new Intent( context , Activity_Search.class);
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity_compare.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 activity_compare.putExtra("list", list);
                 context.startActivity(activity_compare);
 
