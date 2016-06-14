@@ -242,8 +242,9 @@ public class Helper_server {
                 Intent intent = new Intent(context, View_item_info.class);
                 intent.putExtra("item_info", mlistObject);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(intent);
+                context.finish();
             }
             @Override
             public void onFailure(Call<Helper_itemInfo> call, Throwable t) {
