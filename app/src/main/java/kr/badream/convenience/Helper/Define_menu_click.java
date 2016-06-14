@@ -18,6 +18,7 @@ import kr.badream.convenience.Menu_View.Activity_map;
 import kr.badream.convenience.Menu_View.Activity_mylike;
 import kr.badream.convenience.Menu_View.Activity_myreview;
 import kr.badream.convenience.R;
+import kr.badream.convenience.View.Activity_conView;
 
 /**
  * Created by Administrator on 2016-06-11.
@@ -35,7 +36,7 @@ public class Define_menu_click{
         TextView menu_conv;
         TextView menu_rank;
         TextView menu_item;
-
+        TextView menu_home;
         TextView menu_search;
 
         LinearLayout id_layout;
@@ -48,8 +49,9 @@ public class Define_menu_click{
         menu_rank = (TextView) drw.findViewById(R.id.menu_rank);
         menu_item = (TextView) drw.findViewById(R.id.menu_item);
         menu_search = (TextView) drw.findViewById(R.id.menu_search);
-        id_layout = (LinearLayout) drw.findViewById(R.id.id_layout);
+        menu_home = (TextView) drw.findViewById(R.id.menu_home);
 
+        id_layout = (LinearLayout) drw.findViewById(R.id.id_layout);
         if(LoginHelper.isLogin(context)){
             id_layout.setVisibility(View.VISIBLE);
             btn_login.setVisibility(View.GONE);
@@ -110,6 +112,14 @@ public class Define_menu_click{
         menu_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Helper_server.loadAllItemListWithRetrofit( activity, LoginHelper.getUserID(context), ALLCATEGORY, 0);
+            }
+        });
+        menu_home.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent activity_home = new Intent( context , Activity_conView.class);
+                activity_home.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity_home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                context.startActivity(activity_home);
             }
         });
     }

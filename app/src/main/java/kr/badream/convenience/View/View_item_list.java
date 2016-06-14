@@ -22,12 +22,14 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import kr.badream.convenience.Adapter.Adapter_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.Helper.Helper_itemInfo;
 import kr.badream.convenience.Helper.Helper_server;
+import kr.badream.convenience.Helper.Helper_sort;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
 
@@ -66,6 +68,9 @@ public class View_item_list extends AppCompatActivity {
     RadioButton r5;
     RadioButton r6;
 
+    int state_ctg_item;
+    int state_array_item;
+
     int mainCtg;
     int storeID;
 
@@ -100,6 +105,9 @@ public class View_item_list extends AppCompatActivity {
         for( Helper_itemData data : list){
             adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
         }
+
+        state_ctg_item = 0;
+        state_array_item = 0;
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -149,19 +157,26 @@ public class View_item_list extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (r0.isChecked()) {
-                                        setAdapter(ALL_SUBCATEGORY, 0);
+                                        setAdapter(ALL_SUBCATEGORY, state_array_item);
+                                        state_ctg_item = 0;
                                     } else if (r1.isChecked()) {
-                                        setAdapter(JUMUKBAP, 0);
+                                        setAdapter(JUMUKBAP, state_array_item);
+                                        state_ctg_item = 1;
                                     } else if (r2.isChecked()) {
-                                        setAdapter(DOSIRAK, 0);
+                                        setAdapter(DOSIRAK, state_array_item);
+                                        state_ctg_item = 2;
                                     } else if (r3.isChecked()) {
-                                        setAdapter(HAMBURGER, 0);
+                                        setAdapter(HAMBURGER, state_array_item);
+                                        state_ctg_item = 3;
                                     } else if (r4.isChecked()) {
-                                        setAdapter(GIMBAP, 0);
+                                        setAdapter(GIMBAP, state_array_item);
+                                        state_ctg_item = 4;
                                     } else if (r5.isChecked()) {
-                                        setAdapter(SANDWICH, 0);
+                                        setAdapter(SANDWICH, state_array_item);
+                                        state_ctg_item = 5;
                                     } else if (r6.isChecked()) {
-                                        setAdapter(ETC, 0);
+                                        setAdapter(ETC, state_array_item);
+                                        state_ctg_item = 6;
                                     }
                                 }
                             }).setNegativeButton("취소",
@@ -184,13 +199,26 @@ public class View_item_list extends AppCompatActivity {
                 View layout = inflater.inflate(R.layout.dialog_array,(ViewGroup) findViewById(R.id.popup));
                 AlertDialog.Builder aDialog = new AlertDialog.Builder(View_item_list.this);
 
+                r0 = (RadioButton) layout.findViewById(R.id.radio0);
+                r1 = (RadioButton) layout.findViewById(R.id.radio1);
+                r2 = (RadioButton) layout.findViewById(R.id.radio2);
+
                 aDialog.setTitle("상품"); //타이틀바 제목
                 aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
                 aDialog.setPositiveButton("확인",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                if (r0.isChecked()) {
+                                    setAdapter(state_ctg_item, 0);
+                                    state_array_item = 0;
+                                } else if (r1.isChecked()) {
+                                    setAdapter(state_ctg_item, 1);
+                                    state_array_item = 1;
+                                } else if (r2.isChecked()) {
+                                    setAdapter(state_ctg_item, 2);
+                                    state_array_item = 2;
+                                }
                             }
                         }).setNegativeButton("취소",
                         new DialogInterface.OnClickListener() {
@@ -260,28 +288,36 @@ public class View_item_list extends AppCompatActivity {
         switch (item){
             //전체 보기
             case ALL_SUBCATEGORY:
-                if(array == 0)
-                    for( Helper_itemData data : list){
-                            adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
-                    }
+                for( Helper_itemData data : list){
+                    adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+                }
+                if(array == 1){
+                    Collections.sort(list, Helper_sort.comparator_itemData_view_like);
+                }
                 break;
             //주먹밥
             case JUMUKBAP:
-                if(array == 0)
-                    for( Helper_itemData data : list){
-                        if(data.name.charAt(0)=='주'){
-                            adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
-                        }
+                for( Helper_itemData data : list){
+                    if(data.name.charAt(0)=='주'){
+                        adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
                     }
+                }
+                if(array == 1){
+                    Collections.sort(list, Helper_sort.comparator_itemData_view_review);
+                }
+
                 break;
             //도시락
             case DOSIRAK:
-                if(array == 0)
-                    for( Helper_itemData data : list){
-                        if(data.name.charAt(0)=='도' && !data.name.contains("도너츠")){
-                            adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
-                        }
+                for( Helper_itemData data : list){
+                    if(data.name.charAt(0)=='도' && !data.name.contains("도너츠")){
+                        adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
                     }
+                }
+                if(array == 1){
+                    Collections.sort(list, Helper_sort.comparator_itemData_view_review);
+                }
+
                 break;
             //햄버거
             case HAMBURGER:
