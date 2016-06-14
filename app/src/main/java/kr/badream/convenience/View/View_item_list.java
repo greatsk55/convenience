@@ -2,9 +2,7 @@ package kr.badream.convenience.View;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +18,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -28,7 +25,6 @@ import kr.badream.convenience.Adapter.Adapter_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.Helper.Helper_itemInfo;
-import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.Helper_sort;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;

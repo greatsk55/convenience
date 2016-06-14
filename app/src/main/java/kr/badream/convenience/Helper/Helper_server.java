@@ -20,6 +20,7 @@ import kr.badream.convenience.Menu_View.Activity_Search;
 import kr.badream.convenience.Menu_View.Activity_map;
 import kr.badream.convenience.R;
 import kr.badream.convenience.User;
+import kr.badream.convenience.View.Activity_register_review;
 import kr.badream.convenience.View.View_item_info;
 import kr.badream.convenience.View.View_item_list;
 import retrofit2.Call;
@@ -285,6 +286,43 @@ public class Helper_server {
             public void onFailure(Call<Helper_itemInfo> call, Throwable t) {
                 call.cancel();
 
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+                Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public static void getAllItemList_to_register_review(final Activity context,final int userID, final int storeID, int mainCategory){
+        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+        ApiInterface mApiService = Helper_server.getInterfaceService();
+        Call<List<Helper_itemData>> mService = mApiService.loadStoreCategoryList(userID, storeID, mainCategory);
+
+
+        mService.enqueue(new Callback<List<Helper_itemData>>() {
+            @Override
+            public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
+                ArrayList<Helper_itemData> list;
+                list = new ArrayList<Helper_itemData>();
+                List<Helper_itemData> mlistObject = response.body();
+
+                for( Helper_itemData data : mlistObject) {
+                    list.add(data);
+                }
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+                Activity_register_review.list = list;
+            }
+            @Override
+            public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
+                call.cancel();
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 

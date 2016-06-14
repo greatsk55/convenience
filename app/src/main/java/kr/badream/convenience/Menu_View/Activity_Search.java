@@ -1,6 +1,5 @@
 package kr.badream.convenience.Menu_View;
 
-import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +18,8 @@ import java.util.ArrayList;
 
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
-import kr.badream.convenience.Helper.Helper_itemInfo;
-import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
-import kr.badream.convenience.View.View_item_info;
 
 public class Activity_Search extends AppCompatActivity {
 
