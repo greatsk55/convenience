@@ -1,5 +1,6 @@
 package kr.badream.convenience.Helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -49,7 +50,7 @@ public class LoginHelper {
         }
     }
 
-    public static void openLoginActivity(Context context){
+    public static void openLoginActivity(Activity context){
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }

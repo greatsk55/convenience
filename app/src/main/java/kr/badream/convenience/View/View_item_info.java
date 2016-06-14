@@ -25,6 +25,7 @@ import kr.badream.convenience.Adapter.Adapter_review_list_view;
 import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
+import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
 
 public class View_item_info extends AppCompatActivity {
@@ -41,6 +42,8 @@ public class View_item_info extends AppCompatActivity {
     Button info_btn_review_write;
     TextView info_review_number;
 
+    boolean isLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,10 @@ public class View_item_info extends AppCompatActivity {
         info_btn_like = (Button) findViewById(R.id.info_btn_like) ;
         info_btn_review_write = (Button) findViewById(R.id.info_btn_review_write) ;
         info_review_number = (TextView) findViewById(R.id.info_review_number) ;
+
+        //로그인 체크
+        if(LoginHelper.isLogin(getApplicationContext()))    isLogin = true;
+        else isLogin = false;
 
         // Adapter 생성
         adapter = new Adapter_review_list_view();
@@ -68,21 +75,24 @@ public class View_item_info extends AppCompatActivity {
         info_btn_like.setText(""+item.getItem_like_number());
         info_review_number.setText(""+item.getItem_review_number());
 
-        // 1.이미지, 2.유저이름, 3.총 가격, 4.좋아요수, 5.리뷰내용
-        // 첫 번째 아이템 추가.
-//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
-//                "거지", "1000원", 22, "good" );
-//        // 두 번째 아이템 추가.
-//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item1),
-//                "최준호", "2000원", 33 , "야야야 이거 대박상품이야gfsdgsdkgksdnglksdnlkgnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
-//        // 세 번째 아이템 추가.
-//        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.item2),
-//                "김성국", "3000원", 0 , "쓰래기임");
 
+        info_btn_like.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (info_btn_like.isSelected()){
+                    info_btn_like.setSelected(false);
+                }
+                else{
+                    info_btn_like.setSelected(true);
+                }
+
+            }
+        });
         info_btn_review_write.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
-                startActivity(activity_register_review);
+                if(isLogin){
+                    Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
+                    startActivity(activity_register_review);
+                }
             }
         });
 
