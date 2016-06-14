@@ -262,7 +262,6 @@ public class Helper_server {
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
-
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
 
