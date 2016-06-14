@@ -13,15 +13,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import kr.badream.convenience.Adapter.Adapter_mini_list_view;
 import kr.badream.convenience.Adapter.Item_list_view;
 import kr.badream.convenience.Adapter.item_mini_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
+import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.Helper.HorizontalListView;
 import kr.badream.convenience.R;
 
@@ -31,8 +36,9 @@ public class Activity_register_review extends AppCompatActivity {
     private DrawerLayout dlDrawer;
     private Button btn_register;
 
+    private ArrayList<Helper_itemData> list;
 
-//    ListView listview;
+    //    ListView listview;
     Adapter_mini_list_view adapter;
 
     @Override
@@ -51,6 +57,16 @@ public class Activity_register_review extends AppCompatActivity {
         listview.setAdapter(adapter);
         adapter.addItem(0,"","아이템 추가");
 
+        //search
+
+
+        //serach
+
+        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
+
+
+
+
 //        adapter.addItem("","쿵쿵따");
 //        adapter.addItem("","쿵쿵따");
 //        adapter.addItem("","쿵쿵따");
@@ -60,6 +76,7 @@ public class Activity_register_review extends AppCompatActivity {
 //        adapter.addItem("","쿵쿵따");
 //        adapter.addItem("","쿵쿵따");
 //        adapter.addItem("","쿵쿵따");
+
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,6 +90,9 @@ public class Activity_register_review extends AppCompatActivity {
                     AlertDialog.Builder aDialog = new AlertDialog.Builder(Activity_register_review.this);
                     aDialog.setTitle("상품"); //타이틀바 제목
                     aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
+
+                    setSearch(layout);
+
                     aDialog.setPositiveButton("확인",
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -100,11 +120,52 @@ public class Activity_register_review extends AppCompatActivity {
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //TODO 아이템 등록
+                //TODO 리뷰 등록
             }
         });
 
         setCustomActionbar();
+
+    }
+
+
+    private  void setSearch(View layout){
+
+        final ArrayAdapter<Helper_itemData> add_adapter = new ArrayAdapter<Helper_itemData>
+                (this, android.R.layout.simple_dropdown_item_1line, list);
+
+        final AutoCompleteTextView text = (AutoCompleteTextView) layout.findViewById(R.id.edit_search);
+
+        text.setAdapter(add_adapter);
+        text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("aaa", "선택된 아이템:"+ parent.getItemAtPosition(position));
+                Helper_itemData data = add_adapter.getItem(position);
+
+                Intent view_item_info = new Intent(getApplicationContext(), View_item_info.class);
+                view_item_info.putExtra("list", new Item_list_view(data.url, data.name, data.price, 0, 0, data.storeID));
+                startActivity(view_item_info);
+            }
+        });
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("aasa","::"+text.length() + add_adapter.getCount());
+                //text.showDropDown();
+            }
+        });
+        text.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("aaa", "셀렉된 아이템:");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d("aaa","아무것도 안 셀렉됨:");
+            }
+        });
 
     }
 

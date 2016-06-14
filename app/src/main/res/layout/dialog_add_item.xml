@@ -4,6 +4,8 @@
     android:layout_height="match_parent">
 
     <AutoCompleteTextView
+        android:layout_gravity="center"
+        android:gravity="center"
         android:id="@+id/edit_search"
         android:layout_width="200dp"
         android:layout_height="wrap_content"

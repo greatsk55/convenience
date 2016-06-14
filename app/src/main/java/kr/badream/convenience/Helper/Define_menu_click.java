@@ -48,9 +48,19 @@ public class Define_menu_click{
         menu_item = (TextView) drw.findViewById(R.id.menu_item);
         menu_search = (TextView) drw.findViewById(R.id.menu_search);
 
+        if(LoginHelper.isLogin(context)){
+           menu_id.setVisibility(View.VISIBLE);
+           btn_login.setVisibility(View.GONE);
+           menu_id.setText(LoginHelper.getUserName(context));
+        }
+        else{
+            menu_id.setVisibility(View.GONE);
+            btn_login.setVisibility(View.VISIBLE);
+        }
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                LoginHelper.openLoginActivity(activity);
             }
         });
         menu_id.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +104,6 @@ public class Define_menu_click{
         });
         menu_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Helper_server.loadAllItemListWithRetrofit(activity, ALLCATEGORY, 1);
 
             }
         });

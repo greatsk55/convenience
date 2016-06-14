@@ -36,7 +36,7 @@ public class Main_Activity extends Activity {
                 md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
                 something = new String(Base64.encode(md.digest(), 0));
-                //Log.d("Hash key", something);
+                Log.d("Hash key", something);
             }
             Log.d("lol key : ", something);
         } catch (Exception e) {
