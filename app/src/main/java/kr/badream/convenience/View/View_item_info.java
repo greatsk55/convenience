@@ -69,7 +69,7 @@ public class View_item_info extends AppCompatActivity {
         info_btn_review_write = (Button) findViewById(R.id.info_btn_review_write) ;
         info_review_number = (TextView) findViewById(R.id.info_review_number) ;
 
-        list = (Helper_itemInfo) getIntent().getSerializableExtra("list");
+//        list = (Helper_itemInfo) getIntent().getSerializableExtra("list");
 
         //로그인 체크
         if(LoginHelper.isLogin(getApplicationContext()))    isLogin = true;

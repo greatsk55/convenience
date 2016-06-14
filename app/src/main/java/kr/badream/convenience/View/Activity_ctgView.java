@@ -1,36 +1,21 @@
 package kr.badream.convenience.View;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import kr.badream.convenience.Helper.ApiInterface;
 import kr.badream.convenience.Helper.Define_menu_click;
-import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
-import kr.badream.convenience.User;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Activity_ctgView extends AppCompatActivity implements View.OnClickListener {
 
