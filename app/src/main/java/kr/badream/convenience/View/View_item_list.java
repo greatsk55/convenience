@@ -247,7 +247,7 @@ public class View_item_list extends AppCompatActivity {
         });
     }
 
-    public void setAdapter(int item, int array){
+    private void setAdapter(int item, int array){
         adapter.clear();
         switch (item){
             //전체 보기
