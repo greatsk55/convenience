@@ -14,7 +14,7 @@ public interface ApiInterface {
     @GET("index.php/{storeID}")
     Call<List<Helper_mapData>> loadMapList(@Path("storeID") int storeID);
 
-    @POST("index.php/{userID}/{prodID}")
+    @GET("index.php/{userID}/{prodID}")
     Call<Helper_itemInfo> setLiked(@Path("userID") int userID, @Path("prodID") int prodID);
 
     @GET("index.php/{userID}/{storeID}/{mainCategory}")
@@ -23,8 +23,7 @@ public interface ApiInterface {
     @POST("index.php/{ID}/{flag}/{name}/{gender}")
     Call<User> registration(@Path("ID") String id, @Path("flag") int flag, @Path("name") String name, @Path("gender") int gender);
 
-
-    @POST("index2.php/{userID}/{prodID}")
+    @GET("index.php/{userID}/{prodID}")
     Call<Helper_itemInfo> loadItemInfoList(@Path("userID") int userID, @Path("prodID") int prodID);
 
 }

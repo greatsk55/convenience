@@ -235,6 +235,7 @@ public class Helper_server {
             @Override
             public void onResponse(Call<Helper_itemInfo> call, Response<Helper_itemInfo> response) {
 
+                Log.i("aaa", response.errorBody().toString());
                 Helper_itemInfo mlistObject = response.body();
 
                 if (mProgressDialog.isShowing())
