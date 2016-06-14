@@ -75,6 +75,7 @@ public class View_item_list extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setCustomActionbar();
+        listview.setAdapter(adapter);
     }
 
     @Override

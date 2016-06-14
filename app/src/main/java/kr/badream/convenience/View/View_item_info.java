@@ -43,6 +43,8 @@ public class View_item_info extends AppCompatActivity {
 
     private Helper_itemInfo list;
 
+    String item_name;
+
     boolean isLogin;
 
 
@@ -78,19 +80,20 @@ public class View_item_info extends AppCompatActivity {
         listview.setAdapter(adapter);
 
         final Helper_itemInfo item = (Helper_itemInfo) getIntent().getSerializableExtra("item_info");
-        Log.e("item0","item"+item.name);
+        Log.e("test","test = " + item.likes);
 
         Glide.with(getApplicationContext()).load(item.url).into(info_image);
         info_price.setText(item.price);
         info_btn_like.setText(""+item.likes);
         info_review_number.setText(""+item.reviews);
 
+        item_name= item.name;
+
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 // get item
                 Helper_reviewData item = (Helper_reviewData) parent.getItemAtPosition(position);
-
             }
         });
 
@@ -121,10 +124,7 @@ public class View_item_info extends AppCompatActivity {
                 }
             }
         });
-
         setCustomActionbar();
-        TextView act_title = (TextView) findViewById(R.id.actionbar_title);
-        act_title.setText(item.name);
     }
 
     private void setCustomActionbar() {
@@ -147,9 +147,11 @@ public class View_item_info extends AppCompatActivity {
         actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.activity_main_background));
 
         //set actionbar layout layoutparams
-//        ActionBar.LayoutParams params = new ActionBar.LayoutParams((ActionBar.LayoutParams.MATCH_PARENT));
-//        actionBar.setCustomView(mCustomView, params);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams((ActionBar.LayoutParams.MATCH_PARENT));
+        actionBar.setCustomView(mCustomView, params);
 
+        TextView act_title = (TextView) findViewById(R.id.actionbar_title);
+        act_title.setText("리뷰 등록하기");
 
         // setNavigation--------------------------------------------------
 
@@ -159,7 +161,6 @@ public class View_item_info extends AppCompatActivity {
         // Drawer layout
         dlDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         Define_menu_click.set_menu_click(getApplicationContext(),dlDrawer,this);
-
 
         //actionbar에서 내비 제어할 버튼
         ImageButton btn_menu = (ImageButton) mCustomView.findViewById(R.id.btn_menu);
