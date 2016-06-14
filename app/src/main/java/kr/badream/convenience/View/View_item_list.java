@@ -292,7 +292,7 @@ public class View_item_list extends AppCompatActivity {
                     adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
                 }
                 if(array == 1){
-                    Collections.sort(list, Helper_sort.comparator_itemData_view_like);
+                    Collections.sort(list, Helper_sort.comparator_Item_list_view_review);
                 }
                 break;
             //주먹밥
@@ -303,7 +303,7 @@ public class View_item_list extends AppCompatActivity {
                     }
                 }
                 if(array == 1){
-                    Collections.sort(list, Helper_sort.comparator_itemData_view_review);
+                    Collections.sort(list, Helper_sort.comparator_Item_list_view_review);
                 }
 
                 break;
@@ -315,7 +315,7 @@ public class View_item_list extends AppCompatActivity {
                     }
                 }
                 if(array == 1){
-                    Collections.sort(list, Helper_sort.comparator_itemData_view_review);
+                    Collections.sort(list, Helper_sort.comparator_Item_list_view_review);
                 }
 
                 break;

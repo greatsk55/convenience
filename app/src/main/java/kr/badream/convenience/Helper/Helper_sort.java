@@ -9,9 +9,9 @@ import java.util.Comparator;
 public class Helper_sort {
 
     //Comparator 를 만든다.
-    public final static Comparator<Helper_itemInfo> comparator_Item_list_view_like = new Comparator<Helper_itemInfo>() {
+    public final static Comparator<Helper_itemData> comparator_Item_list_view_like = new Comparator<Helper_itemData>() {
         @Override
-        public int compare(Helper_itemInfo item1, Helper_itemInfo item2) {
+        public int compare(Helper_itemData item1, Helper_itemData item2) {
 //            return Collator.getInstance().compare(item1.getItem_like_number(),item2.getItem_like_number());
             return ( item1.likes > item2.likes ? 1:-1);
         }
@@ -20,9 +20,9 @@ public class Helper_sort {
 
     };
 
-    public final static Comparator<Helper_itemInfo> comparator_Item_list_view_review = new Comparator<Helper_itemInfo>() {
+    public final static Comparator<Helper_itemData> comparator_Item_list_view_review = new Comparator<Helper_itemData>() {
         @Override
-        public int compare(Helper_itemInfo item1, Helper_itemInfo item2) {
+        public int compare(Helper_itemData item1, Helper_itemData item2) {
 //            return Collator.getInstance().compare(item1.getItem_like_number(),item2.getItem_like_number());
             return ( item1.reviews > item2.reviews ? 1:-1);
         }

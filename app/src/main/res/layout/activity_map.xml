@@ -43,6 +43,7 @@
                 android:layout_below="@id/map_layout"
                 android:orientation="horizontal">
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
