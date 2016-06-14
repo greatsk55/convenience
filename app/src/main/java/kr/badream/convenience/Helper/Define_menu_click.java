@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import kr.badream.convenience.Menu_View.Activity_Rank;
@@ -37,6 +38,8 @@ public class Define_menu_click{
 
         TextView menu_search;
 
+        LinearLayout id_layout;
+
         btn_login = (Button) drw.findViewById(R.id.menu_btn_login);
         menu_id = (TextView) drw.findViewById(R.id.menu_id);
         menu_review = (TextView) drw.findViewById(R.id.menu_review);
@@ -45,14 +48,15 @@ public class Define_menu_click{
         menu_rank = (TextView) drw.findViewById(R.id.menu_rank);
         menu_item = (TextView) drw.findViewById(R.id.menu_item);
         menu_search = (TextView) drw.findViewById(R.id.menu_search);
+        id_layout = (LinearLayout) drw.findViewById(R.id.id_layout);
 
         if(LoginHelper.isLogin(context)){
-           menu_id.setVisibility(View.VISIBLE);
-           btn_login.setVisibility(View.GONE);
-           menu_id.setText(LoginHelper.getUserName(context));
+            id_layout.setVisibility(View.VISIBLE);
+            btn_login.setVisibility(View.GONE);
+            menu_id.setText(LoginHelper.getUserName(context));
         }
         else{
-            menu_id.setVisibility(View.GONE);
+            id_layout.setVisibility(View.GONE);
             btn_login.setVisibility(View.VISIBLE);
         }
 
