@@ -22,6 +22,8 @@ import kr.badream.convenience.R;
  */
 public class Define_menu_click{
 
+    public final int ALLCATEGORY=10;
+
     DrawerLayout drw;
 
     Button btn_login;
@@ -71,9 +73,8 @@ public class Define_menu_click{
         });
         menu_conv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent activity_map = new Intent( context , Activity_map.class);
-                activity_map.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(activity_map);
+                Helper_server.loadMapListWithRetrofit(context, ALLCATEGORY);
+
             }
         });
         menu_rank.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +93,7 @@ public class Define_menu_click{
         });
         menu_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Helper_search helper_search = new Helper_search();
-                helper_search.loadAllItemListWithRetrofit(context, 10, 1);
+                Helper_server.loadAllItemListWithRetrofit(context, ALLCATEGORY, 1);
 
             }
         });

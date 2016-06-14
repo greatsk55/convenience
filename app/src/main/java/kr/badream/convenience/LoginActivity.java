@@ -6,6 +6,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -114,9 +115,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                                     String gender = data.getString("gender");
 
                                     if (gender.equals("male")) {
-                                        registrationProcessWithRetrofit(id, 2, name, 1);
+                                        Helper_server.registrationProcessWithRetrofit(getApplicationContext(),id, 2, name, 1);
                                     } else {
-                                        registrationProcessWithRetrofit(id, 2, name, 2);
+                                        Helper_server.registrationProcessWithRetrofit(getApplicationContext(),id, 2, name, 2);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -147,55 +148,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.activity_login);
         init();
-    }
-
-
-
-    private void registrationProcessWithRetrofit(final String id, int flag, String name,int gender){
-        final ProgressDialog mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
-        mProgressDialog.setMessage("Loading...");
-        mProgressDialog.show();
-
-        ApiInterface mApiService = Helper_server.getInterfaceService();
-        Call<User> mService = mApiService.registration(id, flag, name, gender);
-        mService.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-
-                User mLoginObject = response.body();
-                String returnedResponse = mLoginObject.isLogin;
-                //showProgress(false);
-                if(returnedResponse.trim().equals("1")){
-                    // redirect to Main Activity page
-                    String returnedUserID = mLoginObject.userID;
-                    String returnedName = mLoginObject.name;
-
-                    SharedPreferences prefs = getSharedPreferences("userData", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString("userID", returnedUserID.trim());
-                    editor.putString("name", returnedName.trim());
-                    editor.commit();
-
-                    if (mProgressDialog.isShowing())
-                        mProgressDialog.dismiss();
-                }
-                if(returnedResponse.trim().equals("0")){
-                    // use the registration button to register
-                    if (mProgressDialog.isShowing())
-                        mProgressDialog.dismiss();
-
-                    Toast.makeText( getApplicationContext(), "can\'t join. please retry.", Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                call.cancel();
-                Log.i("aaa", t.getMessage());
-                Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
 
@@ -237,7 +189,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 if (loginResult.getAccessToken() != null) {
                     String id = loginResult.getAccessToken().getAccountId();
                     toastMessage = "Success:" + id;
-                    registrationProcessWithRetrofit(id,1,"무명",0);
+                    Helper_server.registrationProcessWithRetrofit(getApplicationContext(),id,1,"무명",0);
                 } else {
                     toastMessage = String.format(
                             "Success:%s...",

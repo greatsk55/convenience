@@ -1,6 +1,7 @@
 package kr.badream.convenience.View;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
@@ -43,7 +44,6 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
     private DrawerLayout dlDrawer;
 
     private int storeID;
-    private ArrayList<Helper_itemData> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
 
         Intent intent = getIntent();
         storeID = intent.getIntExtra("storeID",1);
-        list = new ArrayList<Helper_itemData>();
+
 
         setCustomActionbar();
 
@@ -79,27 +79,27 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.ctg_1:
                 //간편식사 easy
-                loadStoreCategoryListWithRetrofit(storeID, 3);
+                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 3);
                 break;
             case R.id.ctg_2:
                 //즉석식품 insta
-                loadStoreCategoryListWithRetrofit(storeID, 2);
+                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 2);
                 break;
             case R.id.ctg_3:
                 //식품 food
-                loadStoreCategoryListWithRetrofit(storeID, 6);
+                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 6);
                 break;
             case R.id.ctg_4:
                 //아이스크림 ice
-                loadStoreCategoryListWithRetrofit(storeID, 5);
+                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 5);
                 break;
             case R.id.ctg_5:
                 //과자 snack
-                loadStoreCategoryListWithRetrofit(storeID, 4);
+                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 4);
                 break;
             case R.id.ctg_6:
                 //음료 drink
-                loadStoreCategoryListWithRetrofit(storeID, 1);
+                Helper_server.loadStoreCategoryListWithRetrofit(getApplicationContext(),storeID, 1);
                 break;
             default :
                 //TODO 비식품 해줘야함 notFood
@@ -109,50 +109,7 @@ public class Activity_ctgView extends AppCompatActivity implements View.OnClickL
     }
 
 
-    private void loadStoreCategoryListWithRetrofit(final int storeID, final int mainCategory){
-        final ProgressDialog mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
-        mProgressDialog.setMessage("Loading...");
-        mProgressDialog.show();
 
-        ApiInterface mApiService = Helper_server.getInterfaceService();
-        Call<List<Helper_itemData>> mService = mApiService.loadStoreCategoryList(storeID, mainCategory);
-
-
-        mService.enqueue(new Callback<List<Helper_itemData>>() {
-            @Override
-            public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
-
-                List<Helper_itemData> mlistObject = response.body();
-
-                //여기서 초기화 안해줘서 계속 중첩하며 아이템 증가함
-                list = new ArrayList<Helper_itemData>();
-                for( Helper_itemData data : mlistObject) {
-                    list.add(data);
-                }
-
-                if (mProgressDialog.isShowing())
-                    mProgressDialog.dismiss();
-
-
-                Intent view_item_list = new Intent( getApplicationContext(), View_item_list.class);
-                view_item_list.putExtra("storeID",storeID);
-                view_item_list.putExtra("ctg", mainCategory);
-                view_item_list.putExtra("list", list);
-                startActivity(view_item_list);
-            }
-            @Override
-            public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
-                call.cancel();
-
-                if (mProgressDialog.isShowing())
-                    mProgressDialog.dismiss();
-
-                Toast.makeText( getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
     private void setCustomActionbar(){
 
