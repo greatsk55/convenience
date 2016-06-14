@@ -47,7 +47,7 @@ public class Activity_register_review extends AppCompatActivity {
     String contents;
     String total_price;
 
-    private ArrayList<Helper_itemData> list;
+    public static ArrayList<Helper_itemData> list;
 
     //    ListView listview;
     Adapter_mini_list_view adapter;

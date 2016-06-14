@@ -1,7 +1,6 @@
 package kr.badream.convenience.View;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,15 +19,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-
-import kr.badream.convenience.Adapter.Adapter_list_view;
 import kr.badream.convenience.Adapter.Adapter_review_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
-import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.Helper.Helper_itemInfo;
 import kr.badream.convenience.Helper.Helper_reviewData;
-import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
 
@@ -114,6 +108,8 @@ public class View_item_info extends AppCompatActivity {
         info_btn_review_write.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(isLogin){
+                    //모든카테고리 list 로 부르기
+                    Helper_server.getAllItemList_to_register_review(View_item_info.this, LoginHelper.getUserID(getApplicationContext()), 10, 0);
                     Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
                     activity_register_review.putExtra("list", list);
                     startActivity(activity_register_review);
