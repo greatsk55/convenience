@@ -103,7 +103,7 @@ public class View_item_list extends AppCompatActivity {
 
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
         for( Helper_itemData data : list){
-            adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+            adapter.addItem(data.prodID,data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
         }
 
         state_ctg_item = 0;
@@ -113,7 +113,7 @@ public class View_item_list extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 // get item
-                Helper_itemData item = (Helper_itemData) parent.getItemAtPosition(position);
+                Helper_itemInfo item = (Helper_itemInfo) parent.getItemAtPosition(position);
 
                 String titleStr = item.name;
                 String descStr = item.price;
