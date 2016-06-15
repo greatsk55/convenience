@@ -335,8 +335,6 @@ public class Helper_server {
             }
         });
     }
-
-
     public static void postReviewWithRetrofit(final Activity context, final int userID, String userName, String prodID, String price, String contents){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
