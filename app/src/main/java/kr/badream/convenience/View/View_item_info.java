@@ -82,6 +82,10 @@ public class View_item_info extends AppCompatActivity {
         final Helper_itemInfo item = (Helper_itemInfo) getIntent().getSerializableExtra("item_info");
         Log.e("test","test = " + item.likes);
 
+        for( Helper_reviewData data : item.reviewData ){
+            adapter.addItem(data.url, data.userName, data.price, data.likes, data.contents);
+        }
+
         Glide.with(getApplicationContext()).load(item.url).into(info_image);
         info_price.setText(item.price);
         info_btn_like.setText(""+item.likes);

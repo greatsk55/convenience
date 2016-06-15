@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import kr.badream.convenience.Helper.Helper_reviewData;
 import kr.badream.convenience.R;
 import kr.badream.convenience.View.View_item_info;
 
@@ -25,7 +26,7 @@ import kr.badream.convenience.View.View_item_info;
  */
 public class Adapter_review_list_view  extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    private ArrayList<Item_review_view> reviewViewItemList = new ArrayList<Item_review_view>() ;
+    private ArrayList<Helper_reviewData> reviewViewItemList = new ArrayList<Helper_reviewData>() ;
 
     // ListViewAdapter의 생성자
     public Adapter_review_list_view() {
@@ -74,15 +75,15 @@ public class Adapter_review_list_view  extends BaseAdapter {
         });
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        Item_review_view item_review_view = reviewViewItemList.get(position);
+        Helper_reviewData item_review_view = reviewViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
         //item_image.setImageDrawable(item_review_view.getMain_image());
-        Glide.with(context).load(item_review_view.getMain_image()).into(item_image);
-        user_name.setText(item_review_view.getUser_name());
-        item_price.setText(item_review_view.getItem_price());
-        like_number.setText(""+item_review_view.getLike_number());
-        review_main.setText(item_review_view.getReview_main());
+        Glide.with(context).load(item_review_view.url).into(item_image);
+        user_name.setText(item_review_view.userName);
+        item_price.setText(item_review_view.price);
+        like_number.setText(""+item_review_view.likes);
+        review_main.setText(item_review_view.contents);
 
         return convertView;
     }
@@ -101,13 +102,13 @@ public class Adapter_review_list_view  extends BaseAdapter {
 
     // 1.이미지, 2.유저이름, 3.총 가격, 4.좋아요수, 5.리뷰내용
     public void addItem(String img, String user_name, String item_price, int like_number, String review_main) {
-        Item_review_view item = new Item_review_view();
+        Helper_reviewData item = new Helper_reviewData();
 
-        item.setMain_image(img);
-        item.setUser_name(user_name);
-        item.setItem_price(item_price);
-        item.setLike_number(like_number);
-        item.setReview_main(review_main);
+        item.url = img;
+        item.userName = user_name;
+        item.price = item_price;
+        item.likes = (like_number);
+        item.contents = (review_main);
 
         reviewViewItemList.add(item);
     }
