@@ -29,7 +29,6 @@ public interface ApiInterface {
 
     @GET("index2.php/{userID}/{prodID}")
     Call<Helper_itemInfo> loadItemInfoList(@Path("userID") int userID, @Path("prodID") int prodID);
-
 }
 
 

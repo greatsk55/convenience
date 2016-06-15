@@ -16,6 +16,11 @@ public class Helper_reviewData implements Serializable {
     public int likes;
     public int isLiked;
 
+    @Override
+    public String toString(){
+        return "reviewID : " + reviewID + " contents : " + contents;
+    }
+
     public Helper_reviewData(){
 
     }
