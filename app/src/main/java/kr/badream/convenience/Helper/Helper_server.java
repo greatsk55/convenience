@@ -45,6 +45,7 @@ public class Helper_server {
         return mInterfaceService;
     }
 
+    //회원가입 요청
     public static void registrationProcessWithRetrofit(final Activity context, final String id, int flag, String name, int gender){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -94,6 +95,8 @@ public class Helper_server {
             }
         });
     }
+
+    //맵데이터 요청
     public static void loadMapListWithRetrofit(final Activity context, final int storeID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -135,6 +138,8 @@ public class Helper_server {
             }
         });
     }
+
+    //편의점 카테고리별 데이터 요청
     public static void loadStoreCategoryListWithRetrofit(final Activity context,final int userID, final int storeID, final int mainCategory, final int listIndex){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -181,6 +186,56 @@ public class Helper_server {
             }
         });
     }
+    //편의점 카테고리 리스트 갱신
+    public static void refreshStoreCategoryListWithRetrofit(final Activity context,final int userID, final int storeID, final int mainCategory, final int listIndex){
+        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+        ApiInterface mApiService = Helper_server.getInterfaceService();
+        Call<List<Helper_itemData>> mService = mApiService.loadStoreCategoryList(userID, storeID, mainCategory);
+
+        mService.enqueue(new Callback<List<Helper_itemData>>() {
+            @Override
+            public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
+
+                List<Helper_itemData> mlistObject = response.body();
+
+                ArrayList<Helper_itemData> list = new ArrayList<Helper_itemData>();
+
+                //여기서 초기화 안해줘서 계속 중첩하며 아이템 증가함
+                list = new ArrayList<Helper_itemData>();
+                for( Helper_itemData data : mlistObject) {
+                    list.add(data);
+                }
+
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+
+                Intent view_item_list = new Intent( context, View_item_list.class);
+                view_item_list.putExtra("storeID",storeID);
+                view_item_list.putExtra("ctg", mainCategory);
+                view_item_list.putExtra("list", list);
+                view_item_list.putExtra("listIndex", listIndex);
+                context.startActivity(view_item_list);
+                context.finish();
+            }
+            @Override
+            public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
+                call.cancel();
+
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+                Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    //모든 상품 데이터 요청
     public static void loadAllItemListWithRetrofit(final Activity context,final int userID, final int storeID, int mainCategory){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -222,6 +277,8 @@ public class Helper_server {
             }
         });
     }
+
+    //좋아요 누르고 갱신
     public static void setLikedWithRetrofit(final Activity context, final int userID, final int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -258,6 +315,7 @@ public class Helper_server {
             }
         });
     }
+    //상품 상세정보
     public static void loadItemInfoListWithRetrofit(final Activity context, final int userID, int prodID){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -300,6 +358,7 @@ public class Helper_server {
         });
     }
 
+    //리뷰 등록시 상품 상세정보
     public static void getAllItemList_to_register_review(final Activity context,final int userID, final int storeID, int mainCategory){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
@@ -336,6 +395,7 @@ public class Helper_server {
             }
         });
     }
+    //리뷰 등록 요청
     public static void postReviewWithRetrofit(final Activity context, final int userID, String userName, String prodID, String price, String contents){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);

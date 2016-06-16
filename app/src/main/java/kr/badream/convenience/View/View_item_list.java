@@ -230,9 +230,10 @@ public class View_item_list extends AppCompatActivity {
                 ad.show();
             }
         });
-
+        adapter.notifyDataSetChanged();
         listview.setSelection(listIndex);
         listview.smoothScrollToPosition(listIndex);
+        adapter.notifyDataSetChanged();
         Log.i("aaa", "list index : " + listIndex);
         setCustomActionbar();
     }
