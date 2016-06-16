@@ -367,8 +367,8 @@ public class View_item_list extends AppCompatActivity {
     public void onRestart(){
         super.onRestart();
         listIndex = listview.getFirstVisiblePosition();
-        Helper_server.loadStoreCategoryListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()), storeID, mainCtg, listIndex);
-        finish();
+        Helper_server.refreshStoreCategoryListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()), storeID, mainCtg, listIndex);
+
     }
 
 }
