@@ -362,7 +362,6 @@ public class View_item_list extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
     @Override
     public void onRestart(){
         super.onRestart();
