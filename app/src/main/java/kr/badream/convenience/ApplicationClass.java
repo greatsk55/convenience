@@ -1,8 +1,8 @@
 package kr.badream.convenience;
 
 import android.app.Application;
-import android.os.Build;
-import android.os.StrictMode;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.facebook.FacebookSdk;
@@ -20,6 +20,11 @@ public class ApplicationClass  extends Application {
         //facebook 초기화
         FacebookSdk.sdkInitialize(getApplicationContext());
         AccountKit.initialize(getApplicationContext());
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        MultiDex.install(this);
     }
 
 }

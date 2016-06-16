@@ -7,13 +7,26 @@ android {
 
     defaultConfig {
         applicationId "kr.badream.convenience"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
+    signingConfigs {
+        release {
+            storeFile file("/home/user/Download/qkRna.jks")
+            storePassword "tptkddmfqkRnwk1!"
+            keyAlias "qkRna"
+            keyPassword "tptkddmfqkRnwk1!"
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release    // 여기
+            debuggable false // debugging 허용 안함
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -26,14 +39,12 @@ repositories {
 }
 
 
-
-
-
 dependencies {
     testCompile 'junit:junit:4.12'
 
-    compile 'com.github.bumptech.glide:glide:3.7.0'
 
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:appcompat-v7:24.0.0-beta1'
     compile 'com.android.support:support-v13:24.0.0-beta1'
     compile 'com.android.support:support-v4:24.0.0-beta1'
