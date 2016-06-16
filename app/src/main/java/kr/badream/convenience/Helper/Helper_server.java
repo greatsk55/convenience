@@ -168,7 +168,7 @@ public class Helper_server {
                 view_item_list.putExtra("ctg", mainCategory);
                 view_item_list.putExtra("list", list);
                 view_item_list.putExtra("listIndex", listIndex);
-                context.startActivityForResult(view_item_list, View_item_list.REQUEST_LIST);
+                context.startActivity(view_item_list);
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
@@ -362,6 +362,5 @@ public class Helper_server {
             }
         });
     }
-
 
 }

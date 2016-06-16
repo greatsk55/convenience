@@ -47,7 +47,6 @@ public class View_item_info extends AppCompatActivity {
 
     boolean isLogin;
 
-
     @Override
     protected void onResume() {
         super.onResume();

@@ -362,14 +362,13 @@ public class View_item_list extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-
+    public void onRestart(){
+        super.onRestart();
         listIndex = listview.getFirstVisiblePosition();
         Helper_server.loadStoreCategoryListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()), storeID, mainCtg, listIndex);
         finish();
-
     }
+
 }
