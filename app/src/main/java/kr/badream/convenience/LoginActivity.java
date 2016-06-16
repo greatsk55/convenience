@@ -46,7 +46,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private CallbackManager callbackManager;
     private Button button;
 
-
+    //TODO 지도 퍼미션 추가하기
     private PermissionListener permissionlistener = new PermissionListener() {
         @Override
         public void onPermissionGranted() {

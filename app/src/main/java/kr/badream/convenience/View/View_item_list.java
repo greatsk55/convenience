@@ -2,6 +2,7 @@ package kr.badream.convenience.View;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -36,6 +37,8 @@ import kr.badream.convenience.R;
 
 //TODO 소스 정리 해야할듯
 public class View_item_list extends AppCompatActivity {
+
+    public static final int REQUEST_LIST = 100;
 
     public final int ALL_SUBCATEGORY=0;
     public final int JUMUKBAP=1;
@@ -78,9 +81,6 @@ public class View_item_list extends AppCompatActivity {
         setCustomActionbar();
         listview.setAdapter(adapter);
 
-        listIndex = listview.getFirstVisiblePosition();
-
-        Helper_server.loadStoreCategoryListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()),storeID,mainCtg, listIndex);
     }
 
     @Override
@@ -360,5 +360,16 @@ public class View_item_list extends AppCompatActivity {
 
 
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        listIndex = listview.getFirstVisiblePosition();
+        Helper_server.loadStoreCategoryListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()), storeID, mainCtg, listIndex);
+        finish();
+
     }
 }
