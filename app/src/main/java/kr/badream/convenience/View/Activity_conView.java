@@ -1,17 +1,23 @@
 package kr.badream.convenience.View;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.security.MessageDigest;
 
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.R;
@@ -33,6 +39,22 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
         setCustomActionbar();
     }
 
+    public void getAppKeyHash() {
+        try {
+            String something="";
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md;
+                md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                something = new String(Base64.encode(md.digest(), 0));
+                Log.d("Hash key", something);
+            }
+            Log.d("lol key : ", something);
+        } catch (Exception e) {
+            Log.e("name not found", e.toString());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +74,7 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
         with.setOnClickListener(this);
 
         setCustomActionbar();
+        getAppKeyHash();
     }
 
     @Override

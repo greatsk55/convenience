@@ -27,7 +27,7 @@ public class Main_Activity extends Activity {
         getAppKeyHash();
     }
 
-    private void getAppKeyHash() {
+    public void getAppKeyHash() {
         try {
             String something="";
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
