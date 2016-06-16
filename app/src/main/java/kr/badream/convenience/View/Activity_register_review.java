@@ -134,7 +134,6 @@ public class Activity_register_review extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TODO 리뷰 등록
-
                 userID = LoginHelper.getUserID(getApplicationContext());
                 userName = LoginHelper.getUserName(getApplicationContext());
                 contents = "" + edit_contents.getText();

@@ -135,7 +135,7 @@ public class Helper_server {
             }
         });
     }
-    public static void loadStoreCategoryListWithRetrofit(final Activity context,final int userID, final int storeID, final int mainCategory){
+    public static void loadStoreCategoryListWithRetrofit(final Activity context,final int userID, final int storeID, final int mainCategory, final int listIndex){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
@@ -167,6 +167,7 @@ public class Helper_server {
                 view_item_list.putExtra("storeID",storeID);
                 view_item_list.putExtra("ctg", mainCategory);
                 view_item_list.putExtra("list", list);
+                view_item_list.putExtra("listIndex", listIndex);
                 context.startActivity(view_item_list);
             }
             @Override

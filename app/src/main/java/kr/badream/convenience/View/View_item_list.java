@@ -70,12 +70,17 @@ public class View_item_list extends AppCompatActivity {
 
     int mainCtg;
     int storeID;
+    int listIndex;
 
     @Override
     protected void onResume() {
         super.onResume();
         setCustomActionbar();
         listview.setAdapter(adapter);
+
+        listIndex = listview.getFirstVisiblePosition();
+
+        Helper_server.loadStoreCategoryListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()),storeID,mainCtg, listIndex);
     }
 
     @Override
@@ -98,6 +103,7 @@ public class View_item_list extends AppCompatActivity {
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
         mainCtg = getIntent().getIntExtra("ctg", -1);
         storeID = getIntent().getIntExtra("storeID", -1);
+        listIndex = getIntent().getIntExtra("listIndex", 0);
 
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
         for( Helper_itemData data : list){
@@ -224,6 +230,10 @@ public class View_item_list extends AppCompatActivity {
                 ad.show();
             }
         });
+
+        listview.requestFocusFromTouch();
+        adapter.notifyDataSetChanged();
+        listview.setSelection(listIndex);
 
         setCustomActionbar();
     }
