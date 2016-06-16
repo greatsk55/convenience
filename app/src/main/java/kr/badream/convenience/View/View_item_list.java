@@ -231,10 +231,9 @@ public class View_item_list extends AppCompatActivity {
             }
         });
 
-        listview.requestFocusFromTouch();
-        adapter.notifyDataSetChanged();
         listview.setSelection(listIndex);
-
+        listview.smoothScrollToPosition(listIndex);
+        Log.i("aaa", "list index : " + listIndex);
         setCustomActionbar();
     }
 
