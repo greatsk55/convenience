@@ -370,12 +370,7 @@ public class View_item_list extends AppCompatActivity {
 
         //listIndex = listview.getFirstVisiblePosition();
         Helper_server.refreshStoreCategoryListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()), storeID, mainCtg, listIndex);
-        for( Helper_itemData data : list){
-            adapter.addItem(data.prodID,data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
-        }
-        Log.e("gg","gg");
-        adapter.notifyDataSetChanged();
-//        listview.setAdapter(adapter);
+        
     }
 
 }

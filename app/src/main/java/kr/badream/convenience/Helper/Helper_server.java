@@ -209,6 +209,12 @@ public class Helper_server {
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 
+                Intent view_item_list = new Intent( context, View_item_list.class);
+                view_item_list.putExtra("storeID",storeID);
+                view_item_list.putExtra("ctg", mainCategory);
+                view_item_list.putExtra("listIndex", listIndex);
+                context.startActivity(view_item_list);
+
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
