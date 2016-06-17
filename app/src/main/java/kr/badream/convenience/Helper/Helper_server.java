@@ -357,6 +357,48 @@ public class Helper_server {
             }
         });
     }
+    public static void refreshItemInfoListWithRetrofit(final Activity context, final int userID, int prodID){
+        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(R.attr.progressBarStyle);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+        ApiInterface mApiService = Helper_server.getInterfaceService();
+        Call<Helper_itemInfo> mService = mApiService.loadItemInfoList(userID, prodID);
+
+        mService.enqueue(new Callback<Helper_itemInfo>() {
+            @Override
+            public void onResponse(Call<Helper_itemInfo> call, Response<Helper_itemInfo> response) {
+
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+                if(response.body() != null) {
+                    Helper_itemInfo mlistObject = response.body();
+
+                    for( Helper_reviewData data : mlistObject.reviewData ){
+                        Log.i("aaa", data.toString());
+                    }
+
+                    Intent activity_compare = new Intent(context, View_item_info.class);
+                    activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    activity_compare.putExtra("item_info", mlistObject);
+                    context.startActivity(activity_compare);
+                    context.finish();
+                }
+            }
+            @Override
+            public void onFailure(Call<Helper_itemInfo> call, Throwable t) {
+                call.cancel();
+
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
+
+                Toast.makeText( context, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     //리뷰 등록시 상품 상세정보
     public static void getAllItemList_to_register_review(final Activity context,final int userID, final int storeID, int mainCategory){
@@ -410,6 +452,7 @@ public class Helper_server {
             public void onResponse(Call<Helper_reviewData> call, Response<Helper_reviewData> response) {
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
+
 
                 context.finish();
             }

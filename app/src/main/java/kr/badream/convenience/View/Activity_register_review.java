@@ -27,6 +27,7 @@ import kr.badream.convenience.Adapter.Adapter_mini_list_view;
 import kr.badream.convenience.Adapter.item_mini_list_view;
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.Helper.Helper_itemData;
+import kr.badream.convenience.Helper.Helper_itemInfo;
 import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.HorizontalListView;
 import kr.badream.convenience.Helper.LoginHelper;
@@ -68,6 +69,8 @@ public class Activity_register_review extends AppCompatActivity {
         item_price = (TextView) findViewById(R.id.item_price);
         edit_contents = (EditText) findViewById(R.id.edit_contents);
 
+        Helper_itemInfo item = (Helper_itemInfo) getIntent().getSerializableExtra("item_info");
+
         adapter = new Adapter_mini_list_view();
 
         // 리스트뷰 참조 및 Adapter달기
@@ -76,29 +79,18 @@ public class Activity_register_review extends AppCompatActivity {
 //        listview = (ListView) findViewById(R.id.item_list);
         listview.setAdapter(adapter);
         adapter.addItem(0,"","아이템 추가");
+        adapter.addItem(1,item.url,item.name);
 
 
         //serach
         list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
 
         // 서버로 보낼 데이터 초기화
-        prodID = "";
+        prodID = item.prodID+",";
         userID = 0;
         userName = "";
         contents = "";
-        total_price = "";
-
-
-//        adapter.addItem("","쿵쿵따");
-//        adapter.addItem("","쿵쿵따");
-//        adapter.addItem("","쿵쿵따");
-//        adapter.addItem("","쿵쿵따");
-//        adapter.addItem("","쿵쿵따");
-//        adapter.addItem("","쿵쿵따");
-//        adapter.addItem("","쿵쿵따");
-//        adapter.addItem("","쿵쿵따");
-//        adapter.addItem("","쿵쿵따");
-
+        total_price = item.price;
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -42,6 +42,7 @@ public class View_item_info extends AppCompatActivity {
     TextView info_review_number;
 
     private Helper_itemInfo list;
+    private Helper_itemInfo item;
 
     String item_name;
 
@@ -78,7 +79,7 @@ public class View_item_info extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.review_list);
         listview.setAdapter(adapter);
 
-        final Helper_itemInfo item = (Helper_itemInfo) getIntent().getSerializableExtra("item_info");
+        item = (Helper_itemInfo) getIntent().getSerializableExtra("item_info");
         Log.e("test","test = " + item.likes);
 
         for( Helper_reviewData data : item.reviewData ){
@@ -119,6 +120,7 @@ public class View_item_info extends AppCompatActivity {
                     Helper_server.getAllItemList_to_register_review(View_item_info.this, LoginHelper.getUserID(getApplicationContext()), 10, 0);
                     Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
                     activity_register_review.putExtra("list", list);
+                    activity_register_review.putExtra("item_info", item);
                     startActivity(activity_register_review);
                 }
                 else{
@@ -129,7 +131,6 @@ public class View_item_info extends AppCompatActivity {
         });
         setCustomActionbar();
     }
-
     private void setCustomActionbar() {
 
         ActionBar actionBar = getSupportActionBar();
@@ -173,5 +174,11 @@ public class View_item_info extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        Helper_server.refreshItemInfoListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()), item.prodID);
     }
 }
