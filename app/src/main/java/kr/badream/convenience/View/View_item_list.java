@@ -290,7 +290,7 @@ public class View_item_list extends AppCompatActivity {
             //전체 보기
             case ALL_SUBCATEGORY:
                 for( Helper_itemData data : list){
-                    adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+                    adapter.addItem(data.prodID, data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
                 }
                 if(array == 1){
                     Collections.sort(list, Helper_sort.comparator_Item_list_view_review);
@@ -300,7 +300,7 @@ public class View_item_list extends AppCompatActivity {
             case JUMUKBAP:
                 for( Helper_itemData data : list){
                     if(data.name.charAt(0)=='주'){
-                        adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+                        adapter.addItem(data.prodID, data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
                     }
                 }
                 if(array == 1){
@@ -312,7 +312,7 @@ public class View_item_list extends AppCompatActivity {
             case DOSIRAK:
                 for( Helper_itemData data : list){
                     if(data.name.charAt(0)=='도' && !data.name.contains("도너츠")){
-                        adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+                        adapter.addItem(data.prodID, data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
                     }
                 }
                 if(array == 1){
@@ -325,7 +325,7 @@ public class View_item_list extends AppCompatActivity {
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)=='햄'){
-                            adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+                            adapter.addItem(data.prodID, data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
                         }
                     }
                 break;
@@ -334,7 +334,7 @@ public class View_item_list extends AppCompatActivity {
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)=='김'){
-                            adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+                            adapter.addItem(data.prodID, data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
                         }
                     }
                 break;
@@ -343,7 +343,7 @@ public class View_item_list extends AppCompatActivity {
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)=='샌'){
-                            adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+                            adapter.addItem(data.prodID, data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
                         }
                     }
                 break;
@@ -352,11 +352,12 @@ public class View_item_list extends AppCompatActivity {
                 if(array == 0)
                     for( Helper_itemData data : list){
                         if(data.name.charAt(0)!='주' && data.name.charAt(0) !='샌' && data.name.charAt(0)!='김'&& (data.name.charAt(0)!='도'|| data.name.contains("도너츠")) && data.name.charAt(0)!='햄'){
-                            adapter.addItem(data.prodID,data.url, data.name, data.price, 0, 0, data.storeID);
+                            adapter.addItem(data.prodID, data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
                         }
                     }
                 break;
         }
+
 
 
         adapter.notifyDataSetChanged();
