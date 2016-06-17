@@ -76,14 +76,9 @@ public class Activity_register_review extends AppCompatActivity {
         // 리스트뷰 참조 및 Adapter달기
         HorizontalListView listview = (HorizontalListView) findViewById(R.id.item_list);
 
-//        listview = (ListView) findViewById(R.id.item_list);
         listview.setAdapter(adapter);
         adapter.addItem(0,"","아이템 추가");
         adapter.addItem(1,item.url,item.name);
-
-
-        //serach
-        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
 
         // 서버로 보낼 데이터 초기화
         prodID = item.prodID+",";
@@ -143,7 +138,7 @@ public class Activity_register_review extends AppCompatActivity {
     private  void setSearch(View layout, final AlertDialog ad){
 
         final ArrayAdapter<Helper_itemData> add_adapter = new ArrayAdapter<Helper_itemData>
-                (this, android.R.layout.simple_dropdown_item_1line, list);
+                (this, android.R.layout.simple_dropdown_item_1line, View_item_list.list);
 
         final AutoCompleteTextView text = (AutoCompleteTextView) layout.findViewById(R.id.edit_search);
 

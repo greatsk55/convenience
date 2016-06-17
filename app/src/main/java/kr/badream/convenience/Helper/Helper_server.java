@@ -110,18 +110,16 @@ public class Helper_server {
         mService.enqueue(new Callback<List<Helper_mapData>>() {
             @Override
             public void onResponse(Call<List<Helper_mapData>> call, Response<List<Helper_mapData>> response) {
-                ArrayList<Helper_mapData> list;
-                list = new ArrayList<Helper_mapData>();
+
                 List<Helper_mapData> mlistObject = response.body();
 
+                Activity_map.map_data = new ArrayList<Helper_mapData>();
                 for( Helper_mapData data : mlistObject) {
-                    list.add(data);
+                    Activity_map.map_data.add(data);
                 }
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 
-
-                Activity_map.map_data = list;
                 Intent activity_map = new Intent( context , Activity_map.class);
                 activity_map.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 activity_map.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -156,12 +154,10 @@ public class Helper_server {
 
                 List<Helper_itemData> mlistObject = response.body();
 
-                ArrayList<Helper_itemData> list = new ArrayList<Helper_itemData>();
-
                 //여기서 초기화 안해줘서 계속 중첩하며 아이템 증가함
-                list = new ArrayList<Helper_itemData>();
+                View_item_list.list = new ArrayList<Helper_itemData>();
                 for( Helper_itemData data : mlistObject) {
-                    list.add(data);
+                    View_item_list.list.add(data);
                 }
 
                 if (mProgressDialog.isShowing())
@@ -171,7 +167,7 @@ public class Helper_server {
                 Intent view_item_list = new Intent( context, View_item_list.class);
                 view_item_list.putExtra("storeID",storeID);
                 view_item_list.putExtra("ctg", mainCategory);
-                view_item_list.putExtra("list", list);
+//                view_item_list.putExtra("list", list);
                 view_item_list.putExtra("listIndex", listIndex);
                 context.startActivity(view_item_list);
             }
@@ -203,25 +199,16 @@ public class Helper_server {
 
                 List<Helper_itemData> mlistObject = response.body();
 
-                ArrayList<Helper_itemData> list = new ArrayList<Helper_itemData>();
 
                 //여기서 초기화 안해줘서 계속 중첩하며 아이템 증가함
-                list = new ArrayList<Helper_itemData>();
+                View_item_list.list = new ArrayList<Helper_itemData>();
                 for( Helper_itemData data : mlistObject) {
-                    list.add(data);
+                    View_item_list.list.add(data);
                 }
 
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 
-
-                Intent view_item_list = new Intent( context, View_item_list.class);
-                view_item_list.putExtra("storeID",storeID);
-                view_item_list.putExtra("ctg", mainCategory);
-                view_item_list.putExtra("list", list);
-                view_item_list.putExtra("listIndex", listIndex);
-                context.startActivity(view_item_list);
-                context.finish();
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
@@ -251,11 +238,12 @@ public class Helper_server {
             @Override
             public void onResponse(Call<List<Helper_itemData>> call, Response<List<Helper_itemData>> response) {
                 ArrayList<Helper_itemData> list;
-                list = new ArrayList<Helper_itemData>();
                 List<Helper_itemData> mlistObject = response.body();
 
+
+                View_item_list.list = new ArrayList<Helper_itemData>();
                 for( Helper_itemData data : mlistObject) {
-                    list.add(data);
+                    View_item_list.list.add(data);
                 }
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
@@ -263,7 +251,6 @@ public class Helper_server {
                 Intent activity_compare = new Intent( context , Activity_Search.class);
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                activity_compare.putExtra("list", list);
                 context.startActivity(activity_compare);
 
             }
@@ -437,6 +424,7 @@ public class Helper_server {
             }
         });
     }
+
     //리뷰 등록 요청
     public static void postReviewWithRetrofit(final Activity context, final int userID, String userName, String prodID, String price, String contents){
         final ProgressDialog mProgressDialog = new ProgressDialog(context);

@@ -119,7 +119,6 @@ public class View_item_info extends AppCompatActivity {
                     //모든카테고리 list 로 부르기
                     Helper_server.getAllItemList_to_register_review(View_item_info.this, LoginHelper.getUserID(getApplicationContext()), 10, 0);
                     Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
-                    activity_register_review.putExtra("list", list);
                     activity_register_review.putExtra("item_info", item);
                     startActivity(activity_register_review);
                 }

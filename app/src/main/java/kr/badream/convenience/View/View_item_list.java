@@ -38,6 +38,9 @@ import kr.badream.convenience.R;
 //TODO 소스 정리 해야할듯
 public class View_item_list extends AppCompatActivity {
 
+    //전체 리스트
+    public static  ArrayList<Helper_itemData> list;
+
     public static final int REQUEST_LIST = 100;
 
     public final int ALL_SUBCATEGORY=0;
@@ -50,8 +53,6 @@ public class View_item_list extends AppCompatActivity {
 
     private View drawerView;
     private DrawerLayout dlDrawer;
-
-    private ArrayList<Helper_itemData> list;
 
     ListView listview;
     Adapter_list_view adapter;
@@ -100,7 +101,7 @@ public class View_item_list extends AppCompatActivity {
 
         btn_ctg_item.setClickable(true);
 
-        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
+//        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
         mainCtg = getIntent().getIntExtra("ctg", -1);
         storeID = getIntent().getIntExtra("storeID", -1);
         listIndex = getIntent().getIntExtra("listIndex", 0);
@@ -366,8 +367,15 @@ public class View_item_list extends AppCompatActivity {
     @Override
     public void onRestart(){
         super.onRestart();
-        listIndex = listview.getFirstVisiblePosition();
+
+        //listIndex = listview.getFirstVisiblePosition();
         Helper_server.refreshStoreCategoryListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()), storeID, mainCtg, listIndex);
+        for( Helper_itemData data : list){
+            adapter.addItem(data.prodID,data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
+        }
+        Log.e("gg","gg");
+        adapter.notifyDataSetChanged();
+//        listview.setAdapter(adapter);
     }
 
 }

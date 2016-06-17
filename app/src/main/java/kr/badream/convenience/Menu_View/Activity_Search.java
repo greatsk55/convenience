@@ -21,13 +21,12 @@ import kr.badream.convenience.Helper.Helper_itemData;
 import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.LoginHelper;
 import kr.badream.convenience.R;
+import kr.badream.convenience.View.View_item_list;
 
 public class Activity_Search extends AppCompatActivity {
 
     View drawerView;
     DrawerLayout dlDrawer;
-
-    private ArrayList<Helper_itemData> list;
 
     @Override
     protected void onResume() {
@@ -42,10 +41,8 @@ public class Activity_Search extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         setCustomActionbar();
 
-        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
-
         final ArrayAdapter<Helper_itemData> adapter = new ArrayAdapter<Helper_itemData>
-                (this, android.R.layout.simple_dropdown_item_1line, list);
+                (this, android.R.layout.simple_dropdown_item_1line, View_item_list.list);
 
         final AutoCompleteTextView text = (AutoCompleteTextView)
                 findViewById(R.id.edit_search);
