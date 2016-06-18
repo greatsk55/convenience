@@ -333,9 +333,11 @@ public class Helper_server {
                         Log.i("aaa", data.toString());
                     }
 
+                    // 아이템 정보 전역변수
+                    View_item_info.item = mlistObject;
+
                     Intent activity_compare = new Intent(context, View_item_info.class);
                     activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    activity_compare.putExtra("item_info", mlistObject);
                     context.startActivity(activity_compare);
                 }
             }
@@ -375,7 +377,7 @@ public class Helper_server {
                     }
 
                     Intent activity_compare = new Intent(context, View_item_info.class);
-                    activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    activity_compare.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     activity_compare.putExtra("item_info", mlistObject);
                     context.startActivity(activity_compare);
                     context.finish();

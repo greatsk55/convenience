@@ -41,8 +41,7 @@ public class View_item_info extends AppCompatActivity {
     Button info_btn_review_write;
     TextView info_review_number;
 
-    private Helper_itemInfo list;
-    private Helper_itemInfo item;
+    public static Helper_itemInfo item;
 
     String item_name;
 
@@ -66,8 +65,6 @@ public class View_item_info extends AppCompatActivity {
         info_btn_review_write = (Button) findViewById(R.id.info_btn_review_write) ;
         info_review_number = (TextView) findViewById(R.id.info_review_number) ;
 
-//        list = (Helper_itemInfo) getIntent().getSerializableExtra("list");
-
         //로그인 체크
         if(LoginHelper.isLogin(getApplicationContext()))    isLogin = true;
         else isLogin = false;
@@ -79,7 +76,6 @@ public class View_item_info extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.review_list);
         listview.setAdapter(adapter);
 
-        item = (Helper_itemInfo) getIntent().getSerializableExtra("item_info");
         Log.e("test","test = " + item.likes);
 
         for( Helper_reviewData data : item.reviewData ){
@@ -98,6 +94,8 @@ public class View_item_info extends AppCompatActivity {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 // get item
                 Helper_reviewData item = (Helper_reviewData) parent.getItemAtPosition(position);
+
+                // 리뷰 리스트 클릭시
             }
         });
 
@@ -119,7 +117,6 @@ public class View_item_info extends AppCompatActivity {
                     //모든카테고리 list 로 부르기
                     Helper_server.getAllItemList_to_register_review(View_item_info.this, LoginHelper.getUserID(getApplicationContext()), 10, 0);
                     Intent activity_register_review = new Intent(getApplicationContext(), Activity_register_review.class);
-                    activity_register_review.putExtra("item_info", item);
                     startActivity(activity_register_review);
                 }
                 else{

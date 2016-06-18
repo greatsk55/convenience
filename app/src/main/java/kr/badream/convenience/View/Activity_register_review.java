@@ -69,8 +69,6 @@ public class Activity_register_review extends AppCompatActivity {
         item_price = (TextView) findViewById(R.id.item_price);
         edit_contents = (EditText) findViewById(R.id.edit_contents);
 
-        Helper_itemInfo item = (Helper_itemInfo) getIntent().getSerializableExtra("item_info");
-
         adapter = new Adapter_mini_list_view();
 
         // 리스트뷰 참조 및 Adapter달기
@@ -78,14 +76,14 @@ public class Activity_register_review extends AppCompatActivity {
 
         listview.setAdapter(adapter);
         adapter.addItem(0,"","아이템 추가");
-        adapter.addItem(1,item.url,item.name);
+        adapter.addItem(1, View_item_info.item.url, View_item_info.item.name);
 
         // 서버로 보낼 데이터 초기화
-        prodID = item.prodID+",";
+        prodID = View_item_info.item.prodID+",";
         userID = 0;
         userName = "";
         contents = "";
-        total_price = item.price;
+        total_price = View_item_info.item.price;
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
