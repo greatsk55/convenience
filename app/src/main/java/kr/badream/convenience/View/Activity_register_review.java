@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import kr.badream.convenience.Adapter.Adapter_mini_list_view;
 import kr.badream.convenience.Adapter.item_mini_list_view;
@@ -111,8 +113,6 @@ public class Activity_register_review extends AppCompatActivity {
                     setSearch(layout,ad);
                     ad.show();
                 }
-
-
             }
         });
 
@@ -124,12 +124,45 @@ public class Activity_register_review extends AppCompatActivity {
                 contents = "" + edit_contents.getText();
                 Log.e("print register", " = " + userID + " " + userName + " " + prodID + " "+ total_price + " " + contents );
 
+                // 특수문자 필터링을 위해 특수문자를 정의
+                contents = Patterns.cleanAllTags(contents);
+                contents = Patterns.cleanEntityTags(contents);
+                contents = Patterns.cleanHtmlXmlTags(contents);
+                contents = Patterns.cleanScriptTags(contents);
+                contents = Patterns.cleanStyleTags(contents);
+                contents = Patterns.cleanWhiteSpace(contents);
+                contents = Patterns.specialCharProcess("CLEAN", contents);
+
+                // 특수 구문 필터링 (데이터베이스가 Oracle 인 경우)
+                String test_str_low= contents.toLowerCase();
+                if(test_str_low.contains("union") || test_str_low.contains("select") || test_str_low.contains("insert") || test_str_low.contains("drop") || test_str_low.contains("update") || test_str_low.contains("delete") || test_str_low.contains("join") || test_str_low.contains("from") || test_str_low.contains("where") || test_str_low.contains("substr") || test_str_low.contains("user_tables") || test_str_low.contains("user_tab_columns"))                {
+                    contents = test_str_low;
+                    contents = contents.replaceAll("union", "q-union");
+                    contents = contents.replaceAll("select", "q-select");
+                    contents = contents.replaceAll("insert", "q-insert");
+                    contents = contents.replaceAll("drop", "q-drop");
+                    contents = contents.replaceAll("update", "q-update");
+                    contents = contents.replaceAll("delete", "q-delete");
+                    contents = contents.replaceAll("and", "q-and");
+                    contents = contents.replaceAll("or", "q-or");
+                    contents = contents.replaceAll("join", "q-join");
+                    contents = contents.replaceAll("substr", "q-substr");
+                    contents = contents.replaceAll("from", "q-from");
+                    contents = contents.replaceAll("where", "q-where");
+                    contents = contents.replaceAll("declare", "q-declare");
+                    contents = contents.replaceAll("openrowset", "q-openrowset");
+                    contents = contents.replaceAll("user_tables","q-user_tables");
+                    contents = contents.replaceAll("user_tab_columns","q-user_tab_columns");
+                    contents = contents.replaceAll("table_name","q-table_name");
+                    contents = contents.replaceAll("column_name","q-column_name");
+                    contents = contents.replaceAll("row_num","q-row_num");
+                }
+
+
                 Helper_server.postReviewWithRetrofit(Activity_register_review.this, userID, userName, prodID, total_price, contents);
             }
         });
-
         setCustomActionbar();
-
     }
 
 
@@ -233,5 +266,130 @@ public class Activity_register_review extends AppCompatActivity {
                 dlDrawer.openDrawer(drawerView);
             }
         });
+    }
+}
+
+
+class Patterns {
+    // javascript tags and everything in between
+    public static final Pattern SCRIPTS = Pattern.compile("<(no)?script[^>]*>.*?</(no)?script>", Pattern.DOTALL);
+    public static final Pattern STYLE = Pattern.compile("<style[^>]*>.*</style>", Pattern.DOTALL);
+
+    // HTML/XML tags
+    public static final Pattern TAGS = Pattern.compile("<(\"[^\"]*\"|\'[^\']*\'|[^\'\">])*>");
+    public static final Pattern nTAGS = Pattern.compile("<\\w+\\s+[^<]*\\s*>");
+
+    // entity references
+    public static final Pattern ENTITY_REFS = Pattern.compile("&[^;]+;");
+    // repeated whitespace
+    public static final Pattern WHITESPACE = Pattern.compile("\\s\\s+");
+
+    public static final Pattern SPECIAL_CHAR = Pattern.compile("[^\"'\\{\\}\\[\\]/?.,;:|\\)\\(*~`!^\\-_+<>@#$%^\\\\=]");
+
+
+    /**
+     * Clean the HTML input.
+     */
+    public static String cleanAllTags(String s) {
+        if (s == null) {
+            return null;
+        }
+        Matcher m;
+
+        m = Patterns.SCRIPTS.matcher(s);
+        s = m.replaceAll("");
+        m = Patterns.STYLE.matcher(s);
+        s = m.replaceAll("");
+        m = Patterns.TAGS.matcher(s);
+        s = m.replaceAll("");
+        m = Patterns.ENTITY_REFS.matcher(s);
+        s = m.replaceAll("");
+        m = Patterns.WHITESPACE.matcher(s);
+        s = m.replaceAll(" ");
+
+        return s;
+    }
+
+    public static String cleanScriptTags(String s) {
+        if (s == null) {
+            return null;
+        }
+
+        Matcher m;
+
+        m = Patterns.SCRIPTS.matcher(s);
+        s = m.replaceAll("");
+
+        return s;
+    }
+    public static String cleanStyleTags(String s) {
+        if (s == null) {
+            return null;
+        }
+
+        Matcher m;
+
+        m = Patterns.STYLE.matcher(s);
+        s = m.replaceAll("");
+
+        return s;
+    }
+    public static String cleanHtmlXmlTags(String s) {
+        if (s == null) {
+            return null;
+        }
+
+        Matcher m;
+
+        m = Patterns.TAGS.matcher(s);
+        s = m.replaceAll("");
+
+        return s;
+    }
+    public static String cleanEntityTags(String s) {
+        if (s == null) {
+            return null;
+        }
+
+        Matcher m;
+
+        m = Patterns.ENTITY_REFS.matcher(s);
+        s = m.replaceAll("");
+
+        return s;
+    }
+    public static String cleanWhiteSpace(String s) {
+        if (s == null) {
+            return null;
+        }
+
+        Matcher m;
+
+        m = Patterns.WHITESPACE.matcher(s);
+        s = m.replaceAll(" ");
+
+        return s;
+    }
+
+    public static String specialCharProcess(String type, String s) {
+        if (s == null) {
+            return null;
+        }
+
+        Matcher m;
+
+        m = Patterns.SPECIAL_CHAR.matcher(s);
+
+        if("GET".equals(type)){
+            StringBuffer buffer = new StringBuffer();
+            while (m.find()) {
+                m.appendReplacement(buffer, s);
+            }
+            s = buffer.toString();
+        }else if("CLEAN".equals(type)){
+            s = m.replaceAll("");
+        }
+
+        return s;
     }
 }
