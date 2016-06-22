@@ -46,18 +46,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private CallbackManager callbackManager;
     private Button button;
 
-    //TODO 지도 퍼미션 추가하기
-    private PermissionListener permissionlistener = new PermissionListener() {
-        @Override
-        public void onPermissionGranted() {
-            //Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-            //Toast.makeText(MainActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-        }
-    };
     private void init(){
         //akButton = (BootstrapButton) findViewById(R.id.ak_login);
         button = (Button) findViewById(R.id.ak_login);
