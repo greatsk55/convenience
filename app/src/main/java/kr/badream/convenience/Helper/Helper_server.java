@@ -214,7 +214,7 @@ public class Helper_server {
                 view_item_list.putExtra("ctg", mainCategory);
                 view_item_list.putExtra("listIndex", listIndex);
                 context.startActivity(view_item_list);
-
+                context.finish();
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {

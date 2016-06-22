@@ -1,5 +1,6 @@
 package kr.badream.convenience.View;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -17,7 +18,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
 import java.security.MessageDigest;
+import java.util.ArrayList;
 
 import kr.badream.convenience.Helper.Define_menu_click;
 import kr.badream.convenience.R;
@@ -32,6 +37,19 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
 
     View drawerView;
     DrawerLayout dlDrawer;
+
+    //TODO 지도 퍼미션 추가하기
+    private PermissionListener permissionlistener = new PermissionListener() {
+        @Override
+        public void onPermissionGranted() {
+            //Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+            //Toast.makeText(MainActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     protected void onResume() {
@@ -60,6 +78,12 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conview);
+
+        new TedPermission(this)
+                .setPermissionListener(permissionlistener)
+                .setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.RECEIVE_SMS, Manifest.permission.ACCESS_COARSE_LOCATION
+                ,Manifest.permission.ACCESS_FINE_LOCATION)
+                .check();
 
         cu = (ImageView) findViewById(R.id.cu_image);
         gs25 = (ImageView) findViewById(R.id.ge25_image);

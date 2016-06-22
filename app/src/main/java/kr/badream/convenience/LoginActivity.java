@@ -65,12 +65,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         fbButton.setText("페이스북으로 로그인");
         fbButton.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
 
-        new TedPermission(this)
-                .setPermissionListener(permissionlistener)
-                .setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.RECEIVE_SMS)
-                .check();
-
-
         fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(final LoginResult loginResult) {

@@ -9,8 +9,8 @@ android {
         applicationId "kr.badream.convenience"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.6"
         multiDexEnabled true
     }
     signingConfigs {
