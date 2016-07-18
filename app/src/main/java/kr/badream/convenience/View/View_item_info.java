@@ -29,28 +29,47 @@ import kr.badream.convenience.R;
 
 public class View_item_info extends AppCompatActivity {
 
-    View drawerView;
-    DrawerLayout dlDrawer;
+    public View drawerView;
+    public DrawerLayout dlDrawer;
 
-    ListView listview;
-    Adapter_review_list_view adapter;
+    public ListView listview;
+    public Adapter_review_list_view adapter;
 
-    ImageView info_image;
-    TextView info_price;
-    Button info_btn_like;
-    Button info_btn_review_write;
-    TextView info_review_number;
+    public ImageView info_image;
+    public TextView info_price;
+    public Button info_btn_like;
+    public Button info_btn_review_write;
+    public TextView info_review_number;
+
+    public String item_name;
+
+    public boolean isLogin;
 
     public static Helper_itemInfo item;
-
-    String item_name;
-
-    boolean isLogin;
 
     @Override
     protected void onResume() {
         super.onResume();
         setCustomActionbar();
+    }
+
+    public void updateActivity(){
+        adapter = new Adapter_review_list_view();
+
+        // 리스트뷰 참조 및 Adapter달기
+        listview = (ListView) findViewById(R.id.review_list);
+        listview.setAdapter(adapter);
+
+        for( Helper_reviewData data : item.reviewData ){
+            adapter.addItem(data.url, data.userName, data.price, data.likes, data.contents);
+        }
+
+        Glide.with(getApplicationContext()).load(item.url).into(info_image);
+        info_price.setText(item.price);
+        info_btn_like.setText(""+item.likes);
+        info_review_number.setText(""+item.reviews);
+
+        item_name= item.name;
     }
 
     @Override
@@ -176,5 +195,6 @@ public class View_item_info extends AppCompatActivity {
     public void onRestart(){
         super.onRestart();
         Helper_server.refreshItemInfoListWithRetrofit(this, LoginHelper.getUserID(getApplicationContext()), item.prodID);
+        updateActivity();
     }
 }

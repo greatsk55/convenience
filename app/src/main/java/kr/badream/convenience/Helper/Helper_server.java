@@ -170,6 +170,7 @@ public class Helper_server {
 //                view_item_list.putExtra("list", list);
                 view_item_list.putExtra("listIndex", listIndex);
                 context.startActivity(view_item_list);
+                context.finish();
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
@@ -258,6 +259,7 @@ public class Helper_server {
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 activity_compare.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(activity_compare);
+                context.finish();
 
             }
             @Override
@@ -291,10 +293,15 @@ public class Helper_server {
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 
+                for( Helper_reviewData data : mlistObject.reviewData ){
+                    Log.i("aaa", data.toString());
+                }
+
+                View_item_info.item = mlistObject;
+
                 Intent intent = new Intent(context, View_item_info.class);
                 intent.putExtra("item_info", mlistObject);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(intent);
                 context.finish();
             }
@@ -376,11 +383,13 @@ public class Helper_server {
                         Log.i("aaa", data.toString());
                     }
 
-                    Intent activity_compare = new Intent(context, View_item_info.class);
-                    activity_compare.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    activity_compare.putExtra("item_info", mlistObject);
-                    context.startActivity(activity_compare);
-                    context.finish();
+                    View_item_info.item = mlistObject;
+
+                    //Intent activity_compare = new Intent(context, View_item_info.class);
+                    //activity_compare.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    //activity_compare.putExtra("item_info", mlistObject);
+                    //context.startActivity(activity_compare);
+                    //context.finish();
                 }
             }
             @Override

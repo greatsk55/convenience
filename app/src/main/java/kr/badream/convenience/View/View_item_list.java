@@ -39,7 +39,7 @@ import kr.badream.convenience.R;
 public class View_item_list extends AppCompatActivity {
 
     //전체 리스트
-    public static  ArrayList<Helper_itemData> list;
+    public static ArrayList<Helper_itemData> list;
 
     public static final int REQUEST_LIST = 100;
 

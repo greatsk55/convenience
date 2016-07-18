@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -108,25 +109,30 @@ public class Activity_conView extends AppCompatActivity implements View.OnClickL
         switch(v.getId()){
             case R.id.cu_image:
                 ctgview_intent.putExtra("storeID", 1);
+                startActivity(ctgview_intent);
                 break;
 
             case R.id.withme_image:
                 ctgview_intent.putExtra("storeID", 2);
+                startActivity(ctgview_intent);
                 break;
 
             case R.id.ge25_image:
                 ctgview_intent.putExtra("storeID", 3);
+                startActivity(ctgview_intent);
                 break;
 
             case R.id.seven_image:
                 ctgview_intent.putExtra("storeID", 4);
+                Toast.makeText(getApplicationContext(), "구현중 . . .", Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.ministop_image:
                 ctgview_intent.putExtra("storeID", 5);
+                Toast.makeText(getApplicationContext(), "구현중 . . .", Toast.LENGTH_LONG).show();
                 break;
         }
-        startActivity(ctgview_intent);
+        //startActivity(ctgview_intent);
     }
 
     private void setCustomActionbar(){
