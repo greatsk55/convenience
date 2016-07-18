@@ -29,6 +29,7 @@ import kr.badream.convenience.Helper.Helper_itemInfo;
 import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.Helper_sort;
 import kr.badream.convenience.Helper.LoginHelper;
+import kr.badream.convenience.Helper.MyCallback;
 import kr.badream.convenience.R;
 
 /**
@@ -54,27 +55,49 @@ public class View_item_list extends AppCompatActivity {
     private View drawerView;
     private DrawerLayout dlDrawer;
 
-    ListView listview;
-    Adapter_list_view adapter;
+    public ListView listview;
+    public Adapter_list_view adapter;
 
-    TextView btn_ctg_item;
-    TextView btn_ctg_array;
+    public TextView btn_ctg_item;
+    public TextView btn_ctg_array;
 
-    RadioGroup rd;
-    RadioButton r0;
-    RadioButton r1;
-    RadioButton r2;
-    RadioButton r3;
-    RadioButton r4;
-    RadioButton r5;
-    RadioButton r6;
+    public RadioGroup rd;
+    public RadioButton r0;
+    public RadioButton r1;
+    public RadioButton r2;
+    public RadioButton r3;
+    public RadioButton r4;
+    public RadioButton r5;
+    public RadioButton r6;
 
-    int state_ctg_item;
-    int state_array_item;
+    public int state_ctg_item;
+    public int state_array_item;
 
-    int mainCtg;
-    int storeID;
-    int listIndex;
+    public static int mainCtg;
+    public static int storeID;
+    public static int listIndex;
+
+
+    public static MyCallback mCallback;
+
+    public void updateActivity(){
+        // Adapter 생성
+        adapter = new Adapter_list_view();
+        // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
+        for( Helper_itemData data : list){
+            adapter.addItem(data.prodID,data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
+        }
+        adapter.notifyDataSetChanged();
+
+        listview.setAdapter(adapter);
+
+        listview.setSelection(listIndex);
+        listview.smoothScrollToPosition(listIndex);
+        adapter.notifyDataSetChanged();
+        Log.i("aaa", "list index : " + listIndex);
+
+
+    }
 
     @Override
     protected void onResume() {
@@ -101,11 +124,6 @@ public class View_item_list extends AppCompatActivity {
 
         btn_ctg_item.setClickable(true);
 
-//        list = (ArrayList<Helper_itemData>) getIntent().getSerializableExtra("list");
-        mainCtg = getIntent().getIntExtra("ctg", -1);
-        storeID = getIntent().getIntExtra("storeID", -1);
-        listIndex = getIntent().getIntExtra("listIndex", 0);
-
         // 1.이미지, 2.물품이름, 3.가격, 4.좋아요수, 5.리뷰수 6.편의점 이미지
         for( Helper_itemData data : list){
             adapter.addItem(data.prodID,data.url, data.name, data.price, data.likes, data.reviews, data.storeID);
@@ -113,6 +131,13 @@ public class View_item_list extends AppCompatActivity {
 
         state_ctg_item = 0;
         state_array_item = 0;
+
+        mCallback = new MyCallback() {
+            @Override
+            public void refreshMainActivity() {
+                updateActivity();
+            }
+        };
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

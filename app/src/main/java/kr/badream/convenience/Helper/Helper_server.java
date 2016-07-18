@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -164,13 +165,12 @@ public class Helper_server {
                     mProgressDialog.dismiss();
 
 
+                View_item_list.storeID = storeID;
+                View_item_list.listIndex = listIndex;
+                View_item_list.mainCtg = mainCategory;
+
                 Intent view_item_list = new Intent( context, View_item_list.class);
-                view_item_list.putExtra("storeID",storeID);
-                view_item_list.putExtra("ctg", mainCategory);
-//                view_item_list.putExtra("list", list);
-                view_item_list.putExtra("listIndex", listIndex);
                 context.startActivity(view_item_list);
-                context.finish();
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
@@ -200,7 +200,6 @@ public class Helper_server {
 
                 List<Helper_itemData> mlistObject = response.body();
 
-
                 //여기서 초기화 안해줘서 계속 중첩하며 아이템 증가함
                 View_item_list.list = new ArrayList<Helper_itemData>();
                 for( Helper_itemData data : mlistObject) {
@@ -211,11 +210,8 @@ public class Helper_server {
                     mProgressDialog.dismiss();
 
                 Intent view_item_list = new Intent( context, View_item_list.class);
-                view_item_list.putExtra("storeID",storeID);
-                view_item_list.putExtra("ctg", mainCategory);
-                view_item_list.putExtra("listIndex", listIndex);
-                context.startActivity(view_item_list);
-                context.finish();
+
+                View_item_list.mCallback.refreshMainActivity();
             }
             @Override
             public void onFailure(Call<List<Helper_itemData>> call, Throwable t) {
@@ -293,17 +289,15 @@ public class Helper_server {
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
 
-                for( Helper_reviewData data : mlistObject.reviewData ){
-                    Log.i("aaa", data.toString());
-                }
-
                 View_item_info.item = mlistObject;
 
-                Intent intent = new Intent(context, View_item_info.class);
-                intent.putExtra("item_info", mlistObject);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-                context.finish();
+                View_item_info.mCallback.refreshMainActivity();
+
+                //Intent intent = new Intent(context, View_item_info.class);
+                //intent.putExtra("item_info", mlistObject);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                //context.startActivity(intent);
+                //context.finish();
             }
             @Override
             public void onFailure(Call<Helper_itemInfo> call, Throwable t) {
@@ -379,17 +373,7 @@ public class Helper_server {
                 if(response.body() != null) {
                     Helper_itemInfo mlistObject = response.body();
 
-                    for( Helper_reviewData data : mlistObject.reviewData ){
-                        Log.i("aaa", data.toString());
-                    }
-
                     View_item_info.item = mlistObject;
-
-                    //Intent activity_compare = new Intent(context, View_item_info.class);
-                    //activity_compare.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    //activity_compare.putExtra("item_info", mlistObject);
-                    //context.startActivity(activity_compare);
-                    //context.finish();
                 }
             }
             @Override

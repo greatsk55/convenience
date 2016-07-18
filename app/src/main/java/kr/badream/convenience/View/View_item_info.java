@@ -25,6 +25,7 @@ import kr.badream.convenience.Helper.Helper_itemInfo;
 import kr.badream.convenience.Helper.Helper_reviewData;
 import kr.badream.convenience.Helper.Helper_server;
 import kr.badream.convenience.Helper.LoginHelper;
+import kr.badream.convenience.Helper.MyCallback;
 import kr.badream.convenience.R;
 
 public class View_item_info extends AppCompatActivity {
@@ -47,6 +48,8 @@ public class View_item_info extends AppCompatActivity {
 
     public static Helper_itemInfo item;
 
+    public static MyCallback mCallback;
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -55,7 +58,6 @@ public class View_item_info extends AppCompatActivity {
 
     public void updateActivity(){
         adapter = new Adapter_review_list_view();
-
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView) findViewById(R.id.review_list);
         listview.setAdapter(adapter);
@@ -64,7 +66,9 @@ public class View_item_info extends AppCompatActivity {
             adapter.addItem(data.url, data.userName, data.price, data.likes, data.contents);
         }
 
+
         Glide.with(getApplicationContext()).load(item.url).into(info_image);
+
         info_price.setText(item.price);
         info_btn_like.setText(""+item.likes);
         info_review_number.setText(""+item.reviews);
@@ -76,6 +80,13 @@ public class View_item_info extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_info);
+
+        mCallback = new MyCallback() {
+            @Override
+            public void refreshMainActivity() {
+                updateActivity();
+            }
+        };
 
         // 레이아웃 설정
         info_image = (ImageView) findViewById(R.id.info_image) ;
