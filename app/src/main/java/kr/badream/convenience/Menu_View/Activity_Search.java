@@ -95,7 +95,7 @@ public class Activity_Search extends AppCompatActivity {
         // set actionbar backgroung image
         actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.activity_main_background));
         TextView act_title = (TextView) findViewById(R.id.actionbar_title);
-        act_title.setText("내가 쓴 리뷰");
+        act_title.setText("상품 검색");
         //set actionbar layout layoutparams
 //        ActionBar.LayoutParams params = new ActionBar.LayoutParams((ActionBar.LayoutParams.MATCH_PARENT));
 //        actionBar.setCustomView(mCustomView, params);
