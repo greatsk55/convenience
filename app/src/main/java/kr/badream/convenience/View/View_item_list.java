@@ -36,6 +36,25 @@ import kr.badream.convenience.R;
  * Created by Administrator on 2016-06-04.
  */
 
+
+//GS
+//MC 간편 is
+//1 1 = 도시락
+//1 2 = 삼각김밥
+//1 3 = 샌드위치
+//
+//inst 1 = 버거
+//2 = 찌개류
+//3 = 라면류
+//4 = 핫바
+//5 = 치킨 피자
+//food 1 = 계란
+//2 = 빵
+//3 = 반찬
+//4 = 기타
+
+
+
 //TODO 소스 정리 해야할듯
 public class View_item_list extends AppCompatActivity {
 
