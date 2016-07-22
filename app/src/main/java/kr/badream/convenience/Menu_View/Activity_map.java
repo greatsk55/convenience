@@ -103,7 +103,16 @@ public class Activity_map extends ActionBarActivity implements LocationListener 
 //
         for( Helper_mapData data : map_data){
             LatLng position = new LatLng(Double.parseDouble(data.latitude), Double.parseDouble(data.longitude));
-            map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.mini_cu)).position(position).title("cu " + data.storeName));
+
+            switch( data.storeID ){
+                case 1 :
+                    map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.mini_cu)).position(position).title("cu " + data.storeName));
+                    break;
+                case 2 :
+                    map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.mini_gs25)).position(position).title("gs25 " + data.storeName));
+                    break;
+            }
+
         }
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.6082699933, 126.999125684),7));
