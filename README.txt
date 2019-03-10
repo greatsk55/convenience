@@ -1,9 +1,1 @@
-sudo apt-get update
-
-sudo apt-get install apache2
-
-sudo apt-get install php5
-
-sudo apt-get install mysql-server
-
-sudo apt-get install mysql-client
+편의점의 모든 상품들을 리뷰하는 앱
